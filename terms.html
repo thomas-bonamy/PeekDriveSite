@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service, PeekDrive</title>
+    <meta name="description" content="PeekDrive Terms of Service and legal notice.">
+    <link rel="icon" type="image/png" href="128x128.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blue: #2D7FF9;
+            --blue-light: #EBF3FE;
+            --blue-dark: #1A5FD1;
+            --text: #1a1a2e;
+            --text-muted: #5a5a7a;
+            --bg: #ffffff;
+            --section-bg: #f8f9fc;
+            --border: #e2e5ee;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'DM Sans', sans-serif; color: var(--text); background: var(--bg); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+        nav { display: flex; align-items: center; justify-content: space-between; max-width: 960px; margin: 0 auto; padding: 24px; }
+        .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.2rem; color: var(--text); text-decoration: none; }
+        .logo img { height: 30px; width: auto; }
+        .nav-right { display: flex; align-items: center; gap: 24px; }
+        .nav-links { display: flex; gap: 24px; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--blue); }
+        .nav-links a.active { color: var(--blue); }
+        .lang-switch { display: flex; background: var(--section-bg); border-radius: 6px; overflow: hidden; border: 1px solid var(--border); }
+        .lang-btn { padding: 6px 12px; font-size: 0.82rem; font-weight: 600; border: none; background: transparent; color: var(--text-muted); cursor: pointer; font-family: inherit; transition: all 0.2s; }
+        .lang-btn.active { background: var(--blue); color: #fff; }
+
+        .back-link { display: block; max-width: 720px; margin: 0 auto; padding: 0 24px; font-size: 0.9rem; color: var(--blue); text-decoration: none; font-weight: 500; text-align: left; }
+        .back-link:hover { text-decoration: underline; }
+        .back-link svg { width: 16px; height: 16px; }
+
+        .content { max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; }
+        .content h1 { font-size: 2rem; font-weight: 700; margin-bottom: 8px; }
+        .last-updated { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 40px; }
+        .content h2 { font-size: 1.15rem; font-weight: 600; margin-top: 32px; margin-bottom: 12px; }
+        .content p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 12px; line-height: 1.7; }
+        .content ul { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; padding-left: 20px; margin-bottom: 12px; }
+        .content ul li { margin-bottom: 4px; }
+        .content a { color: var(--blue); text-decoration: none; }
+        .content a:hover { text-decoration: underline; }
+
+        footer { max-width: 960px; margin: 0 auto; padding: 40px 24px; display: flex; align-items: center; justify-content: space-between; font-size: 0.88rem; color: var(--text-muted); border-top: 1px solid var(--border); }
+        footer a { color: var(--blue); text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+        @media (max-width: 768px) {
+            .content h1 { font-size: 1.6rem; }
+            .nav-links { display: none; }
+            footer { flex-direction: column; gap: 8px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="./" class="logo">
+            <img src="logo.svg" alt="PeekDrive">
+        </a>
+        <div class="nav-right">
+            <div class="nav-links">
+                <a href="./#how" data-en="How it works" data-fr="Comment ça marche">How it works</a>
+                <a href="./#features" data-en="Features" data-fr="Fonctionnalités">Features</a>
+                <a href="./#filetypes" data-en="File types" data-fr="Fichiers compatibles">File types</a>
+                <a href="privacy.html" data-en="Privacy" data-fr="Confidentialité">Privacy</a>
+            </div>
+            <div class="lang-switch">
+                <button class="lang-btn" data-lang="fr" onclick="setLang('fr')">FR</button>
+                <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
+            </div>
+        </div>
+    </nav>
+
+    <a href="./" class="back-link" data-en="← Back to home" data-fr="← Retour à l'accueil">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+        <span data-en="Back to home" data-fr="Retour à l'accueil">Back to home</span>
+    </a>
+
+    <div class="content">
+        <h1 data-en="Terms of Service and Legal Notice" data-fr="Conditions d’utilisation et mentions légales">Terms of Service and Legal Notice</h1>
+        <p class="last-updated" data-en="Last updated: September 28, 2026" data-fr="Dernière mise à jour : 28 septembre 2026">Last updated: September 28, 2026</p>
+
+        <h2 data-en="Publisher" data-fr="Éditeur">Publisher</h2>
+        <div data-en="&lt;ul&gt;&lt;li&gt;PeekDrive is published by Thomas Bonamy, sole proprietor (entrepreneur individuel)&lt;/li&gt;&lt;li&gt;198 cours Aquitaine, 92100 Boulogne-Billancourt, France&lt;/li&gt;&lt;li&gt;SIREN 518 036 363 · SIRET 518 036 363 00043&lt;/li&gt;&lt;li&gt;Phone: +33 6 60 02 30 73 · Email: &lt;a href=&quot;mailto:contact@peekdrive.com&quot;&gt;contact@peekdrive.com&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Publication director: Thomas Bonamy&lt;/li&gt;&lt;/ul&gt;" data-fr="&lt;ul&gt;&lt;li&gt;PeekDrive est édité par Thomas Bonamy, entrepreneur individuel&lt;/li&gt;&lt;li&gt;198 cours Aquitaine, 92100 Boulogne-Billancourt, France&lt;/li&gt;&lt;li&gt;SIREN 518 036 363 · SIRET 518 036 363 00043&lt;/li&gt;&lt;li&gt;Téléphone : 06 60 02 30 73 · E-mail : &lt;a href=&quot;mailto:contact@peekdrive.com&quot;&gt;contact@peekdrive.com&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Directeur de la publication : Thomas Bonamy&lt;/li&gt;&lt;/ul&gt;">
+            <ul>
+                <li>PeekDrive is published by Thomas Bonamy, sole proprietor (entrepreneur individuel)</li>
+                <li>198 cours Aquitaine, 92100 Boulogne-Billancourt, France</li>
+                <li>SIREN 518 036 363 · SIRET 518 036 363 00043</li>
+                <li>Phone: +33 6 60 02 30 73 · Email: <a href="mailto:contact@peekdrive.com">contact@peekdrive.com</a></li>
+                <li>Publication director: Thomas Bonamy</li>
+            </ul>
+        </div>
+        <p data-en="This website is hosted by OVH SAS, 2 rue Kellermann, 59100 Roubaix, France. The extension is distributed through the Chrome Web Store, operated by Google." data-fr="Ce site est hébergé par OVH SAS, 2 rue Kellermann, 59100 Roubaix, France. L’extension est distribuée par le Chrome Web Store, exploité par Google.">This website is hosted by OVH SAS, 2 rue Kellermann, 59100 Roubaix, France. The extension is distributed through the Chrome Web Store, operated by Google.</p>
+
+        <h2 data-en="The service" data-fr="Le service">The service</h2>
+        <p data-en="PeekDrive is a browser extension that searches inside the files of your Google Drive, shows the matching passages and opens a file at the right spot. It requires a Google account and your authorization to read your Drive (read-only access). By installing or using PeekDrive, you accept these terms." data-fr="PeekDrive est une extension de navigateur qui recherche dans le contenu des fichiers de votre Google Drive, affiche les passages correspondants et ouvre un fichier au bon endroit. Elle nécessite un compte Google et votre autorisation de lire votre Drive (accès en lecture seule). En installant ou en utilisant PeekDrive, vous acceptez les présentes conditions.">PeekDrive is a browser extension that searches inside the files of your Google Drive, shows the matching passages and opens a file at the right spot. It requires a Google account and your authorization to read your Drive (read-only access). By installing or using PeekDrive, you accept these terms.</p>
+
+        <h2 data-en="Price" data-fr="Prix">Price</h2>
+        <p data-en="PeekDrive is currently free. If paid features are offered in the future, their price and conditions will be clearly presented before any subscription." data-fr="PeekDrive est actuellement gratuit. Si des fonctions payantes sont proposées à l’avenir, leur prix et leurs conditions seront présentés clairement avant toute souscription.">PeekDrive is currently free. If paid features are offered in the future, their price and conditions will be clearly presented before any subscription.</p>
+
+        <h2 data-en="Your Google account and your data" data-fr="Votre compte Google et vos données">Your Google account and your data</h2>
+        <p data-en="PeekDrive only reads your files, to search them, and cannot modify, move, share or delete anything in your Drive. Your files and searches only travel between your browser and Google: PeekDrive has no server. You can remove this access at any time from &lt;a href=&quot;https://myaccount.google.com/permissions&quot;&gt;myaccount.google.com/permissions&lt;/a&gt; and uninstall the extension. How data is handled is described in the &lt;a href=&quot;privacy.html&quot;&gt;Privacy Policy&lt;/a&gt;." data-fr="PeekDrive se contente de lire vos fichiers pour y rechercher, et ne peut rien modifier, déplacer, partager ni supprimer dans votre Drive. Vos fichiers et vos recherches ne circulent qu’entre votre navigateur et Google : PeekDrive n’a aucun serveur. Vous pouvez retirer cet accès à tout moment depuis &lt;a href=&quot;https://myaccount.google.com/permissions&quot;&gt;myaccount.google.com/permissions&lt;/a&gt; et désinstaller l’extension. Le traitement des données est décrit dans la &lt;a href=&quot;privacy.html&quot;&gt;politique de confidentialité&lt;/a&gt;.">PeekDrive only reads your files, to search them, and cannot modify, move, share or delete anything in your Drive. Your files and searches only travel between your browser and Google: PeekDrive has no server. You can remove this access at any time from <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a> and uninstall the extension. How data is handled is described in the <a href="privacy.html">Privacy Policy</a>.</p>
+
+        <h2 data-en="Acceptable use" data-fr="Utilisation autorisée">Acceptable use</h2>
+        <p data-en="You agree to use PeekDrive in compliance with the law and with Google’s terms, only on accounts and files you are allowed to access, and not to attempt to disrupt, circumvent or misuse the extension." data-fr="Vous vous engagez à utiliser PeekDrive dans le respect de la loi et des conditions de Google, uniquement sur des comptes et des fichiers auxquels vous avez le droit d’accéder, et à ne pas chercher à perturber, contourner ou détourner l’extension.">You agree to use PeekDrive in compliance with the law and with Google’s terms, only on accounts and files you are allowed to access, and not to attempt to disrupt, circumvent or misuse the extension.</p>
+
+        <h2 data-en="Intellectual property" data-fr="Propriété intellectuelle">Intellectual property</h2>
+        <p data-en="The PeekDrive name, logo, website and extension are the property of their publisher. Your files remain yours: PeekDrive claims no rights over them. Google, Google Drive and Chrome are trademarks of Google LLC. PeekDrive is an independent product, not affiliated with or endorsed by Google." data-fr="Le nom, le logo, le site et l’extension PeekDrive sont la propriété de leur éditeur. Vos fichiers restent les vôtres : PeekDrive ne revendique aucun droit sur eux. Google, Google Drive et Chrome sont des marques de Google LLC. PeekDrive est un produit indépendant, ni affilié à Google ni approuvé par Google.">The PeekDrive name, logo, website and extension are the property of their publisher. Your files remain yours: PeekDrive claims no rights over them. Google, Google Drive and Chrome are trademarks of Google LLC. PeekDrive is an independent product, not affiliated with or endorsed by Google.</p>
+
+        <h2 data-en="Availability and liability" data-fr="Disponibilité et responsabilité">Availability and liability</h2>
+        <p data-en="PeekDrive is provided as is. It relies on Google services, which may change or be unavailable, so its operation cannot be guaranteed to be uninterrupted, and some results may be incomplete (for example, scanned PDFs have no preview). To the extent permitted by law, the publisher is not liable for indirect damages resulting from the use of PeekDrive. Nothing in these terms limits the rights you have as a consumer under the law." data-fr="PeekDrive est fourni en l’état. Il s’appuie sur des services de Google, qui peuvent évoluer ou être indisponibles : son fonctionnement ne peut donc pas être garanti sans interruption, et certains résultats peuvent être incomplets (par exemple, les PDF scannés n’ont pas d’aperçu). Dans les limites permises par la loi, l’éditeur n’est pas responsable des dommages indirects liés à l’utilisation de PeekDrive. Rien dans ces conditions ne limite les droits que la loi vous accorde en tant que consommateur.">PeekDrive is provided as is. It relies on Google services, which may change or be unavailable, so its operation cannot be guaranteed to be uninterrupted, and some results may be incomplete (for example, scanned PDFs have no preview). To the extent permitted by law, the publisher is not liable for indirect damages resulting from the use of PeekDrive. Nothing in these terms limits the rights you have as a consumer under the law.</p>
+
+        <h2 data-en="Changes and termination" data-fr="Modifications et résiliation">Changes and termination</h2>
+        <p data-en="These terms may change: the updated version will be posted at this same URL with a new date. You can stop using PeekDrive at any time by uninstalling the extension and removing its access to your Google account." data-fr="Ces conditions peuvent évoluer : la version mise à jour sera publiée à cette même URL avec une nouvelle date. Vous pouvez cesser d’utiliser PeekDrive à tout moment en désinstallant l’extension et en lui retirant l’accès à votre compte Google.">These terms may change: the updated version will be posted at this same URL with a new date. You can stop using PeekDrive at any time by uninstalling the extension and removing its access to your Google account.</p>
+
+        <h2 data-en="Applicable law" data-fr="Droit applicable">Applicable law</h2>
+        <p data-en="These terms are governed by French law. In case of a dispute, please contact us first to find an amicable solution; failing that, the competent French courts will have jurisdiction, subject to the mandatory rules protecting consumers in their country of residence." data-fr="Ces conditions sont soumises au droit français. En cas de litige, contactez-nous d’abord pour rechercher une solution amiable ; à défaut, les tribunaux français compétents seront saisis, sous réserve des règles impératives protégeant les consommateurs dans leur pays de résidence.">These terms are governed by French law. In case of a dispute, please contact us first to find an amicable solution; failing that, the competent French courts will have jurisdiction, subject to the mandatory rules protecting consumers in their country of residence.</p>
+
+        <h2>Contact</h2>
+        <p><a href="mailto:contact@peekdrive.com">contact@peekdrive.com</a></p>
+    </div>
+
+    <footer>
+        <span>&copy; 2026 PeekDrive</span>
+        <span><a href="privacy.html" data-en="Privacy Policy" data-fr="Confidentialité">Privacy Policy</a> · <a href="terms.html" data-en="Terms &amp; legal notice" data-fr="Conditions &amp; mentions légales">Terms &amp; legal notice</a> · <a href="mailto:contact@peekdrive.com">contact@peekdrive.com</a></span>
+    </footer>
+
+    <script>
+        function setLang(lang) {
+            document.querySelectorAll('[data-' + lang + ']').forEach(function(el) {
+                var val = el.getAttribute('data-' + lang);
+                if (el.tagName === 'A' && el.getAttribute('href') && !val.includes('<')) {
+                    el.textContent = val;
+                } else {
+                    el.innerHTML = val;
+                }
+            });
+            document.querySelectorAll('.lang-btn').forEach(function(btn) {
+                btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+            });
+            document.documentElement.lang = lang;
+            try { localStorage.setItem('peekdrive-lang', lang); } catch(e) {}
+        }
+        (function() {
+            var saved = null;
+            try { saved = localStorage.getItem('peekdrive-lang'); } catch(e) {}
+            if (saved) { setLang(saved); }
+            else {
+                var bl = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+                setLang(bl.startsWith('fr') ? 'fr' : 'en');
+            }
+        })();
+    </script>
+</body>
+</html>

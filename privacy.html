@@ -24,7 +24,7 @@
 
         nav { display: flex; align-items: center; justify-content: space-between; max-width: 960px; margin: 0 auto; padding: 24px; }
         .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.2rem; color: var(--text); text-decoration: none; }
-        .logo img { width: 36px; height: 36px; }
+        .logo img { height: 30px; width: auto; }
         .nav-right { display: flex; align-items: center; gap: 24px; }
         .nav-links { display: flex; gap: 24px; }
         .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.2s; }
@@ -61,8 +61,7 @@
 <body>
     <nav>
         <a href="./" class="logo">
-            <img src="128x128.png" alt="PeekDrive">
-            PeekDrive
+            <img src="logo.svg" alt="PeekDrive">
         </a>
         <div class="nav-right">
             <div class="nav-links">
@@ -85,48 +84,45 @@
 
     <div class="content">
         <h1 data-en="Privacy Policy" data-fr="Politique de confidentialité">Privacy Policy</h1>
-        <p class="last-updated" data-en="Last updated: May 15, 2026" data-fr="Dernière mise à jour : 15 mai 2026">Last updated: May 15, 2026</p>
+        <p class="last-updated" data-en="Last updated: September 27, 2026" data-fr="Dernière mise à jour : 27 septembre 2026">Last updated: September 27, 2026</p>
 
         <h2 data-en="What PeekDrive does" data-fr="Ce que fait PeekDrive">What PeekDrive does</h2>
-        <p data-en="PeekDrive is a Chrome extension that lets you search inside your Google Drive files and preview matching passages directly from the search results." data-fr="PeekDrive est une extension Chrome qui vous permet de rechercher dans le contenu de vos fichiers Google Drive et de visualiser les passages correspondants directement dans les résultats.">PeekDrive is a Chrome extension that lets you search inside your Google Drive files and preview matching passages directly from the search results.</p>
+        <p data-en="PeekDrive is a Chrome extension that lets you search inside your Google Drive files, preview the matching passages and open a file at the right spot." data-fr="PeekDrive est une extension Chrome qui vous permet de rechercher dans le contenu de vos fichiers Google Drive, de visualiser les passages correspondants et d’ouvrir un fichier au bon endroit.">PeekDrive is a Chrome extension that lets you search inside your Google Drive files, preview the matching passages and open a file at the right spot.</p>
 
-        <h2 data-en="Data collection" data-fr="Collecte de données">Data collection</h2>
-        <p data-en="PeekDrive does not collect, store, transmit, or share any personal data. All processing happens locally in your browser. Your search queries, file contents, and results never leave your device." data-fr="PeekDrive ne collecte, ne stocke, ne transmet et ne partage aucune donnée personnelle. Tout le traitement se fait localement dans votre navigateur. Vos recherches, le contenu de vos fichiers et vos résultats ne quittent jamais votre appareil.">PeekDrive does not collect, store, transmit, or share any personal data. All processing happens locally in your browser. Your search queries, file contents, and results never leave your device.</p>
+        <h2 data-en="No PeekDrive server" data-fr="Aucun serveur PeekDrive">No PeekDrive server</h2>
+        <p data-en="PeekDrive has no server. Your searches and your files only travel between your browser and Google, over encrypted HTTPS connections to Google’s official APIs. Everything else (finding the passages, building the previews) happens locally in your browser." data-fr="PeekDrive n’a aucun serveur. Vos recherches et vos fichiers ne circulent qu’entre votre navigateur et Google, via des connexions HTTPS chiffrées vers les API officielles de Google. Tout le reste (repérer les passages, construire les aperçus) se fait localement dans votre navigateur.">PeekDrive has no server. Your searches and your files only travel between your browser and Google, over encrypted HTTPS connections to Google’s official APIs. Everything else (finding the passages, building the previews) happens locally in your browser.</p>
 
-        <div data-en="<p>Specifically, PeekDrive:</p><ul><li>Does not send any data to external servers</li><li>Does not use analytics, tracking, or telemetry</li><li>Does not use cookies</li><li>Does not store your file contents or search history</li><li>Does not share any data with third parties</li></ul>" data-fr="<p>Plus précisément, PeekDrive :</p><ul><li>N'envoie aucune donnée vers des serveurs externes</li><li>N'utilise aucun outil d'analyse, de suivi ou de télémétrie</li><li>N'utilise pas de cookies</li><li>Ne stocke ni le contenu de vos fichiers ni votre historique de recherche</li><li>Ne partage aucune donnée avec des tiers</li></ul>">
-            <p>Specifically, PeekDrive:</p>
+        <div data-en="&lt;p&gt;PeekDrive:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Does not send your data to any server other than Google’s&lt;/li&gt;&lt;li&gt;Does not use analytics, tracking or telemetry, and sets no cookies&lt;/li&gt;&lt;li&gt;Does not use artificial intelligence: no AI reads your documents&lt;/li&gt;&lt;li&gt;Does not sell or share any data with third parties, and no human reads your data&lt;/li&gt;&lt;li&gt;Does not use your data for advertising or to train AI models&lt;/li&gt;&lt;/ul&gt;" data-fr="&lt;p&gt;PeekDrive :&lt;/p&gt;&lt;ul&gt;&lt;li&gt;N’envoie vos données à aucun serveur autre que ceux de Google&lt;/li&gt;&lt;li&gt;N’utilise aucun outil d’analyse, de suivi ni de télémétrie, et ne dépose aucun cookie&lt;/li&gt;&lt;li&gt;N’utilise pas d’intelligence artificielle : aucune IA ne lit vos documents&lt;/li&gt;&lt;li&gt;Ne vend ni ne partage aucune donnée avec des tiers, et personne ne lit vos données&lt;/li&gt;&lt;li&gt;N’utilise pas vos données à des fins publicitaires ni pour entraîner des modèles d’IA&lt;/li&gt;&lt;/ul&gt;">
+            <p>PeekDrive:</p>
             <ul>
-                <li>Does not send any data to external servers</li>
-                <li>Does not use analytics, tracking, or telemetry</li>
-                <li>Does not use cookies</li>
-                <li>Does not store your file contents or search history</li>
-                <li>Does not share any data with third parties</li>
+                <li>Does not send your data to any server other than Google’s</li>
+                <li>Does not use analytics, tracking or telemetry, and sets no cookies</li>
+                <li>Does not use artificial intelligence: no AI reads your documents</li>
+                <li>Does not sell or share any data with third parties, and no human reads your data</li>
+                <li>Does not use your data for advertising or to train AI models</li>
             </ul>
         </div>
 
+        <h2 data-en="What is stored, and for how long" data-fr="Ce qui est conservé, et combien de temps">What is stored, and for how long</h2>
+        <p data-en="The content of your files is read on the fly for each search and is never saved. PeekDrive keeps no search history: only your last search is kept, for the current browsing session only, so it is still there when you reopen the panel. Your settings (language, display options) are saved in your browser." data-fr="Le contenu de vos fichiers est lu à la volée pour chaque recherche et n’est jamais enregistré. PeekDrive ne garde aucun historique de recherche : seule votre dernière recherche est gardée, pour la session de navigation en cours uniquement, afin de la retrouver quand vous rouvrez le panneau. Vos réglages (langue, options d’affichage) sont enregistrés dans votre navigateur.">The content of your files is read on the fly for each search and is never saved. PeekDrive keeps no search history: only your last search is kept, for the current browsing session only, so it is still there when you reopen the panel. Your settings (language, display options) are saved in your browser.</p>
+
         <h2 data-en="Google API usage" data-fr="Utilisation des API Google">Google API usage</h2>
-        <p data-en="PeekDrive accesses your Google Drive files through Google's APIs solely to perform search and display matching passages. This access is limited to what is necessary for the extension to function." data-fr="PeekDrive accède à vos fichiers Google Drive via les API de Google uniquement pour effectuer la recherche et afficher les passages correspondants. Cet accès est limité à ce qui est nécessaire au fonctionnement de l'extension.">PeekDrive accesses your Google Drive files through Google's APIs solely to perform search and display matching passages. This access is limited to what is necessary for the extension to function.</p>
-        <p data-en="PeekDrive's use of information received from Google APIs adheres to the Chrome Web Store User Data Policy, including the Limited Use requirements." data-fr="L'utilisation des informations reçues des API Google par PeekDrive est conforme à la politique de données utilisateur du Chrome Web Store, y compris les exigences d'utilisation limitée (Limited Use).">PeekDrive's use of information received from Google APIs adheres to the Chrome Web Store User Data Policy, including the Limited Use requirements.</p>
+        <p data-en="PeekDrive requests read-only access to your Google Drive, in order to search your files and read their content. It cannot modify, move, share, create or delete anything in your Drive. Word, Excel, PowerPoint and PDF files are opened directly in your browser." data-fr="PeekDrive demande un accès en lecture seule à votre Google Drive, pour rechercher dans vos fichiers et lire leur contenu. Il ne peut rien modifier, déplacer, partager, créer ni supprimer dans votre Drive. Les fichiers Word, Excel, PowerPoint et PDF sont ouverts directement dans votre navigateur.">PeekDrive requests read-only access to your Google Drive, in order to search your files and read their content. It cannot modify, move, share, create or delete anything in your Drive. Word, Excel, PowerPoint and PDF files are opened directly in your browser.</p>
+        <p data-en="PeekDrive’s use and transfer of information received from Google APIs adheres to the &lt;a href=&quot;https://developers.google.com/terms/api-services-user-data-policy&quot;&gt;Google API Services User Data Policy&lt;/a&gt; and the Chrome Web Store User Data Policy, including the Limited Use requirements." data-fr="L’utilisation et le transfert par PeekDrive des informations reçues des API Google respectent la &lt;a href=&quot;https://developers.google.com/terms/api-services-user-data-policy&quot;&gt;politique relative aux données utilisateur des services d’API Google&lt;/a&gt; et la politique de données utilisateur du Chrome Web Store, y compris les exigences d’utilisation limitée (Limited Use).">PeekDrive’s use and transfer of information received from Google APIs adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a> and the Chrome Web Store User Data Policy, including the Limited Use requirements.</p>
 
-        <h2 data-en="Data retention and deletion" data-fr="Conservation et suppression des données">Data retention and deletion</h2>
-        <p data-en="PeekDrive does not retain any user data. Since all processing happens locally and no data is stored beyond your active browser session, there is nothing to delete. Your Google Drive file contents are only accessed temporarily during a search and are not cached or saved." data-fr="PeekDrive ne conserve aucune donnée utilisateur. Comme tout le traitement se fait localement et qu'aucune donnée n'est stockée au-delà de votre session de navigation, il n'y a rien à supprimer. Le contenu de vos fichiers Google Drive n'est consulté que temporairement pendant une recherche et n'est ni mis en cache ni sauvegardé.">PeekDrive does not retain any user data. Since all processing happens locally and no data is stored beyond your active browser session, there is nothing to delete. Your Google Drive file contents are only accessed temporarily during a search and are not cached or saved.</p>
-
-        <h2 data-en="Data protection" data-fr="Protection des données">Data protection</h2>
-        <p data-en="Your data is protected by design: PeekDrive processes everything locally in your browser using encrypted HTTPS connections to Google's APIs. No data is transmitted to any third-party server." data-fr="Vos données sont protégées par conception : PeekDrive traite tout localement dans votre navigateur via des connexions HTTPS chiffrées vers les API de Google. Aucune donnée n'est transmise à un serveur tiers.">Your data is protected by design: PeekDrive processes everything locally in your browser using encrypted HTTPS connections to Google's APIs. No data is transmitted to any third-party server.</p>
-
-        <h2 data-en="Permissions" data-fr="Autorisations">Permissions</h2>
-        <p data-en="PeekDrive requests access to your Google Drive to read file contents for search purposes only. No other permissions are requested beyond what is strictly necessary for the extension to work." data-fr="PeekDrive demande l'accès à votre Google Drive uniquement pour lire le contenu des fichiers à des fins de recherche. Aucune autre autorisation n'est demandée au-delà de ce qui est strictement nécessaire.">PeekDrive requests access to your Google Drive to read file contents for search purposes only. No other permissions are requested beyond what is strictly necessary for the extension to work.</p>
+        <h2 data-en="Removing access" data-fr="Retirer l’accès">Removing access</h2>
+        <p data-en="You can remove PeekDrive’s access to your Google account at any time from &lt;a href=&quot;https://myaccount.google.com/permissions&quot;&gt;myaccount.google.com/permissions&lt;/a&gt;, and uninstall the extension from chrome://extensions. Uninstalling erases your settings." data-fr="Vous pouvez retirer à tout moment l’accès de PeekDrive à votre compte Google depuis &lt;a href=&quot;https://myaccount.google.com/permissions&quot;&gt;myaccount.google.com/permissions&lt;/a&gt;, et désinstaller l’extension depuis chrome://extensions. La désinstallation efface vos réglages.">You can remove PeekDrive’s access to your Google account at any time from <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>, and uninstall the extension from chrome://extensions. Uninstalling erases your settings.</p>
 
         <h2 data-en="Changes" data-fr="Modifications">Changes</h2>
         <p data-en="If this policy changes, the updated version will be posted at this same URL with a new date." data-fr="En cas de modification de cette politique, la version mise à jour sera publiée à cette même URL avec une nouvelle date.">If this policy changes, the updated version will be posted at this same URL with a new date.</p>
 
-        <h2>Contact</h2>
-        <p><a href="mailto:peekdrive.contact@gmail.com">peekdrive.contact@gmail.com</a></p>
+        <h2 data-en="Contact and publisher" data-fr="Contact et éditeur">Contact and publisher</h2>
+        <p data-en="PeekDrive is published by Thomas Bonamy (sole proprietor, France), who is responsible for this policy. Contact: &lt;a href=&quot;mailto:contact@peekdrive.com&quot;&gt;contact@peekdrive.com&lt;/a&gt;. Full details in the &lt;a href=&quot;terms.html&quot;&gt;terms and legal notice&lt;/a&gt;." data-fr="PeekDrive est édité par Thomas Bonamy (entrepreneur individuel, France), responsable de cette politique. Contact : &lt;a href=&quot;mailto:contact@peekdrive.com&quot;&gt;contact@peekdrive.com&lt;/a&gt;. Coordonnées complètes dans les &lt;a href=&quot;terms.html&quot;&gt;conditions et mentions légales&lt;/a&gt;.">PeekDrive is published by Thomas Bonamy (sole proprietor, France), who is responsible for this policy. Contact: <a href="mailto:contact@peekdrive.com">contact@peekdrive.com</a>. Full details in the <a href="terms.html">terms and legal notice</a>.</p>
     </div>
 
     <footer>
         <span>&copy; 2026 PeekDrive</span>
-        <span><a href="mailto:peekdrive.contact@gmail.com">peekdrive.contact@gmail.com</a></span>
+        <span><a href="privacy.html" data-en="Privacy Policy" data-fr="Confidentialité">Privacy Policy</a> · <a href="terms.html" data-en="Terms &amp; legal notice" data-fr="Conditions &amp; mentions légales">Terms &amp; legal notice</a> · <a href="mailto:contact@peekdrive.com">contact@peekdrive.com</a></span>
     </footer>
 
     <script>

@@ -1,0 +1,52 @@
+# Publishes this site to the OVH web hosting of peekdrive.com (www/ folder),
+# over SFTP: automatically on every push to main (merging a pull request
+# included), or on demand from the Actions tab (Deploy > Run workflow).
+#
+# Setup, once:
+# - OVH Control Panel > Web Cloud > Hébergements > peekdrive.com > "FTP - SSH":
+#   SFTP ticked for the FTP user (OVH has no FTPS; plain FTP is unencrypted).
+# - This repository > Settings > Secrets and variables > Actions >
+#   New repository secret: FTP_USERNAME (the "Login principal") and
+#   FTP_PASSWORD.
+#
+# Files are uploaded over the existing ones. Nothing is ever deleted on the
+# server: a file removed from this repository must be removed on OVH by hand.
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+env:
+  # "Serveur FTP et SFTP" in OVH's "FTP - SSH" tab
+  SFTP_HOST: ftp.cluster129.hosting.ovh.net
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install lftp
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+
+      - name: Upload the site to OVH (www/)
+        env:
+          SFTP_USER: ${{ secrets.FTP_USERNAME }}
+          LFTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          lftp -c "
+            set sftp:auto-confirm yes
+            set net:max-retries 2
+            set net:timeout 30
+            open --env-password -u $SFTP_USER sftp://$SFTP_HOST
+            mirror --reverse --no-perms --verbose --parallel=4 --exclude '^\.git' ./ www/
+          "
