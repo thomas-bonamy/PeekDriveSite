@@ -50,6 +50,7 @@
         .how-num { width: 36px; height: 36px; background: var(--blue-light); color: var(--blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.95rem; margin-bottom: 14px; }
         .how-card h3 { font-size: 1.02rem; font-weight: 600; margin-bottom: 8px; }
         .how-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.55; }
+        .how-inner > p { text-align: center; color: var(--text-muted); max-width: 720px; margin: 36px auto 0; }
 
         .features { max-width: 960px; margin: 0 auto; padding: 80px 24px; }
         .features h2 { text-align: center; font-size: 1.8rem; font-weight: 700; margin-bottom: 48px; }
@@ -76,11 +77,13 @@
         .icon-pdf { background: #DB4437; }
         .icon-word { background: #2B579A; }
         .icon-excel { background: #5F6368; }
+        .icon-powerpoint { background: #C43E1C; }
         .icon-csv { background: #9AA0A6; }
 
-        footer { max-width: 960px; margin: 0 auto; padding: 40px 24px; display: flex; align-items: center; justify-content: space-between; font-size: 0.88rem; color: var(--text-muted); }
+        footer { max-width: 960px; margin: 0 auto; padding: 40px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; font-size: 0.88rem; color: var(--text-muted); }
         footer a { color: var(--blue); text-decoration: none; }
         footer a:hover { text-decoration: underline; }
+        .footer-note { flex-basis: 100%; margin-top: 16px; font-size: 0.8rem; }
 
         @media (max-width: 768px) {
             .hero h1 { font-size: 1.9rem; }
@@ -141,6 +144,7 @@
                     <p data-en='Click "Open" and land directly on the right paragraph in a Doc, the right cell in a Sheet, or the right slide in a presentation.' data-fr='Cliquez sur « Ouvrir » et atterrissez directement au bon paragraphe dans un Doc, à la bonne cellule dans un Sheet, ou à la bonne diapositive dans une présentation.'>Click "Open" and land directly on the right paragraph in a Doc, the right cell in a Sheet, or the right slide in a presentation.</p>
                 </div>
             </div>
+            <p data-en="PeekDrive asks you to sign in with Google and grant read-only access to your Google Drive, so it can search the text inside your files and show you the matching passages. It never modifies your files." data-fr="PeekDrive vous demande de vous connecter avec Google et d'autoriser un accès en lecture seule à votre Google Drive, afin de rechercher le texte à l'intérieur de vos fichiers et de vous montrer les passages correspondants. Il ne modifie jamais vos fichiers.">PeekDrive asks you to sign in with Google and grant read-only access to your Google Drive, so it can search the text inside your files and show you the matching passages. It never modifies your files.</p>
         </div>
     </section>
 
@@ -183,7 +187,7 @@
     <section class="filetypes" id="filetypes">
         <div class="filetypes-inner">
             <h2 data-en="Supported file types" data-fr="Fichiers compatibles">Supported file types</h2>
-            <p data-en="PeekDrive works with the files you use every day." data-fr="PeekDrive fonctionne avec les fichiers que vous utilisez au quotidien.">PeekDrive works with the files you use every day.</p>
+            <p data-en="PeekDrive works with the files you use every day.<br>Works with My Drive and shared drives." data-fr="PeekDrive fonctionne avec les fichiers que vous utilisez au quotidien.<br>Fonctionne avec Mon Drive et les Drive partagés.">PeekDrive works with the files you use every day.<br>Works with My Drive and shared drives.</p>
             <div class="types-row">
                 <span class="type-badge">
                     <span class="type-icon icon-docs"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 2l5 5h-5V4zM8 13h8v1.5H8V13zm0 3h8v1.5H8V16zm0-6h3v1.5H8V10z"/></svg></span>
@@ -210,6 +214,10 @@
                     Microsoft Excel
                 </span>
                 <span class="type-badge">
+                    <span class="type-icon icon-powerpoint"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 2l5 5h-5V4zM8 12h8v6H8v-6z"/></svg></span>
+                    Microsoft PowerPoint
+                </span>
+                <span class="type-badge">
                     <span class="type-icon icon-csv"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 2l5 5h-5V4zM8 13h8v1.5H8V13zm0 3h8v1.5H8V16z"/></svg></span>
                     CSV
                 </span>
@@ -220,6 +228,7 @@
     <footer>
         <span>&copy; 2026 PeekDrive</span>
         <span><a href="privacy.html" data-en="Privacy Policy" data-fr="Confidentialité">Privacy Policy</a> · <a href="terms.html" data-en="Terms &amp; legal notice" data-fr="Conditions &amp; mentions légales">Terms &amp; legal notice</a> · <a href="mailto:contact@peekdrive.com">contact@peekdrive.com</a></span>
+        <span class="footer-note" data-en="Google, Google Drive and Chrome are trademarks of Google LLC. PeekDrive is an independent product, not affiliated with or endorsed by Google." data-fr="Google, Google Drive et Chrome sont des marques de Google LLC. PeekDrive est un produit indépendant, ni affilié à Google ni approuvé par Google.">Google, Google Drive and Chrome are trademarks of Google LLC. PeekDrive is an independent product, not affiliated with or endorsed by Google.</span>
     </footer>
 
     <script>
