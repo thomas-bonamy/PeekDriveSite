@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PeekDrive</title>
     <meta name="description" content="Search inside your Google Drive files and jump to the exact spot. Free Chrome extension.">
-    <link rel="icon" type="image/png" href="128x128.png">
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -68,17 +70,8 @@
         .types-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; }
 
         .type-badge { display: inline-flex; align-items: center; gap: 12px; padding: 12px 22px; border-radius: 12px; font-size: 0.92rem; font-weight: 600; background: #fff; border: 1px solid var(--border); }
-        .type-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-        .type-icon svg { width: 20px; height: 20px; fill: #fff; }
-
-        .icon-docs { background: #4285F4; }
-        .icon-sheets { background: #0F9D58; }
-        .icon-slides { background: #F4B400; }
-        .icon-pdf { background: #DB4437; }
-        .icon-word { background: #2B579A; }
-        .icon-excel { background: #5F6368; }
-        .icon-powerpoint { background: #C43E1C; }
-        .icon-csv { background: #9AA0A6; }
+        .type-icon { width: 40px; height: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; }
+        .type-icon svg { display: block; width: 100%; height: 100%; }
 
         footer { max-width: 960px; margin: 0 auto; padding: 40px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; font-size: 0.88rem; color: var(--text-muted); }
         footer a { color: var(--blue); text-decoration: none; }
@@ -117,7 +110,7 @@
 
     <section class="hero">
         <h1 data-en="Search inside your Google Drive files.<br><span>Jump to the exact spot.</span>" data-fr="Recherchez dans vos fichiers Google Drive.<br><span>Accédez au bon endroit.</span>">Search inside your Google Drive files.<br><span>Jump to the exact spot.</span></h1>
-        <p data-en="Google Drive tells you which file matches your search, but not where inside. PeekDrive shows you the exact passage and takes you there in one click. Free, private, and open." data-fr="Google Drive vous dit quel fichier contient votre recherche, mais pas où dedans. PeekDrive vous montre le passage exact et vous y amène en un clic. Gratuit, privé et transparent.">Google Drive tells you which file matches your search, but not where inside. PeekDrive shows you the exact passage and takes you there in one click. Free, private, and open.</p>
+        <p data-en="Google Drive tells you which file matches your search, but not where inside. PeekDrive shows you the exact passage and takes you there in one click. Free and 100% private." data-fr="Google Drive vous dit quel fichier contient votre recherche, mais pas où dedans. PeekDrive vous montre le passage exact et vous y amène en un clic. Gratuit et 100% privé.">Google Drive tells you which file matches your search, but not where inside. PeekDrive shows you the exact passage and takes you there in one click. Free and 100% private.</p>
         <a href="https://chromewebstore.google.com/detail/peekdrive-recherche-pour/piecapgomaejneknjkfpdhcpegihmjpd" class="cta-btn">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="8 12 12 16 16 12"/><line x1="12" y1="8" x2="12" y2="16"/></svg>
             <span data-en="Add to Chrome, it's free" data-fr="Ajouter à Chrome, c'est gratuit">Add to Chrome, it's free</span>
@@ -174,7 +167,7 @@
             <div class="feature-card">
                 <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
                 <h3 data-en="100% private" data-fr="100% privé">100% private</h3>
-                <p data-en="All processing happens locally in your browser. No data sent to external servers. No analytics, no tracking, no cookies." data-fr="Tout le traitement se fait localement dans votre navigateur. Aucune donnée envoyée à des serveurs externes. Pas d'analytics, pas de tracking, pas de cookies.">All processing happens locally in your browser. No data sent to external servers. No analytics, no tracking, no cookies.</p>
+                <p data-en="All processing happens in your browser, with no AI = 100% local. No data sent to external servers. No analytics, no tracking, no cookies." data-fr="Tout le traitement se fait dans votre navigateur, sans IA = 100% local. Aucune donnée envoyée à des serveurs externes. Pas d'analytics, pas de tracking, pas de cookies.">All processing happens in your browser, with no AI = 100% local. No data sent to external servers. No analytics, no tracking, no cookies.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
@@ -190,35 +183,35 @@
             <p data-en="PeekDrive works with the files you use every day.<br>Works with My Drive and shared drives." data-fr="PeekDrive fonctionne avec les fichiers que vous utilisez au quotidien.<br>Fonctionne avec Mon Drive et les Drive partagés.">PeekDrive works with the files you use every day.<br>Works with My Drive and shared drives.</p>
             <div class="types-row">
                 <span class="type-badge">
-                    <span class="type-icon icon-docs"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 2l5 5h-5V4zM8 13h8v1.5H8V13zm0 3h8v1.5H8V16zm0-6h3v1.5H8V10z"/></svg></span>
+                    <span class="type-icon icon-docs"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="8" fill="#3A7AF2"/><path d="M29 16V28.9932C29 29.5501 28.5552 30 28.0066 30H11.9934C11.445 30 11 29.556 11 29.0082V10.9918C11 10.4553 11.4487 10 12.0022 10H22.9968L29 16ZM27 17H22V12H13V28H27V17ZM16 15H19V17H16V15ZM16 19H24V21H16V19ZM16 23H24V25H16V23Z" fill="white"/></svg></span>
                     Google Docs
                 </span>
                 <span class="type-badge">
-                    <span class="type-icon icon-sheets"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 2l5 5h-5V4zM8 12h3v2.5H8V12zm0 3.5h3V18H8v-2.5zM12 12h4v2.5h-4V12zm0 3.5h4V18h-4v-2.5z"/></svg></span>
+                    <span class="type-icon icon-sheets"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="8" fill="#34A853"/><path d="M11 11C10.4477 11 10 11.4477 10 12V28C10 28.5523 10.4477 29 11 29H29C29.5523 29 30 28.5523 30 28V12C30 11.4477 29.5523 11 29 11H11ZM16 13V16H12V13H16ZM12 22V18H16V22H12ZM12 24H16V27H12V24ZM18 24H28V27H18V24ZM28 22H18V18H28V22ZM28 13V16H18V13H28Z" fill="white"/></svg></span>
                     Google Sheets
                 </span>
                 <span class="type-badge">
-                    <span class="type-icon icon-slides"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 2l5 5h-5V4zM8 12h8v6H8v-6z"/></svg></span>
+                    <span class="type-icon icon-slides"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="8" fill="#FBBC04"/><path d="M21 26V28H25V30H15V28H19V26H11C10.4477 26 10 25.5523 10 25V12C10 11.4477 10.4477 11 11 11H29C29.5523 11 30 11.4477 30 12V25C30 25.5523 29.5523 26 29 26H21ZM12 13V24H28V13H12ZM18 15.5L23 18.5L18 21.5V15.5Z" fill="white"/></svg></span>
                     Google Slides
                 </span>
                 <span class="type-badge">
-                    <span class="type-icon icon-pdf"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 2l5 5h-5V4zM8.5 13h1c.55 0 1 .45 1 1s-.45 1-1 1h-1v2H7v-5h1.5c.55 0 1 .45 1 1v.5c0 .28-.22.5-.5.5z"/></svg></span>
+                    <span class="type-icon icon-pdf"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="8" fill="#EA4335"/><path d="M13 12H23V16H27V28H13V12ZM11.9985 10C11.4475 10 11 10.4441 11 10.9918V29.0082C11 29.5447 11.4448 30 11.9934 30H28.0066C28.5551 30 29 29.5489 29 28.9925L28.9997 15L24 10H11.9985ZM18.4999 15.5C18.4999 17.0775 18.0442 18.9373 17.2749 20.6534C16.5029 22.3757 15.4614 23.8502 14.3752 24.7191L15.5546 26.3321C18.4821 24.3804 21.7233 23.0421 24.8585 23.49L25.3162 21.5513C22.6435 20.6604 20.4999 17.9899 20.4999 15.5H18.4999ZM19.0999 21.4716C19.3673 20.8752 19.6042 20.2563 19.8037 19.6285C20.2753 20.3531 20.8553 21.0182 21.5101 21.5953C20.5283 21.7711 19.5665 22.0596 18.6352 22.4276C18.7999 22.1143 18.9551 21.7948 19.0999 21.4716Z" fill="white"/></svg></span>
                     PDF
                 </span>
                 <span class="type-badge">
-                    <span class="type-icon icon-word"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 2l5 5h-5V4zM8 13h8v1.5H8V13zm0 3h8v1.5H8V16zm0-6h3v1.5H8V10z"/></svg></span>
+                    <span class="type-icon icon-word"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="8" fill="#14559C"/><path d="M25 27H28V13H25V11H29C29.5523 11 30 11.4477 30 12V28C30 28.5523 29.5523 29 29 29H25V27ZM10.8586 10.8773L23.4293 9.0815C23.7027 9.04245 23.9559 9.2324 23.995 9.50577C23.9983 9.52919 24 9.55282 24 9.57648V30.4235C24 30.6996 23.7761 30.9235 23.5 30.9235C23.4763 30.9235 23.4527 30.9218 23.4293 30.9184L10.8586 29.1226C10.3659 29.0522 10 28.6303 10 28.1327V11.8673C10 11.3696 10.3659 10.9477 10.8586 10.8773ZM12 12.7346V27.2654L22 28.694V11.306L12 12.7346ZM19 16H21V24H19L17 22L15 24H13V16H15L15.0108 21L17 19L19 20.989V16Z" fill="white"/></svg></span>
                     Microsoft Word
                 </span>
                 <span class="type-badge">
-                    <span class="type-icon icon-excel"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 2l5 5h-5V4zM8 12h3v2.5H8V12zm0 3.5h3V18H8v-2.5zM12 12h4v2.5h-4V12zm0 3.5h4V18h-4v-2.5z"/></svg></span>
+                    <span class="type-icon icon-excel"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="8" fill="#00733F"/><path d="M10.8586 10.8773L23.4293 9.0815C23.7027 9.04245 23.9559 9.2324 23.995 9.50577C23.9983 9.52919 24 9.55282 24 9.57648V30.4235C24 30.6996 23.7761 30.9235 23.5 30.9235C23.4763 30.9235 23.4527 30.9218 23.4293 30.9184L10.8586 29.1226C10.3659 29.0522 10 28.6303 10 28.1327V11.8673C10 11.3696 10.3659 10.9477 10.8586 10.8773ZM12 12.7346V27.2654L22 28.694V11.306L12 12.7346ZM25 27H28V13H25V11H29C29.5523 11 30 11.4477 30 12V28C30 28.5523 29.5523 29 29 29H25V27ZM18.2 20L21 24H18.6L17 21.7143L15.4 24H13L15.8 20L13 16H15.4L17 18.2857L18.6 16H21L18.2 20Z" fill="white"/></svg></span>
                     Microsoft Excel
                 </span>
                 <span class="type-badge">
-                    <span class="type-icon icon-powerpoint"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 2l5 5h-5V4zM8 12h8v6H8v-6z"/></svg></span>
+                    <span class="type-icon icon-powerpoint"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="8" fill="#E42F02"/><path d="M10.8586 10.8773L23.4293 9.0815C23.7027 9.04245 23.9559 9.2324 23.995 9.50577C23.9983 9.52919 24 9.55282 24 9.57648V30.4235C24 30.6996 23.7761 30.9235 23.5 30.9235C23.4763 30.9235 23.4527 30.9218 23.4293 30.9184L10.8586 29.1226C10.3659 29.0522 10 28.6303 10 28.1327V11.8673C10 11.3696 10.3659 10.9477 10.8586 10.8773ZM12 12.7346V27.2654L22 28.694V11.306L12 12.7346ZM25 27H28V13H25V11H29C29.5523 11 30 11.4477 30 12V28C30 28.5523 29.5523 29 29 29H25V27ZM13 16H21V22H15V24H13V16ZM15 18V20H19V18H15Z" fill="white"/></svg></span>
                     Microsoft PowerPoint
                 </span>
                 <span class="type-badge">
-                    <span class="type-icon icon-csv"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 2l5 5h-5V4zM8 13h8v1.5H8V13zm0 3h8v1.5H8V16z"/></svg></span>
+                    <span class="type-icon icon-csv"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="8" fill="#00733F"/><path d="M21 18V22H27V18H21ZM19 18H13V22H19V18ZM21 27H27V24H21V27ZM19 27V24H13V27H19ZM21 13V16H27V13H21ZM19 13H13V16H19V13ZM12 11H28C28.5523 11 29 11.4477 29 12V28C29 28.5523 28.5523 29 28 29H12C11.4477 29 11 28.5523 11 28V12C11 11.4477 11.4477 11 12 11Z" fill="white"/></svg></span>
                     CSV
                 </span>
             </div>
