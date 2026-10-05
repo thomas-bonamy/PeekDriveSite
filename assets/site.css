@@ -490,6 +490,7 @@ kbd { font-family: inherit; font-size: inherit; font-weight: 600; color: var(--t
 .form-foot { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 24px; align-items: center; margin-top: 32px; }
 .form-foot .btn { min-width: 132px; }
 .form-note { font-size: 0.875rem; line-height: 1.55; color: var(--text-2); }
+.form-note a { white-space: nowrap; }
 .form-fail { margin-top: 24px; padding: 20px 24px; border: 1px solid #F1C5C2; border-radius: var(--radius-m); background: #FDF3F2; }
 .form-fail:focus { outline: none; }
 .form-fail p { font-size: 0.9688rem; line-height: 1.6; }
