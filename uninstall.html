@@ -8,177 +8,129 @@
     <link rel="icon" href="favicon.ico?v=2" sizes="any">
     <link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
     <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --blue: #2D7FF9;
-            --blue-light: #EBF3FE;
-            --blue-dark: #1A5FD1;
-            --text: #1a1a2e;
-            --text-muted: #5a5a7a;
-            --bg: #ffffff;
-            --section-bg: #f8f9fc;
-            --border: #e2e5ee;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'DM Sans', sans-serif; color: var(--text); background: var(--bg); line-height: 1.6; -webkit-font-smoothing: antialiased; }
-
-        nav { display: flex; align-items: center; justify-content: space-between; max-width: 960px; margin: 0 auto; padding: 24px; }
-        .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.2rem; color: var(--text); text-decoration: none; }
-        .logo img { height: 30px; width: auto; }
-        .nav-right { display: flex; align-items: center; gap: 24px; }
-        .nav-links { display: flex; gap: 24px; }
-        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.2s; }
-        .nav-links a:hover { color: var(--blue); }
-        .lang-switch { display: flex; background: var(--section-bg); border-radius: 6px; overflow: hidden; border: 1px solid var(--border); }
-        .lang-btn { padding: 6px 12px; font-size: 0.82rem; font-weight: 600; border: none; background: transparent; color: var(--text-muted); cursor: pointer; font-family: inherit; transition: all 0.2s; }
-        .lang-btn.active { background: var(--blue); color: #fff; }
-
-        .content { max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; }
-        .content h1 { font-size: 2rem; font-weight: 700; line-height: 1.2; margin-bottom: 8px; text-align: center; }
-        .lead { font-size: 1.05rem; color: var(--text-muted); text-align: center; margin-bottom: 40px; }
-        .content a { color: var(--blue); text-decoration: none; }
-        .content a:hover { text-decoration: underline; }
-
-        .card { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-bottom: 16px; }
-        .card h2 { font-size: 1.02rem; font-weight: 600; margin-bottom: 6px; }
-        .card-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
-        .card-row h2 { margin-bottom: 0; }
-        .card p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; }
-        .address-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; margin-top: 16px; }
-        .address { padding: 10px 14px; background: var(--section-bg); border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; font-weight: 600; line-height: 1.4; color: var(--text); -webkit-user-select: all; user-select: all; }
-        .copy-btn { padding: 10px 16px; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; font-family: inherit; font-size: 0.9rem; font-weight: 600; line-height: 1.4; color: var(--text); cursor: pointer; transition: all 0.2s; }
-        .copy-btn:hover { border-color: var(--blue); color: var(--blue); }
-        .mail-link { font-size: 0.9rem; font-weight: 500; }
-        .content a.cta-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--blue); color: #fff; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1rem; transition: background 0.2s, transform 0.15s; }
-        .content a.cta-btn:hover { background: var(--blue-dark); transform: translateY(-1px); text-decoration: none; }
-        .closing { text-align: center; font-size: 0.9rem; color: var(--text-muted); margin-top: 24px; }
-
-        footer { max-width: 960px; margin: 0 auto; padding: 40px 24px; display: flex; align-items: center; justify-content: space-between; font-size: 0.88rem; color: var(--text-muted); border-top: 1px solid var(--border); }
-        footer a { color: var(--blue); text-decoration: none; }
-        footer a:hover { text-decoration: underline; }
-        @media (max-width: 768px) {
-            .content h1 { font-size: 1.6rem; }
-            .nav-links { display: none; }
-            .card { padding: 20px; }
-            footer { flex-direction: column; gap: 8px; text-align: center; }
-        }
-    </style>
+    <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="assets/site.css?v=1">
+    <script src="assets/site.js?v=1"></script>
 </head>
 <body>
-    <nav>
-        <a href="./" class="logo">
-            <img src="logo.svg" alt="PeekDrive">
-        </a>
-        <div class="nav-right">
-            <div class="nav-links">
-                <a href="./#how" data-en="How it works" data-fr="Comment ça marche">How it works</a>
+    <a class="skip-link" href="#main" data-en="Skip to content" data-fr="Aller au contenu">Skip to content</a>
+    <svg class="sprite" aria-hidden="true" focusable="false">
+        <symbol id="i-done" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m8.5 12.5 2.5 2.5 4.5-5"/></symbol>
+    </svg>
+    <header class="site-header">
+        <div class="container nav">
+            <a class="brand" href="./"><img src="logo.svg" alt="PeekDrive, home" data-en-alt="PeekDrive, home" data-fr-alt="PeekDrive, accueil" width="136" height="28"></a>
+            <nav class="nav-links" aria-label="Main" data-en-aria-label="Main" data-fr-aria-label="Principale">
                 <a href="./#features" data-en="Features" data-fr="Fonctionnalités">Features</a>
-                <a href="./#filetypes" data-en="File types" data-fr="Fichiers compatibles">File types</a>
+                <a href="./#how" data-en="How it works" data-fr="Comment ça marche">How it works</a>
+                <a href="./#compare" data-en="Comparison" data-fr="Comparatif">Comparison</a>
                 <a href="privacy.html" data-en="Privacy" data-fr="Confidentialité">Privacy</a>
-            </div>
-            <div class="lang-switch">
-                <button class="lang-btn" data-lang="fr" onclick="setLang('fr')">FR</button>
-                <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
-            </div>
-        </div>
-    </nav>
-
-    <div class="content">
-        <h1 data-en="PeekDrive has been uninstalled" data-fr="PeekDrive a été désinstallé">PeekDrive has been uninstalled</h1>
-        <p class="lead" data-en="Sorry to see you go." data-fr="Dommage de vous voir partir.">Sorry to see you go.</p>
-
-        <div class="card">
-            <h2 data-en="What was missing or did not work?" data-fr="Qu’est-ce qui vous a manqué ou n’a pas fonctionné ?">What was missing or did not work?</h2>
-            <p data-en="Your answer helps us improve PeekDrive." data-fr="Votre réponse nous aide à améliorer PeekDrive.">Your answer helps us improve PeekDrive.</p>
-            <div class="address-row">
-                <span class="address" id="contact-address">contact@peekdrive.com</span>
-                <button type="button" class="copy-btn" onclick="copyAddress(this)" data-en="Copy the address" data-fr="Copier l’adresse" data-copied-en="Copied" data-copied-fr="Copié">Copy the address</button>
-                <span class="mail-link" data-en="&lt;a href=&quot;mailto:contact@peekdrive.com?subject=PeekDrive%20feedback&quot;&gt;Write an email&lt;/a&gt;" data-fr="&lt;a href=&quot;mailto:contact@peekdrive.com?subject=Avis%20sur%20PeekDrive&quot;&gt;Écrire un e-mail&lt;/a&gt;"><a href="mailto:contact@peekdrive.com?subject=PeekDrive%20feedback">Write an email</a></span>
+            </nav>
+            <div class="nav-actions">
+                <div class="lang-switch" role="group" aria-label="Language" data-en-aria-label="Language" data-fr-aria-label="Langue">
+                    <button type="button" class="lang-btn" data-lang="fr" lang="fr" aria-label="Français" aria-pressed="false">FR</button>
+                    <button type="button" class="lang-btn is-active" data-lang="en" lang="en" aria-label="English" aria-pressed="true">EN</button>
+                </div>
             </div>
         </div>
+    </header>
+    <main id="main">
+        <section class="page-hero pastel pastel--soft">
+            <div class="container narrow">
+                <h1 data-en="PeekDrive has been uninstalled" data-fr="PeekDrive a été désinstallé">PeekDrive has been uninstalled</h1>
+                <p class="lead" data-en="Sorry to see you go. Your answer to these two questions helps us improve PeekDrive." data-fr="Dommage de vous voir partir. Votre réponse à ces deux questions nous aide à améliorer PeekDrive.">Sorry to see you go. Your answer to these two questions helps us improve PeekDrive.</p>
+            </div>
+        </section>
 
-        <div class="card card-row">
-            <h2 data-en="Changed your mind?" data-fr="Vous avez changé d’avis ?">Changed your mind?</h2>
-            <a href="https://chromewebstore.google.com/detail/piecapgomaejneknjkfpdhcpegihmjpd" class="cta-btn" data-en="Reinstall PeekDrive" data-fr="Réinstaller PeekDrive">Reinstall PeekDrive</a>
+        <div class="container narrow page-body">
+            <div class="stack">
+                <form class="panel needs-js" id="survey" action="feedback.php" method="post" novalidate>
+                    <fieldset aria-describedby="reason-error">
+                        <legend>
+                            <span class="q"><span class="q-num" aria-hidden="true">1</span><span class="q-title" data-en="What was the main reason?" data-fr="Quelle était la raison principale&amp;nbsp;?">What was the main reason?</span></span>
+                        </legend>
+                        <div class="choices">
+                            <label class="choice"><input type="radio" name="reason" value="not_found"><span class="choice-body"><span class="choice-label" data-en="I could not find my files or the right passage" data-fr="Je n’ai pas trouvé mes fichiers ou le bon passage">I could not find my files or the right passage</span></span></label>
+                            <label class="choice"><input type="radio" name="reason" value="slow_buggy"><span class="choice-body"><span class="choice-label" data-en="Too slow, or it had bugs" data-fr="Trop lent, ou des bugs">Too slow, or it had bugs</span></span></label>
+                            <label class="choice"><input type="radio" name="reason" value="google_warning"><span class="choice-body"><span class="choice-label" data-en="Google’s warning screen worried me" data-fr="L’écran d’avertissement de Google m’a inquiété">Google’s warning screen worried me</span></span></label>
+                            <label class="choice"><input type="radio" name="reason" value="one_time"><span class="choice-body"><span class="choice-label" data-en="I only needed it once" data-fr="Je n’en avais besoin qu’une fois">I only needed it once</span></span></label>
+                            <label class="choice"><input type="radio" name="reason" value="too_complicated"><span class="choice-body"><span class="choice-label" data-en="Too complicated to use" data-fr="Trop compliqué à utiliser">Too complicated to use</span></span></label>
+                            <label class="choice"><input type="radio" name="reason" value="drive_access"><span class="choice-body"><span class="choice-label" data-en="I prefer not to give access to my Drive" data-fr="Je préfère ne pas donner accès à mon Drive">I prefer not to give access to my Drive</span></span></label>
+                            <label class="choice"><input type="radio" name="reason" value="other"><span class="choice-body"><span class="choice-label" data-en="Something else" data-fr="Autre chose">Something else</span></span></label>
+                        </div>
+                        <p class="field-error" id="reason-error" role="alert" hidden data-en="Please choose a reason." data-fr="Merci de choisir une raison.">Please choose a reason.</p>
+                    </fieldset>
+
+                    <div class="q q--2">
+                        <span class="q-num" aria-hidden="true">2</span>
+                        <label class="q-title" for="message" data-en="What could we have done differently? &lt;span class=&quot;opt&quot;&gt;(optional)&lt;/span&gt;" data-fr="Qu’aurions-nous pu faire autrement&amp;nbsp;? &lt;span class=&quot;opt&quot;&gt;(facultatif)&lt;/span&gt;">What could we have done differently? <span class="opt">(optional)</span></label>
+                    </div>
+                    <div class="field">
+                        <textarea id="message" name="message" rows="4" maxlength="2000" placeholder="A missing feature, a bug, something that was not clear…" data-en-placeholder="A missing feature, a bug, something that was not clear…" data-fr-placeholder="Une fonction manquante, un bug, un point qui n’était pas clair…"></textarea>
+                    </div>
+                    <div class="field">
+                        <label for="email" data-en="Your e-mail address &lt;span class=&quot;opt&quot;&gt;(optional, only if you would like a reply)&lt;/span&gt;" data-fr="Votre adresse e-mail &lt;span class=&quot;opt&quot;&gt;(facultatif, seulement si vous souhaitez une réponse)&lt;/span&gt;">Your e-mail address <span class="opt">(optional, only if you would like a reply)</span></label>
+                        <input type="email" id="email" name="email" maxlength="254" autocomplete="email" inputmode="email" spellcheck="false" aria-describedby="email-error" placeholder="name@example.com" data-en-placeholder="name@example.com" data-fr-placeholder="nom@exemple.com">
+                        <p class="field-error" id="email-error" role="alert" hidden data-en="This e-mail address does not look valid." data-fr="Cette adresse e-mail ne semble pas valide.">This e-mail address does not look valid.</p>
+                    </div>
+                    <div class="hp" aria-hidden="true">
+                        <label for="trap">Leave this field empty</label>
+                        <input type="text" id="trap" name="trap" tabindex="-1" autocomplete="off">
+                    </div>
+
+                    <div class="form-foot">
+                        <button type="submit" class="btn btn--primary" data-sending-en="Sending…" data-sending-fr="Envoi…" data-en="Send" data-fr="Envoyer">Send</button>
+                        <p class="form-note" data-en="What is sent: the reason you chose, your message and, if you gave it, your e-mail address. Nothing from your Google Drive. &lt;a href=&quot;privacy.html&quot;&gt;Privacy policy&lt;/a&gt;" data-fr="Ce qui est envoyé&amp;nbsp;: la raison choisie, votre message et, si vous l’avez indiquée, votre adresse e-mail. Rien de votre Google Drive. &lt;a href=&quot;privacy.html&quot;&gt;Politique de confidentialité&lt;/a&gt;">What is sent: the reason you chose, your message and, if you gave it, your e-mail address. Nothing from your Google Drive. <a href="privacy.html">Privacy policy</a></p>
+                    </div>
+
+                    <div class="form-fail" id="survey-fail" role="alert" tabindex="-1" hidden data-subject-en="PeekDrive feedback" data-subject-fr="Avis sur PeekDrive" data-reason-en="Main reason:" data-reason-fr="Raison principale :" data-email-en="My e-mail address:" data-email-fr="Mon adresse e-mail :">
+                        <p data-en="Your answer could not be sent. So that it is not lost, you can send it yourself to &lt;a href=&quot;mailto:contact@peekdrive.com&quot;&gt;contact@peekdrive.com&lt;/a&gt;:" data-fr="Votre réponse n’a pas pu être envoyée. Pour qu’elle ne soit pas perdue, vous pouvez l’envoyer vous-même à &lt;a href=&quot;mailto:contact@peekdrive.com&quot;&gt;contact@peekdrive.com&lt;/a&gt;&amp;nbsp;:">Your answer could not be sent. So that it is not lost, you can send it yourself to <a href="mailto:contact@peekdrive.com">contact@peekdrive.com</a>:</p>
+                        <pre id="survey-answer"></pre>
+                        <div class="form-fail-actions">
+                            <button type="button" class="btn btn--secondary btn--s" id="survey-copy" data-copied-en="Copied" data-copied-fr="Copié" data-en="Copy my answer" data-fr="Copier ma réponse">Copy my answer</button>
+                            <a id="survey-mail" href="mailto:contact@peekdrive.com" data-en="Write an e-mail with my answer" data-fr="Écrire un e-mail avec ma réponse">Write an e-mail with my answer</a>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="panel form-done" id="survey-done" role="status" tabindex="-1" hidden>
+                    <svg class="i" aria-hidden="true"><use href="#i-done"/></svg>
+                    <h2 data-en="Thank you" data-fr="Merci">Thank you</h2>
+                    <p data-en="Your answer has been sent. It will help improve PeekDrive." data-fr="Votre réponse a bien été envoyée. Elle aidera à améliorer PeekDrive.">Your answer has been sent. It will help improve PeekDrive.</p>
+                </div>
+
+                <noscript>
+                    <div class="panel">
+                        <p class="no-js-note">What was missing or did not work? Your answer helps us improve PeekDrive: write to <a href="mailto:contact@peekdrive.com?subject=PeekDrive%20feedback">contact@peekdrive.com</a>.</p>
+                        <p class="no-js-note" lang="fr">Qu’est-ce qui vous a manqué ou n’a pas fonctionné ? Votre réponse nous aide à améliorer PeekDrive : écrivez à <a href="mailto:contact@peekdrive.com?subject=Avis%20sur%20PeekDrive">contact@peekdrive.com</a>.</p>
+                    </div>
+                </noscript>
+
+                <div class="panel rejoin">
+                    <h2 data-en="Changed your mind?" data-fr="Vous avez changé d’avis ?">Changed your mind?</h2>
+                    <a class="btn btn--secondary" href="https://chromewebstore.google.com/detail/piecapgomaejneknjkfpdhcpegihmjpd" data-en="Reinstall PeekDrive" data-fr="Réinstaller PeekDrive">Reinstall PeekDrive</a>
+                </div>
+            </div>
+
+            <p class="closing" data-en="To also remove PeekDrive’s access to your Google account, open &lt;a href=&quot;https://myaccount.google.com/permissions&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;myaccount.google.com/permissions&lt;/a&gt;." data-fr="Pour retirer aussi l’accès de PeekDrive à votre compte Google, ouvrez &lt;a href=&quot;https://myaccount.google.com/permissions&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;myaccount.google.com/permissions&lt;/a&gt;.">To also remove PeekDrive’s access to your Google account, open <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">myaccount.google.com/permissions</a>.</p>
         </div>
+    </main>
 
-        <p class="closing" data-en="To also remove PeekDrive’s access to your Google account, open &lt;a href=&quot;https://myaccount.google.com/permissions&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;myaccount.google.com/permissions&lt;/a&gt;." data-fr="Pour retirer aussi l’accès de PeekDrive à votre compte Google, ouvrez &lt;a href=&quot;https://myaccount.google.com/permissions&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;myaccount.google.com/permissions&lt;/a&gt;.">To also remove PeekDrive’s access to your Google account, open <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">myaccount.google.com/permissions</a>.</p>
-    </div>
-
-    <footer>
-        <span>&copy; 2026 PeekDrive</span>
-        <span><a href="privacy.html" data-en="Privacy Policy" data-fr="Confidentialité">Privacy Policy</a> · <a href="terms.html" data-en="Terms &amp; legal notice" data-fr="Conditions &amp; mentions légales">Terms &amp; legal notice</a> · <a href="mailto:contact@peekdrive.com">contact@peekdrive.com</a></span>
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-top">
+                <a class="brand" href="./"><img src="logo.svg" alt="PeekDrive, home" data-en-alt="PeekDrive, home" data-fr-alt="PeekDrive, accueil" width="117" height="24" loading="lazy"></a>
+                <nav class="footer-links" aria-label="Footer" data-en-aria-label="Footer" data-fr-aria-label="Pied de page">
+                    <a href="privacy.html" data-en="Privacy Policy" data-fr="Confidentialité">Privacy Policy</a>
+                    <a href="terms.html" data-en="Terms &amp;amp; legal notice" data-fr="Conditions &amp;amp; mentions légales">Terms &amp; legal notice</a>
+                    <a href="mailto:contact@peekdrive.com">contact@peekdrive.com</a>
+                </nav>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 PeekDrive</p>
+                <p data-en="Google, Google Drive and Chrome are trademarks of Google LLC. PeekDrive is an independent product, not affiliated with or endorsed by Google." data-fr="Google, Google Drive et Chrome sont des marques de Google LLC. PeekDrive est un produit indépendant, ni affilié à Google ni approuvé par Google.">Google, Google Drive and Chrome are trademarks of Google LLC. PeekDrive is an independent product, not affiliated with or endorsed by Google.</p>
+            </div>
+        </div>
     </footer>
-
-    <script>
-        function setLang(lang) {
-            document.querySelectorAll('[data-' + lang + ']').forEach(function(el) {
-                var val = el.getAttribute('data-' + lang);
-                if (el.tagName === 'A' && el.getAttribute('href') && !val.includes('<')) {
-                    el.textContent = val;
-                } else {
-                    el.innerHTML = val;
-                }
-            });
-            document.querySelectorAll('.lang-btn').forEach(function(btn) {
-                btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
-            });
-            document.documentElement.lang = lang;
-            try { localStorage.setItem('peekdrive-lang', lang); } catch(e) {}
-        }
-        (function() {
-            // ?lang=fr|en (set by the extension) wins over the saved or browser language.
-            var asked = null;
-            try { asked = new URLSearchParams(location.search).get('lang'); } catch(e) {}
-            if (asked === 'fr' || asked === 'en') {
-                setLang(asked);
-                // Applied and saved: drop it so a later FR/EN click survives a reload.
-                try { history.replaceState(null, '', location.pathname + location.hash); } catch(e) {}
-                return;
-            }
-            var saved = null;
-            try { saved = localStorage.getItem('peekdrive-lang'); } catch(e) {}
-            if (saved) { setLang(saved); }
-            else {
-                var bl = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
-                setLang(bl.startsWith('fr') ? 'fr' : 'en');
-            }
-        })();
-
-        var copyTimer = null;
-        function copyAddress(btn) {
-            var el = document.getElementById('contact-address');
-            function label(prefix) {
-                return btn.getAttribute(prefix + (document.documentElement.lang === 'fr' ? 'fr' : 'en'));
-            }
-            function copied() {
-                // Keep the button's width while it says "Copied".
-                if (!copyTimer) btn.style.minWidth = btn.offsetWidth + 'px';
-                btn.textContent = label('data-copied-');
-                clearTimeout(copyTimer);
-                copyTimer = setTimeout(function() {
-                    copyTimer = null;
-                    btn.style.minWidth = '';
-                    btn.textContent = label('data-');
-                }, 1800);
-            }
-            // No clipboard access: select the address so it can be copied by hand.
-            function selectAddress() {
-                var range = document.createRange();
-                range.selectNodeContents(el);
-                var sel = window.getSelection();
-                sel.removeAllRanges();
-                sel.addRange(range);
-                try { if (document.execCommand('copy')) copied(); } catch(e) {}
-            }
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(el.textContent).then(copied, selectAddress);
-            } else {
-                selectAddress();
-            }
-        }
-    </script>
 </body>
 </html>
