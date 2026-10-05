@@ -132,7 +132,12 @@
             // ?lang=fr|en (set by the extension) wins over the saved or browser language.
             var asked = null;
             try { asked = new URLSearchParams(location.search).get('lang'); } catch(e) {}
-            if (asked === 'fr' || asked === 'en') { setLang(asked); return; }
+            if (asked === 'fr' || asked === 'en') {
+                setLang(asked);
+                // Applied and saved: drop it so a later FR/EN click survives a reload.
+                try { history.replaceState(null, '', location.pathname + location.hash); } catch(e) {}
+                return;
+            }
             var saved = null;
             try { saved = localStorage.getItem('peekdrive-lang'); } catch(e) {}
             if (saved) { setLang(saved); }

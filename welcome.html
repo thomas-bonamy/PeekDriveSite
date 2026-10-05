@@ -49,6 +49,7 @@
         .step p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; }
         .step .step-note { margin-top: 12px; padding: 10px 14px; background: var(--section-bg); border-radius: 8px; font-size: 0.88rem; line-height: 1.6; }
         .ico { width: 1.15em; height: 1.15em; vertical-align: -0.22em; fill: var(--text); }
+        .nw { white-space: nowrap; }
 
         .cta { text-align: center; margin-top: 36px; }
         .content a.cta-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--blue); color: #fff; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1rem; transition: background 0.2s, transform 0.15s; }
@@ -99,7 +100,7 @@
                 <div class="how-num">1</div>
                 <div class="step-body">
                     <h2 data-en="Pin PeekDrive" data-fr="Épinglez PeekDrive">Pin PeekDrive</h2>
-                    <p data-en="Click the puzzle icon &lt;svg class=&quot;ico&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ico-puzzle&quot;/&gt;&lt;/svg&gt; at the top right of Chrome, then the pin &lt;svg class=&quot;ico&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ico-pin&quot;/&gt;&lt;/svg&gt; next to PeekDrive: its icon stays one click away." data-fr="Cliquez sur l’icône puzzle &lt;svg class=&quot;ico&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ico-puzzle&quot;/&gt;&lt;/svg&gt; en haut à droite de Chrome, puis sur l’épingle &lt;svg class=&quot;ico&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ico-pin&quot;/&gt;&lt;/svg&gt; à côté de PeekDrive : son icône reste à portée de clic.">Click the puzzle icon <svg class="ico" aria-hidden="true"><use href="#ico-puzzle"/></svg> at the top right of Chrome, then the pin <svg class="ico" aria-hidden="true"><use href="#ico-pin"/></svg> next to PeekDrive: its icon stays one click away.</p>
+                    <p data-en="Click the puzzle &lt;span class=&quot;nw&quot;&gt;icon &lt;svg class=&quot;ico&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ico-puzzle&quot;/&gt;&lt;/svg&gt;&lt;/span&gt; at the top right of Chrome, then the &lt;span class=&quot;nw&quot;&gt;pin &lt;svg class=&quot;ico&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ico-pin&quot;/&gt;&lt;/svg&gt;&lt;/span&gt; next to PeekDrive: its icon stays one click away." data-fr="Cliquez sur l’icône &lt;span class=&quot;nw&quot;&gt;puzzle &lt;svg class=&quot;ico&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ico-puzzle&quot;/&gt;&lt;/svg&gt;&lt;/span&gt; en haut à droite de Chrome, puis sur &lt;span class=&quot;nw&quot;&gt;l’épingle &lt;svg class=&quot;ico&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ico-pin&quot;/&gt;&lt;/svg&gt;&lt;/span&gt; à côté de PeekDrive : son icône reste à portée de clic.">Click the puzzle <span class="nw">icon <svg class="ico" aria-hidden="true"><use href="#ico-puzzle"/></svg></span> at the top right of Chrome, then the <span class="nw">pin <svg class="ico" aria-hidden="true"><use href="#ico-pin"/></svg></span> next to PeekDrive: its icon stays one click away.</p>
                 </div>
             </div>
             <div class="step">
@@ -152,7 +153,12 @@
             // ?lang=fr|en (set by the extension) wins over the saved or browser language.
             var asked = null;
             try { asked = new URLSearchParams(location.search).get('lang'); } catch(e) {}
-            if (asked === 'fr' || asked === 'en') { setLang(asked); return; }
+            if (asked === 'fr' || asked === 'en') {
+                setLang(asked);
+                // Applied and saved: drop it so a later FR/EN click survives a reload.
+                try { history.replaceState(null, '', location.pathname + location.hash); } catch(e) {}
+                return;
+            }
             var saved = null;
             try { saved = localStorage.getItem('peekdrive-lang'); } catch(e) {}
             if (saved) { setLang(saved); }
