@@ -5,7 +5,7 @@
  *
  * Accepts only: POST, Content-Type application/json, a body of 8 KB at most.
  * Answers JSON: {"ok":true} or {"ok":false,"error":"<short code>"}.
- * Stores nothing, except the rate-limit file described in rate_limited().
+ * Stores nothing, except the rate-limit file described in pd_rate_limited().
  * No CORS header on purpose: only the pages of this site may call it.
  * Written to run on any PHP from 5.6 to 8.x (no typed signatures, no ??).
  */
@@ -61,22 +61,48 @@ function pd_length($text)
 }
 
 /**
+ * Where the rate-limit file lives. Preferably the hosting account's own home,
+ * one level above the published folder (www/): never served, not shared with
+ * other accounts, and the same disk for every web server of the cluster.
+ * Only used when this script really sits at the root of the published folder
+ * (otherwise its parent could itself be served) and the home is writable;
+ * else the system temp directory.
+ */
+function pd_rate_file()
+{
+    $name = '.peekdrive-feedback-rate.json';
+    $here = realpath(__DIR__);
+    $root = isset($_SERVER['DOCUMENT_ROOT']) ? realpath((string) $_SERVER['DOCUMENT_ROOT']) : false;
+    if (is_string($here) && is_string($root) && $here === $root) {
+        $private = dirname($here);
+        if ($private !== $here && @is_dir($private) && @is_writable($private)) {
+            return $private . '/' . $name;
+        }
+    }
+    return rtrim(sys_get_temp_dir(), '/\\') . '/' . $name;
+}
+
+/**
  * Rate limit. Returns true when this sender, or everyone together, has already
  * had the allowed number of e-mails sent during the last hour; otherwise
  * records this one and returns false. Returns null when the file cannot be
  * used (the caller then refuses, so the form can never become a mail cannon).
  *
- * What is kept, in one small file of the system temp directory: a random salt
- * and, per sender, the times of the e-mails of the last hour under
- * sha256(salt + IP). The IP address itself is never written. Entries older
- * than one hour are dropped at each call, and the salt is renewed whenever the
- * file gets empty, so old hashes cannot be linked to new ones.
+ * What is kept, in one small file (see pd_rate_file()): a random salt and, per
+ * sender, the times of the e-mails of the last hour under the first 4 hex
+ * digits of sha256(salt + IP). The IP address itself is never written, and
+ * such a short prefix cannot be traced back to one address (65,536 IPv4
+ * addresses share each value) while still telling the few senders of one hour
+ * apart.
+ * Entries older than one hour are dropped at each call, and the salt is
+ * renewed whenever the file gets empty, so old values cannot be linked to
+ * new ones.
  */
 function pd_rate_limited($ip)
 {
-    $path = rtrim(sys_get_temp_dir(), '/\\') . '/peekdrive-feedback-rate.json';
+    $path = pd_rate_file();
     if (is_link($path)) {
-        return null; // never follow a link planted in a shared temp directory
+        return null; // never follow a link planted in a shared directory
     }
     $handle = @fopen($path, 'c+');
     if ($handle === false) {
@@ -115,7 +141,9 @@ function pd_rate_limited($ip)
         $hits = array();
     }
 
-    $key = hash('sha256', $salt . '|' . $ip);
+    // The "h" keeps the key a string: PHP would turn an all-digit key into an
+    // integer, and the is_string() test above would then drop that sender.
+    $key = 'h' . substr(hash('sha256', $salt . '|' . $ip), 0, 4);
     $mine = isset($hits[$key]) ? count($hits[$key]) : 0;
     $all = 0;
     foreach ($hits as $times) {

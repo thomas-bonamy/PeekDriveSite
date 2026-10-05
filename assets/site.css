@@ -113,7 +113,7 @@ html:not(.js) .needs-js { display: none; }
   padding: 10px 16px; border-radius: var(--radius-s);
   background: var(--blue); color: var(--white); font-weight: 600;
 }
-.skip-link:focus { top: 12px; outline-color: var(--text); }
+.skip-link:focus { top: calc(var(--header-h) + 12px); outline-color: var(--text); }
 .nw { white-space: nowrap; }
 
 /* Icons: one stroke style, the one of the PeekDrive panel. */
@@ -131,6 +131,8 @@ h1, h2, h3 { color: var(--text); text-wrap: balance; }
 h2 { font-size: clamp(1.75rem, 1.25rem + 1.6vw, 2.375rem); font-weight: 700; line-height: 1.16; letter-spacing: -0.025em; }
 h3 { font-size: 1.0625rem; font-weight: 600; line-height: 1.35; letter-spacing: -0.005em; }
 .lead { margin-top: 16px; font-size: 1.125rem; line-height: 1.6; color: var(--text-2); text-wrap: pretty; }
+/* Centred intros: two lines of similar length, like the title above them. */
+.section-head .lead, .final .lead, .page-hero .lead { text-wrap: balance; }
 
 /* ── Header ──────────────────────────────────────────────────────────────── */
 .site-header {
@@ -218,8 +220,10 @@ h3 { font-size: 1.0625rem; font-weight: 600; line-height: 1.35; letter-spacing: 
 
 .hero-visual {
   --bleed: 48px;  /* room kept around the window for its shadow, inside the mask */
-  position: relative; min-height: 420px; margin: 40px calc(-1 * var(--bleed)) 0; padding: 24px var(--bleed) 0;
-  /* The window runs past the bottom of the hero and fades out there. */
+  position: relative; min-height: 608px; margin: 40px calc(-1 * var(--bleed)) 0; padding: 24px var(--bleed) 0;
+  /* The window runs past the bottom of the hero and fades out there. Its height
+     is set at each breakpoint so the fade never falls on the title of a result
+     card: it starts under the first card, or under the header of the second. */
   -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 88px), transparent);
   mask-image: linear-gradient(to bottom, #000 calc(100% - 88px), transparent);
 }
@@ -260,9 +264,9 @@ h3 { font-size: 1.0625rem; font-weight: 600; line-height: 1.35; letter-spacing: 
    row and the details can be re-aligned with the final panel in one place.
    Sizes are the design's pixels; the whole panel is then scaled by --pd-zoom,
    and --pd-hair keeps the borders one device pixel wide. */
-.pd-wrap { flex: none; width: var(--pd-w, 372px); border-left: 1px solid var(--border); overflow: hidden; background: #FFFFFF; }
+.pd-wrap { flex: none; width: var(--pd-w, 424px); border-left: 1px solid var(--border); overflow: hidden; background: #FFFFFF; }
 .pd {
-  --pd-zoom: 0.8;
+  --pd-zoom: 0.92;
   --pd-hair: calc(1px / var(--pd-zoom));
   --pd-blue: #2B579A;
   --pd-blue-tint: #E6F1FE;
@@ -306,7 +310,7 @@ h3 { font-size: 1.0625rem; font-weight: 600; line-height: 1.35; letter-spacing: 
 .pd-excerpt::before { content: ""; position: absolute; left: 8px; top: 8px; bottom: 8px; width: 4px; border-radius: 2px; background: var(--pd-bar); }
 .pd-excerpt--sheets { --pd-bar: var(--pd-sheets); }
 .pd-text { font-size: 12px; line-height: 21px; }
-.pd mark { padding: 2px 3px 0; border-bottom: 2px solid var(--pd-hl-line); border-radius: 2px; background: var(--pd-hl); color: inherit; }
+.pd mark { padding: 2px 2px 0; margin: 0 -2px; border-bottom: 2px solid var(--pd-hl-line); border-radius: 2px; background: var(--pd-hl); color: inherit; }
 .pd-foot { display: flex; align-items: center; gap: 8px; margin-top: 14px; }
 .pd-open { display: inline-flex; align-items: center; gap: 9px; margin-right: auto; font-size: 14px; line-height: 22px; color: var(--pd-blue); white-space: nowrap; }
 .pd-open .i { width: 13px; height: 13px; }
@@ -321,17 +325,17 @@ h3 { font-size: 1.0625rem; font-weight: 600; line-height: 1.35; letter-spacing: 
 .pd-table th:first-child { width: 46%; }
 .pd-table .is-hit { background: #FEF7E0; }
 @supports not (zoom: 1) {
-  .pd { width: 125%; transform: scale(0.8); transform-origin: 0 0; }
+  .pd { width: 108.7%; transform: scale(0.92); transform-origin: 0 0; }
 }
 /* ══ end of PANEL MOCK ═════════════════════════════════════════════════════ */
 
 /* ── Facts band ──────────────────────────────────────────────────────────── */
 .facts { position: relative; background: var(--surface); border-block: 1px solid var(--border); }
 .facts-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
-.fact { padding: 36px 24px; text-align: center; }
+.fact { padding: 36px 16px; text-align: center; }
 .fact + .fact { border-left: 1px solid var(--border); }
 .fact-value { display: block; font-size: 1.375rem; font-weight: 700; line-height: 1.25; letter-spacing: -0.02em; color: var(--text); text-wrap: balance; }
-.fact-label { display: block; max-width: 240px; margin: 6px auto 0; font-size: 0.875rem; line-height: 1.5; color: var(--text-2); text-wrap: balance; }
+.fact-label { display: block; max-width: 256px; margin: 6px auto 0; font-size: 0.875rem; line-height: 1.5; color: var(--text-2); text-wrap: balance; }
 
 /* ── Cards (features) ────────────────────────────────────────────────────── */
 .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
@@ -372,7 +376,7 @@ kbd { font-family: inherit; font-size: inherit; font-weight: 600; color: var(--t
 .doc-body { padding: 28px 32px 34px; font-size: 0.9375rem; line-height: 1.75; color: var(--text); }
 .doc-h { margin-bottom: 12px; font-size: 1.0625rem; font-weight: 600; line-height: 1.4; }
 .doc-body p + p { margin-top: 12px; }
-.doc mark { padding: 2px 3px 0; border-bottom: 2px solid var(--hl-line); border-radius: 2px; background: var(--hl); color: inherit; }
+.doc mark { padding: 2px 2px 0; margin: 0 -2px; border-bottom: 2px solid var(--hl-line); border-radius: 2px; background: var(--hl); color: inherit; }
 .doc mark.is-other { border-bottom-style: dashed; background: transparent; }
 
 /* The sentence Google asks for: why Drive access is requested. */
@@ -391,6 +395,8 @@ kbd { font-family: inherit; font-size: inherit; font-weight: 600; color: var(--t
 .compare .col { width: 168px; text-align: center; }
 .compare .col--pd { background: var(--blue-wash); }
 .compare thead .col--pd { background: var(--blue-tint); color: var(--blue); }
+/* Both column titles on one line ("Recherche Drive" is the long one). */
+.compare thead .col { padding-inline: 8px; white-space: nowrap; }
 .compare td .i { width: 20px; height: 20px; margin-inline: auto; stroke-width: 2.5; }
 .compare .yes { color: var(--blue); }
 .compare .yes--drive { color: var(--text-2); }
@@ -516,16 +522,16 @@ kbd { font-family: inherit; font-size: inherit; font-weight: 600; color: var(--t
 /* ── Responsive ──────────────────────────────────────────────────────────── */
 @media (max-width: 1199px) {
   .hero-grid { grid-template-columns: minmax(0, 1fr) 448px; column-gap: 40px; }
-  .hero-copy { padding-block: 64px 88px; }
-  .hero-visual { --bleed: 32px; margin-top: 32px; }
-  .pd-wrap { --pd-w: 318px; }
-  .pd { --pd-zoom: 0.72; }
-  @supports not (zoom: 1) { .pd { width: 138.9%; transform: scale(0.72); } }
+  .hero-copy { align-self: center; padding-block: 64px 88px; }
+  .hero-visual { --bleed: 32px; min-height: 627px; margin-top: 32px; }
+  .pd-wrap { --pd-w: 340px; }
+  .pd { --pd-zoom: 0.78; }
+  @supports not (zoom: 1) { .pd { width: 128.2%; transform: scale(0.78); } }
   .how-grid, .privacy-grid { gap: 48px; }
   .nav { gap: 24px; }
   .nav-links { gap: 22px; }
   .compare .col { width: 152px; }
-  .fact { padding-inline: 16px; }
+  .fact { padding-inline: 12px; }
   .fact-label { font-size: 0.8125rem; }
 }
 /* The four French links need about 1000 px next to the logo, the switch and the
@@ -534,22 +540,35 @@ kbd { font-family: inherit; font-size: inherit; font-weight: 600; color: var(--t
   .nav-links { display: none; }
   .nav-actions { margin-left: auto; }
 }
-@media (max-width: 959px) {
-  .hero-grid { grid-template-columns: minmax(0, 1fr); }
-  .hero-copy { padding-block: 56px 0; }
-  .hero .lead { max-width: 600px; }
-  .hero-visual { --bleed: 24px; width: 100%; max-width: 608px; height: 500px; min-height: 0; margin: 32px auto 0; }
-  .pd-wrap { --pd-w: 372px; }
-  .pd { --pd-zoom: 0.8; }
-  @supports not (zoom: 1) { .pd { width: 125%; transform: scale(0.8); } }
+/* Small laptops and below: the facts on two rows (every label on two lines)… */
+@media (max-width: 1099px) {
   .facts-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .fact { padding-inline: 16px; }
   .fact:nth-child(3) { border-left: 0; }
   .fact:nth-child(n + 3) { border-top: 1px solid var(--border); }
   .fact-label { font-size: 0.875rem; }
+}
+/* …and one column less in the grids, so no card title wraps alone in its row. */
+@media (min-width: 960px) and (max-width: 1099px) {
+  .uses { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .use--wide { grid-column: 1 / -1; }
+  .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 959px) {
+  .hero-grid { grid-template-columns: minmax(0, 1fr); }
+  .hero-copy { align-self: auto; padding-block: 56px 0; }
+  .hero .lead { max-width: 600px; }
+  .hero-visual { --bleed: 24px; width: 100%; max-width: 608px; height: 618px; min-height: 0; margin: 32px auto 0; }
+  .pd-wrap { --pd-w: 436px; }
+  .pd { --pd-zoom: 0.94; }
+  @supports not (zoom: 1) { .pd { width: 106.4%; transform: scale(0.94); } }
   .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .how-grid, .privacy-grid { grid-template-columns: minmax(0, 1fr); gap: 48px; }
   .uses { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .use--wide { grid-column: 1 / -1; }
+}
+@media (max-width: 719px) {
+  .cards { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 639px) {
   :root { --gutter: 20px; --header-h: 60px; }
@@ -557,7 +576,7 @@ kbd { font-family: inherit; font-size: inherit; font-weight: 600; color: var(--t
   .nav-actions .btn { display: none; }
   .hero-copy { padding-top: 44px; }
   .hero-cta .btn { width: 100%; }
-  .hero-visual { --bleed: 20px; width: auto; max-width: none; height: 470px; margin: 20px -20px 0; }
+  .hero-visual { --bleed: 20px; width: auto; max-width: none; height: 505px; margin: 20px -20px 0; }
   .ticks { gap: 10px 18px; font-size: 0.875rem; }
   .drive { display: none; }
   .pd-wrap { flex: 1; width: auto; border-left: 0; }
@@ -565,7 +584,8 @@ kbd { font-family: inherit; font-size: inherit; font-weight: 600; color: var(--t
   @supports not (zoom: 1) { .pd { width: 135.2%; transform: scale(0.74); } }
   .fact { padding: 28px 16px; }
   .fact-value { font-size: 1.1875rem; }
-  .cards, .uses { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .uses { grid-template-columns: minmax(0, 1fr); }
+  .cards, .uses { gap: 16px; }
   .card { padding: 24px; }
   .doc-head, .doc-find { padding-inline: 18px; }
   .doc-body { padding: 22px 20px 26px; }
@@ -573,16 +593,33 @@ kbd { font-family: inherit; font-size: inherit; font-weight: 600; color: var(--t
   .compare th, .compare td { padding: 16px 14px; }
   .compare .col { width: 86px; padding-inline: 8px; }
   .compare thead th { font-size: 0.6875rem; letter-spacing: 0.02em; }
+  .compare thead .col { white-space: normal; }
   .compare tbody th { font-size: 0.9375rem; }
   .checks { padding: 4px 20px; }
   .footer-top { flex-direction: column; align-items: flex-start; }
   .footer-links { flex-direction: column; }
   .panel { padding: 24px 20px; }
   .guide .panel { padding: 24px 20px; column-gap: 16px; }
+  .guide p { grid-column: 1 / -1; margin-top: 12px; }
   .choices { grid-template-columns: minmax(0, 1fr); }
   .form-foot { grid-template-columns: minmax(0, 1fr); row-gap: 16px; }
-  .form-foot .btn, .rejoin .btn { width: 100%; }
+  .form-foot .btn, .rejoin .btn, .final .btn, .page-cta .btn { width: 100%; }
   .form-done { padding-block: 32px; }
+}
+@media (max-width: 379px) {
+  .ticks { gap: 8px 12px; }
+  .fact { padding-inline: 12px; }
+  .fact-value { font-size: 1.0625rem; }
+}
+/* Smallest phones: the panel keeps the design width it has at 360 px, and the
+   three ticks, which no longer fit on one row, are stacked. */
+@media (max-width: 339px) {
+  .pd { --pd-zoom: 0.64; }
+  @supports not (zoom: 1) { .pd { width: 156.25%; transform: scale(0.64); } }
+  .ticks { flex-direction: column; }
+  .hero-visual { height: 450px; }
+  .fact { padding-inline: 8px; }
+  .fact-value { font-size: 1rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

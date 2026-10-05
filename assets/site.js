@@ -104,6 +104,8 @@
 
     var MIN_FILL_MS = 3000; // same threshold as feedback.php (MIN_FILL_MS)
     var TIMEOUT_MS = 12000;
+    // Same pattern as feedback.php, so an address the server would refuse is caught here.
+    var EMAIL_OK = /^[A-Za-z0-9.!#$%&'*+\/=?^_`{|}~-]+@[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?(?:\.[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?)+$/;
     var started = Date.now();
     var busy = false;
     var copyTimer = null;
@@ -171,16 +173,25 @@
     function showDone() {
       setBusy(false);
       form.hidden = true;
+      // The intro speaks of "these two questions", which are no longer on screen.
+      var lead = doc.querySelector('.page-hero .lead');
+      if (lead) lead.hidden = true;
       doneBox.hidden = false;
       doneBox.focus();
     }
 
+    function showEmailError(on) {
+      emailError.hidden = !on;
+      email.setAttribute('aria-invalid', on ? 'true' : 'false');
+      if (on) email.focus();
+    }
+
     function validate() {
       var ok = true;
-      var emailOk = email.value.trim() === '' || email.checkValidity();
-      emailError.hidden = emailOk;
-      email.setAttribute('aria-invalid', emailOk ? 'false' : 'true');
-      if (!emailOk) { email.focus(); ok = false; }
+      var typed = email.value.trim();
+      var emailOk = typed === '' || (email.checkValidity() && EMAIL_OK.test(typed));
+      showEmailError(!emailOk);
+      if (!emailOk) ok = false;
       var hasReason = !!checked();
       reasonError.hidden = hasReason;
       if (!hasReason) { form.querySelector('input[name="reason"]').focus(); ok = false; }
@@ -197,10 +208,16 @@
         credentials: 'same-origin',
         signal: controller ? controller.signal : undefined
       }).then(function (res) {
-        return res.json().then(function (json) { return res.ok && json && json.ok === true; });
-      }).then(function (ok) {
+        return res.json().then(function (json) {
+          if (res.ok && json && json.ok === true) return 'ok';
+          return json && json.error === 'email' ? 'email' : 'fail';
+        });
+      }).then(function (result) {
         clearTimeout(timer);
-        if (ok) showDone(); else showFail();
+        if (result === 'ok') showDone();
+        // The server refused the address: the visitor can correct it and send again.
+        else if (result === 'email') { setBusy(false); showEmailError(true); }
+        else showFail();
       }, function () {
         clearTimeout(timer);
         showFail();
@@ -222,10 +239,14 @@
       refreshFallback();
     });
     form.addEventListener('input', function (event) {
-      if (event.target === email) { emailError.hidden = true; email.setAttribute('aria-invalid', 'false'); }
+      if (event.target === email) showEmailError(false);
       refreshFallback();
     });
-    doc.addEventListener('peekdrive:lang', refreshFallback);
+    doc.addEventListener('peekdrive:lang', function () {
+      // The switch has just put the idle label back on the button: keep "Sending…" while busy.
+      if (busy) sendBtn.textContent = sendBtn.getAttribute('data-sending-' + lang());
+      refreshFallback();
+    });
 
     copyBtn.addEventListener('click', function () {
       copyText(failText.textContent, failText, function () {
