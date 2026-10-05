@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-en="PeekDrive has been uninstalled" data-fr="PeekDrive a été désinstallé">PeekDrive has been uninstalled</title>
+    <meta name="robots" content="noindex">
+    <link rel="icon" href="favicon.ico?v=2" sizes="any">
+    <link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blue: #2D7FF9;
+            --blue-light: #EBF3FE;
+            --blue-dark: #1A5FD1;
+            --text: #1a1a2e;
+            --text-muted: #5a5a7a;
+            --bg: #ffffff;
+            --section-bg: #f8f9fc;
+            --border: #e2e5ee;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'DM Sans', sans-serif; color: var(--text); background: var(--bg); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+        nav { display: flex; align-items: center; justify-content: space-between; max-width: 960px; margin: 0 auto; padding: 24px; }
+        .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.2rem; color: var(--text); text-decoration: none; }
+        .logo img { height: 30px; width: auto; }
+        .nav-right { display: flex; align-items: center; gap: 24px; }
+        .nav-links { display: flex; gap: 24px; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--blue); }
+        .lang-switch { display: flex; background: var(--section-bg); border-radius: 6px; overflow: hidden; border: 1px solid var(--border); }
+        .lang-btn { padding: 6px 12px; font-size: 0.82rem; font-weight: 600; border: none; background: transparent; color: var(--text-muted); cursor: pointer; font-family: inherit; transition: all 0.2s; }
+        .lang-btn.active { background: var(--blue); color: #fff; }
+
+        .content { max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; }
+        .content h1 { font-size: 2rem; font-weight: 700; line-height: 1.2; margin-bottom: 8px; text-align: center; }
+        .lead { font-size: 1.05rem; color: var(--text-muted); text-align: center; margin-bottom: 40px; }
+        .content a { color: var(--blue); text-decoration: none; }
+        .content a:hover { text-decoration: underline; }
+
+        .card { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-bottom: 16px; }
+        .card h2 { font-size: 1.02rem; font-weight: 600; margin-bottom: 6px; }
+        .card-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
+        .card-row h2 { margin-bottom: 0; }
+        .card p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; }
+        .address-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; margin-top: 16px; }
+        .address { padding: 10px 14px; background: var(--section-bg); border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; font-weight: 600; line-height: 1.4; color: var(--text); -webkit-user-select: all; user-select: all; }
+        .copy-btn { padding: 10px 16px; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; font-family: inherit; font-size: 0.9rem; font-weight: 600; line-height: 1.4; color: var(--text); cursor: pointer; transition: all 0.2s; }
+        .copy-btn:hover { border-color: var(--blue); color: var(--blue); }
+        .mail-link { font-size: 0.9rem; font-weight: 500; }
+        .content a.cta-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--blue); color: #fff; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1rem; transition: background 0.2s, transform 0.15s; }
+        .content a.cta-btn:hover { background: var(--blue-dark); transform: translateY(-1px); text-decoration: none; }
+        .closing { text-align: center; font-size: 0.9rem; color: var(--text-muted); margin-top: 24px; }
+
+        footer { max-width: 960px; margin: 0 auto; padding: 40px 24px; display: flex; align-items: center; justify-content: space-between; font-size: 0.88rem; color: var(--text-muted); border-top: 1px solid var(--border); }
+        footer a { color: var(--blue); text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+        @media (max-width: 768px) {
+            .content h1 { font-size: 1.6rem; }
+            .nav-links { display: none; }
+            .card { padding: 20px; }
+            footer { flex-direction: column; gap: 8px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="./" class="logo">
+            <img src="logo.svg" alt="PeekDrive">
+        </a>
+        <div class="nav-right">
+            <div class="nav-links">
+                <a href="./#how" data-en="How it works" data-fr="Comment ça marche">How it works</a>
+                <a href="./#features" data-en="Features" data-fr="Fonctionnalités">Features</a>
+                <a href="./#filetypes" data-en="File types" data-fr="Fichiers compatibles">File types</a>
+                <a href="privacy.html" data-en="Privacy" data-fr="Confidentialité">Privacy</a>
+            </div>
+            <div class="lang-switch">
+                <button class="lang-btn" data-lang="fr" onclick="setLang('fr')">FR</button>
+                <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="content">
+        <h1 data-en="PeekDrive has been uninstalled" data-fr="PeekDrive a été désinstallé">PeekDrive has been uninstalled</h1>
+        <p class="lead" data-en="Sorry to see you go." data-fr="Dommage de vous voir partir.">Sorry to see you go.</p>
+
+        <div class="card">
+            <h2 data-en="What was missing or did not work?" data-fr="Qu’est-ce qui vous a manqué ou n’a pas fonctionné ?">What was missing or did not work?</h2>
+            <p data-en="Your answer helps us improve PeekDrive." data-fr="Votre réponse nous aide à améliorer PeekDrive.">Your answer helps us improve PeekDrive.</p>
+            <div class="address-row">
+                <span class="address" id="contact-address">contact@peekdrive.com</span>
+                <button type="button" class="copy-btn" onclick="copyAddress(this)" data-en="Copy the address" data-fr="Copier l’adresse" data-copied-en="Copied" data-copied-fr="Copié">Copy the address</button>
+                <span class="mail-link" data-en="&lt;a href=&quot;mailto:contact@peekdrive.com?subject=PeekDrive%20feedback&quot;&gt;Write an email&lt;/a&gt;" data-fr="&lt;a href=&quot;mailto:contact@peekdrive.com?subject=Avis%20sur%20PeekDrive&quot;&gt;Écrire un e-mail&lt;/a&gt;"><a href="mailto:contact@peekdrive.com?subject=PeekDrive%20feedback">Write an email</a></span>
+            </div>
+        </div>
+
+        <div class="card card-row">
+            <h2 data-en="Changed your mind?" data-fr="Vous avez changé d’avis ?">Changed your mind?</h2>
+            <a href="https://chromewebstore.google.com/detail/piecapgomaejneknjkfpdhcpegihmjpd" class="cta-btn" data-en="Reinstall PeekDrive" data-fr="Réinstaller PeekDrive">Reinstall PeekDrive</a>
+        </div>
+
+        <p class="closing" data-en="To also remove PeekDrive’s access to your Google account, open &lt;a href=&quot;https://myaccount.google.com/permissions&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;myaccount.google.com/permissions&lt;/a&gt;." data-fr="Pour retirer aussi l’accès de PeekDrive à votre compte Google, ouvrez &lt;a href=&quot;https://myaccount.google.com/permissions&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;myaccount.google.com/permissions&lt;/a&gt;.">To also remove PeekDrive’s access to your Google account, open <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">myaccount.google.com/permissions</a>.</p>
+    </div>
+
+    <footer>
+        <span>&copy; 2026 PeekDrive</span>
+        <span><a href="privacy.html" data-en="Privacy Policy" data-fr="Confidentialité">Privacy Policy</a> · <a href="terms.html" data-en="Terms &amp; legal notice" data-fr="Conditions &amp; mentions légales">Terms &amp; legal notice</a> · <a href="mailto:contact@peekdrive.com">contact@peekdrive.com</a></span>
+    </footer>
+
+    <script>
+        function setLang(lang) {
+            document.querySelectorAll('[data-' + lang + ']').forEach(function(el) {
+                var val = el.getAttribute('data-' + lang);
+                if (el.tagName === 'A' && el.getAttribute('href') && !val.includes('<')) {
+                    el.textContent = val;
+                } else {
+                    el.innerHTML = val;
+                }
+            });
+            document.querySelectorAll('.lang-btn').forEach(function(btn) {
+                btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+            });
+            document.documentElement.lang = lang;
+            try { localStorage.setItem('peekdrive-lang', lang); } catch(e) {}
+        }
+        (function() {
+            // ?lang=fr|en (set by the extension) wins over the saved or browser language.
+            var asked = null;
+            try { asked = new URLSearchParams(location.search).get('lang'); } catch(e) {}
+            if (asked === 'fr' || asked === 'en') { setLang(asked); return; }
+            var saved = null;
+            try { saved = localStorage.getItem('peekdrive-lang'); } catch(e) {}
+            if (saved) { setLang(saved); }
+            else {
+                var bl = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+                setLang(bl.startsWith('fr') ? 'fr' : 'en');
+            }
+        })();
+
+        var copyTimer = null;
+        function copyAddress(btn) {
+            var el = document.getElementById('contact-address');
+            function label(prefix) {
+                return btn.getAttribute(prefix + (document.documentElement.lang === 'fr' ? 'fr' : 'en'));
+            }
+            function copied() {
+                // Keep the button's width while it says "Copied".
+                if (!copyTimer) btn.style.minWidth = btn.offsetWidth + 'px';
+                btn.textContent = label('data-copied-');
+                clearTimeout(copyTimer);
+                copyTimer = setTimeout(function() {
+                    copyTimer = null;
+                    btn.style.minWidth = '';
+                    btn.textContent = label('data-');
+                }, 1800);
+            }
+            // No clipboard access: select the address so it can be copied by hand.
+            function selectAddress() {
+                var range = document.createRange();
+                range.selectNodeContents(el);
+                var sel = window.getSelection();
+                sel.removeAllRanges();
+                sel.addRange(range);
+                try { if (document.execCommand('copy')) copied(); } catch(e) {}
+            }
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(el.textContent).then(copied, selectAddress);
+            } else {
+                selectAddress();
+            }
+        }
+    </script>
+</body>
+</html>
