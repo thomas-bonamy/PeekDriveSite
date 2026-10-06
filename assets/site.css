@@ -115,6 +115,8 @@ html:not(.js) .needs-js { display: none; }
 }
 .skip-link:focus { top: calc(var(--header-h) + 12px); outline-color: var(--text); }
 .nw { white-space: nowrap; }
+/* A group of words that goes to the next line in one piece. */
+.ib { display: inline-block; }
 
 /* Icons: one stroke style, the one of the PeekDrive panel. */
 .sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
@@ -163,15 +165,15 @@ h3 { font-size: 1.0625rem; font-weight: 600; line-height: 1.35; letter-spacing: 
   display: inline-flex; align-items: center; justify-content: center; gap: 10px;
   height: 52px; padding: 0 28px; border: 1px solid transparent; border-radius: var(--pill);
   font-size: 1rem; font-weight: 600; line-height: 1; white-space: nowrap; text-decoration: none;
-  transition: background 0.15s, border-color 0.15s, color 0.15s, box-shadow 0.15s;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
 }
 .btn:hover { text-decoration: none; }
 .btn .i { width: 18px; height: 18px; }
-.btn--primary { background: var(--blue); color: var(--white); box-shadow: 0 1px 2px rgba(33, 70, 126, 0.3), 0 6px 16px -6px rgba(43, 87, 154, 0.55); }
+.btn--primary { background: var(--blue); color: var(--white); }
 .btn--primary:hover { background: var(--blue-dark); }
 .btn--secondary { background: var(--white); border-color: var(--border); color: var(--text); }
 .btn--secondary:hover { border-color: var(--blue); color: var(--blue); }
-.btn--s { height: 40px; padding: 0 18px; gap: 8px; font-size: 0.9375rem; box-shadow: none; }
+.btn--s { height: 40px; padding: 0 18px; gap: 8px; font-size: 0.9375rem; }
 .btn--s .i { width: 16px; height: 16px; }
 .btn[disabled] { opacity: 0.6; cursor: default; }
 
@@ -212,8 +214,8 @@ h3 { font-size: 1.0625rem; font-weight: 600; line-height: 1.35; letter-spacing: 
 .hero h1 { margin-top: 24px; font-size: clamp(2.125rem, 1rem + 2.5vw, 3rem); font-weight: 700; line-height: 1.1; letter-spacing: -0.03em; }
 .hero h1 span { display: block; color: var(--blue); }
 .hero .lead { max-width: 540px; margin-top: 24px; }
+.hero::before { -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 160px), transparent); mask-image: linear-gradient(to bottom, #000 calc(100% - 160px), transparent); }
 .hero-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; margin-top: 36px; }
-.hero-cta-note { font-size: 0.9375rem; color: var(--text-2); }
 .ticks { display: flex; flex-wrap: wrap; gap: 10px 24px; margin-top: 28px; font-size: 0.9375rem; font-weight: 500; color: var(--text); }
 .ticks li { display: inline-flex; align-items: center; gap: 8px; }
 .ticks .i { width: 18px; height: 18px; color: var(--ok); stroke-width: 2.5; }
@@ -330,12 +332,15 @@ h3 { font-size: 1.0625rem; font-weight: 600; line-height: 1.35; letter-spacing: 
 /* ══ end of PANEL MOCK ═════════════════════════════════════════════════════ */
 
 /* ── Facts band ──────────────────────────────────────────────────────────── */
-.facts { position: relative; background: var(--surface); border-block: 1px solid var(--border); }
-.facts-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
-.fact { padding: 36px 16px; text-align: center; }
-.fact + .fact { border-left: 1px solid var(--border); }
-.fact-value { display: block; font-size: 1.375rem; font-weight: 700; line-height: 1.25; letter-spacing: -0.02em; color: var(--text); text-wrap: balance; }
-.fact-label { display: block; max-width: 256px; margin: 6px auto 0; font-size: 0.875rem; line-height: 1.5; color: var(--text-2); text-wrap: balance; }
+.facts { position: relative; padding-block: clamp(40px, 5vw, 64px) 0; }
+.facts-grid, .rules { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 40px 32px; }
+.rules--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.fact, .rule { padding-top: 22px; border-top: 1px solid var(--border); }
+.fact-value, .rule h3 { display: block; font-size: 1.25rem; font-weight: 700; line-height: 1.25; letter-spacing: -0.02em; color: var(--text); }
+.fact-label, .rule p { display: block; margin-top: 10px; font-size: 0.9688rem; line-height: 1.6; color: var(--text-2); }
+.fact-label { text-wrap: balance; }
+/* "01", "02", "03": the steps of "How it works". */
+.rule-num { display: block; margin-bottom: 18px; font-size: 0.875rem; font-weight: 700; line-height: 1; letter-spacing: 0.02em; color: var(--blue); font-variant-numeric: tabular-nums; }
 
 /* ── Cards (features) ────────────────────────────────────────────────────── */
 .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
@@ -354,30 +359,7 @@ h3 { font-size: 1.0625rem; font-weight: 600; line-height: 1.35; letter-spacing: 
 kbd { font-family: inherit; font-size: inherit; font-weight: 600; color: var(--text); white-space: nowrap; }
 
 /* ── How it works ────────────────────────────────────────────────────────── */
-.how-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr); gap: 72px; align-items: center; }
-.steps { display: grid; gap: 28px; margin-top: 40px; }
-.step { display: grid; grid-template-columns: 40px minmax(0, 1fr); column-gap: 20px; }
 .step-num { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--blue-tint); font-size: 1rem; font-weight: 700; line-height: 1; color: var(--blue); }
-.step h3 { align-self: center; }
-.step p { grid-column: 2; margin-top: 4px; font-size: 0.9375rem; line-height: 1.6; color: var(--text-2); }
-
-/* The opened document, with the editor's own Find box on the word. */
-.doc { border: 1px solid var(--border); border-radius: var(--radius-l); background: var(--white); box-shadow: var(--shadow-m); overflow: hidden; }
-.doc-head { display: flex; align-items: center; gap: 14px; padding: 18px 24px; border-bottom: 1px solid var(--border); }
-.doc-head svg { flex: none; width: 36px; height: 36px; }
-.doc-name { font-size: 0.9375rem; font-weight: 600; line-height: 1.35; }
-.doc-path { font-size: 0.8125rem; line-height: 1.45; color: var(--text-2); }
-.doc-find { display: flex; align-items: center; gap: 12px; padding: 12px 24px; background: var(--surface); border-bottom: 1px solid var(--border); font-size: 0.8125rem; line-height: 1; color: var(--text-2); }
-.doc-find-field { display: inline-flex; align-items: center; gap: 8px; height: 32px; padding: 0 14px 0 12px; border: 1px solid var(--border); border-radius: var(--pill); background: var(--white); font-weight: 500; color: var(--text); }
-.doc-find .i { width: 14px; height: 14px; }
-.doc-find-count { margin-left: auto; font-variant-numeric: tabular-nums; white-space: nowrap; }
-.doc-find-nav { display: flex; gap: 4px; }
-.doc-find-nav .i { width: 18px; height: 18px; }
-.doc-body { padding: 28px 32px 34px; font-size: 0.9375rem; line-height: 1.75; color: var(--text); }
-.doc-h { margin-bottom: 12px; font-size: 1.0625rem; font-weight: 600; line-height: 1.4; }
-.doc-body p + p { margin-top: 12px; }
-.doc mark { padding: 2px 2px 0; margin: 0 -2px; border-bottom: 2px solid var(--hl-line); border-radius: 2px; background: var(--hl); color: inherit; }
-.doc mark.is-other { border-bottom-style: dashed; background: transparent; }
 
 /* The sentence Google asks for: why Drive access is requested. */
 .callout { display: grid; grid-template-columns: 44px minmax(0, 1fr); column-gap: 20px; align-items: start; margin-top: clamp(48px, 6vw, 72px); padding: 28px 32px; border: 1px solid var(--border); border-radius: var(--radius-l); background: var(--white); }
@@ -391,7 +373,7 @@ kbd { font-family: inherit; font-size: inherit; font-weight: 600; color: var(--t
 .compare th, .compare td { padding: 18px 24px; text-align: left; border-top: 1px solid var(--border-soft); }
 .compare thead th { border-top: 0; background: var(--surface); border-bottom: 1px solid var(--border); font-size: 0.8125rem; font-weight: 600; line-height: 1.35; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-2); }
 .compare tbody tr:first-child > * { border-top: 0; }
-.compare tbody th { font-size: 1rem; font-weight: 500; line-height: 1.45; color: var(--text); }
+.compare tbody th { font-size: 1rem; font-weight: 500; line-height: 1.45; color: var(--text); text-wrap: balance; }
 .compare .col { width: 168px; text-align: center; }
 .compare .col--pd { background: var(--blue-wash); }
 .compare thead .col--pd { background: var(--blue-tint); color: var(--blue); }
@@ -400,8 +382,7 @@ kbd { font-family: inherit; font-size: inherit; font-weight: 600; color: var(--t
 .compare td .i { width: 20px; height: 20px; margin-inline: auto; stroke-width: 2.5; }
 .compare .yes { color: var(--blue); }
 .compare .yes--drive { color: var(--text-2); }
-.compare .no { color: #80868B; }
-.compare-note { max-width: 840px; margin: 20px auto 0; text-align: center; font-size: 0.9375rem; color: var(--text-2); }
+.compare .no { color: #D93025; }
 
 /* ── Uses ────────────────────────────────────────────────────────────────── */
 .uses { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
@@ -428,7 +409,7 @@ kbd { font-family: inherit; font-size: inherit; font-weight: 600; color: var(--t
 .final-mark { width: 56px; height: 56px; margin: 0 auto 28px; }
 .final .lead { max-width: 560px; margin-inline: auto; }
 .final .btn { margin-top: 36px; }
-.final-note { margin-top: 20px; font-size: 0.875rem; color: var(--text-2); }
+.final-note { margin-top: 20px; font-size: 0.875rem; color: var(--text-2); text-wrap: balance; }
 
 /* ── Footer ──────────────────────────────────────────────────────────────── */
 .site-footer { border-top: 1px solid var(--border); background: var(--surface); font-size: 0.9375rem; color: var(--text-2); }
@@ -528,12 +509,10 @@ kbd { font-family: inherit; font-size: inherit; font-weight: 600; color: var(--t
   .pd-wrap { --pd-w: 340px; }
   .pd { --pd-zoom: 0.78; }
   @supports not (zoom: 1) { .pd { width: 128.2%; transform: scale(0.78); } }
-  .how-grid, .privacy-grid { gap: 48px; }
+  .privacy-grid { gap: 48px; }
   .nav { gap: 24px; }
   .nav-links { gap: 22px; }
   .compare .col { width: 152px; }
-  .fact { padding-inline: 12px; }
-  .fact-label { font-size: 0.8125rem; }
 }
 /* The four French links need about 1000 px next to the logo, the switch and the
    button. A fifth link (pricing) will need this breakpoint raised to about 1100 px. */
@@ -541,16 +520,13 @@ kbd { font-family: inherit; font-size: inherit; font-weight: 600; color: var(--t
   .nav-links { display: none; }
   .nav-actions { margin-left: auto; }
 }
-/* Small laptops and below: the facts on two rows (every label on two lines)… */
+/* Small laptops and below: the facts on two rows… */
 @media (max-width: 1099px) {
   .facts-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .fact { padding-inline: 16px; }
-  .fact:nth-child(3) { border-left: 0; }
-  .fact:nth-child(n + 3) { border-top: 1px solid var(--border); }
-  .fact-label { font-size: 0.875rem; }
 }
 /* …and one column less in the grids, so no card title wraps alone in its row. */
 @media (min-width: 960px) and (max-width: 1099px) {
+  .rule h3 { font-size: 1.125rem; }
   .uses { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .use--wide { grid-column: 1 / -1; }
   .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -564,7 +540,9 @@ kbd { font-family: inherit; font-size: inherit; font-weight: 600; color: var(--t
   .pd { --pd-zoom: 0.94; }
   @supports not (zoom: 1) { .pd { width: 106.4%; transform: scale(0.94); } }
   .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .how-grid, .privacy-grid { grid-template-columns: minmax(0, 1fr); gap: 48px; }
+  .privacy-grid { grid-template-columns: minmax(0, 1fr); gap: 48px; }
+  .rules--3 { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .rule p { max-width: 600px; }
   .uses { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .use--wide { grid-column: 1 / -1; }
 }
@@ -583,19 +561,17 @@ kbd { font-family: inherit; font-size: inherit; font-weight: 600; color: var(--t
   .pd-wrap { flex: 1; width: auto; border-left: 0; }
   .pd { --pd-zoom: 0.74; }
   @supports not (zoom: 1) { .pd { width: 135.2%; transform: scale(0.74); } }
-  .fact { padding: 28px 16px; }
-  .fact-value { font-size: 1.1875rem; }
+  .facts-grid { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .fact-value, .rule h3 { font-size: 1.125rem; }
   .uses { grid-template-columns: minmax(0, 1fr); }
   .cards, .uses { gap: 16px; }
   .card { padding: 24px; }
-  .doc-head, .doc-find { padding-inline: 18px; }
-  .doc-body { padding: 22px 20px 26px; }
   .callout { grid-template-columns: minmax(0, 1fr); row-gap: 16px; padding: 24px; }
   .compare th, .compare td { padding: 16px 14px; }
-  .compare .col { width: 86px; padding-inline: 8px; }
+  .compare .col { width: 78px; padding-inline: 4px; }
   .compare thead th { font-size: 0.6875rem; letter-spacing: 0.02em; }
-  .compare thead .col { white-space: normal; }
-  .compare tbody th { font-size: 0.9375rem; }
+  .compare thead .col { white-space: normal; padding-inline: 4px; }
+  .compare tbody th { font-size: 0.9375rem; padding-right: 4px; }
   .checks { padding: 4px 20px; }
   .footer-top { flex-direction: column; align-items: flex-start; }
   .footer-links { flex-direction: column; }
@@ -607,10 +583,18 @@ kbd { font-family: inherit; font-size: inherit; font-weight: 600; color: var(--t
   .form-foot .btn, .rejoin .btn, .final .btn, .page-cta .btn { width: 100%; }
   .form-done { padding-block: 32px; }
 }
+@media (max-width: 419px) {
+  /* French: "100% confidentiel" no longer fits on one row with the two others. */
+  :root:lang(fr) .ticks { flex-direction: column; }
+}
+@media (max-width: 389px) {
+  h2 { font-size: 1.625rem; }
+}
+@media (max-width: 359px) {
+  .hero-cta .btn { gap: 8px; font-size: 0.9375rem; }
+}
 @media (max-width: 379px) {
   .ticks { gap: 8px 12px; }
-  .fact { padding-inline: 12px; }
-  .fact-value { font-size: 1.0625rem; }
 }
 /* Smallest phones: the panel keeps the design width it has at 360 px, and the
    three ticks, which no longer fit on one row, are stacked. */
@@ -619,8 +603,6 @@ kbd { font-family: inherit; font-size: inherit; font-weight: 600; color: var(--t
   @supports not (zoom: 1) { .pd { width: 156.25%; transform: scale(0.64); } }
   .ticks { flex-direction: column; }
   .hero-visual { height: 450px; }
-  .fact { padding-inline: 8px; }
-  .fact-value { font-size: 1rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

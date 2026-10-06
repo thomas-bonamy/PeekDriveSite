@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-en="PeekDrive: search inside your Google Drive files" data-fr="PeekDrive : cherchez dans vos fichiers Google Drive">PeekDrive: search inside your Google Drive files</title>
-    <meta name="description" content="PeekDrive is a free Chrome extension that searches inside your Google Drive files, shows the passages that match and opens each file at the right spot. Read-only, 100% local, no AI.">
+    <meta name="description" content="PeekDrive is a free Chrome extension that searches inside your Google Drive files, shows the passages that match and opens each file at the right spot. Read-only, 100% private, no AI.">
     <link rel="canonical" href="https://peekdrive.com/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="PeekDrive">
     <meta property="og:title" content="PeekDrive: search inside your Google Drive files">
-    <meta property="og:description" content="A free Chrome extension that shows where your word is inside each Google Drive file, then opens the file at the right spot. Read-only, 100% local, no AI.">
+    <meta property="og:description" content="A free Chrome extension that shows where your word is inside each Google Drive file, then opens the file at the right spot. Read-only, 100% private, no AI.">
     <meta property="og:url" content="https://peekdrive.com/">
     <meta property="og:image" content="https://peekdrive.com/assets/og.jpg">
     <meta property="og:image:width" content="1200">
@@ -53,7 +53,6 @@
         <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
         <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
         <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
-        <symbol id="i-minus" viewBox="0 0 24 24"><path d="M6 12h12"/></symbol>
         <symbol id="i-lock" viewBox="0 0 24 24"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
         <symbol id="i-open" viewBox="0 0 24 24"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></symbol>
         <symbol id="i-folder" viewBox="0 0 24 24"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></symbol>
@@ -67,8 +66,6 @@
         <symbol id="i-grid" viewBox="0 0 24 24"><rect width="7" height="7" x="3" y="3" rx="1.5"/><rect width="7" height="7" x="14" y="3" rx="1.5"/><rect width="7" height="7" x="14" y="14" rx="1.5"/><rect width="7" height="7" x="3" y="14" rx="1.5"/></symbol>
         <symbol id="i-panel" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M15 3v18"/><path d="m10 15-3-3 3-3"/></symbol>
         <symbol id="i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
-        <symbol id="i-up" viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"/></symbol>
-        <symbol id="i-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
     </svg>
     <header class="site-header">
         <div class="container nav">
@@ -77,7 +74,6 @@
                 <a href="#features" data-en="Features" data-fr="Fonctionnalités">Features</a>
                 <a href="#how" data-en="How it works" data-fr="Comment ça marche">How it works</a>
                 <a href="#compare" data-en="Comparison" data-fr="Comparatif">Comparison</a>
-                <a href="privacy.html" data-en="Privacy" data-fr="Confidentialité">Privacy</a>
             </nav>
             <div class="nav-actions">
                 <div class="lang-switch" role="group" aria-label="Language" data-en-aria-label="Language" data-fr-aria-label="Langue">
@@ -95,14 +91,13 @@
                 <div class="hero-copy">
                     <p class="badge" data-en="Chrome extension" data-fr="Extension Chrome">Chrome extension</p>
                     <h1 id="h-hero" data-en="Search inside your Drive files, &lt;span&gt;without opening them.&lt;/span&gt;" data-fr="Cherchez dans vos fichiers Drive, &lt;span&gt;sans les ouvrir.&lt;/span&gt;">Search inside your Drive files, <span>without opening them.</span></h1>
-                    <p class="lead" data-en="Google Drive tells you which files contain a word, but not where. PeekDrive shows you every passage, highlighted in its context, then opens the file at the exact spot." data-fr="Google Drive vous dit quels fichiers contiennent un mot, mais pas où. PeekDrive vous montre chaque passage, surligné dans son contexte, puis ouvre le fichier au bon endroit.">Google Drive tells you which files contain a word, but not where. PeekDrive shows you every passage, highlighted in its context, then opens the file at the exact spot.</p>
+                    <p class="lead" data-en="Find an exact word or phrase inside your Docs, Sheets, Slides, PDFs, Word and Excel files. See every passage in its context. Open the file right at that spot." data-fr="Trouvez un mot ou une expression exacte dans vos Docs, Sheets, Slides, PDF, Word et Excel. Voyez chaque passage dans son contexte. Ouvrez le fichier pile au bon endroit.">Find an exact word or phrase inside your Docs, Sheets, Slides, PDFs, Word and Excel files. See every passage in its context. Open the file right at that spot.</p>
                     <div class="hero-cta">
-                        <a class="btn btn--primary" href="https://chromewebstore.google.com/detail/piecapgomaejneknjkfpdhcpegihmjpd" target="_blank" rel="noopener"><span data-en="Add to Chrome" data-fr="Ajouter à Chrome">Add to Chrome</span><svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-                        <p class="hero-cta-note" data-en="Free · Chrome 116 or later" data-fr="Gratuit · Chrome 116 ou version ultérieure">Free · Chrome 116 or later</p>
+                        <a class="btn btn--primary" href="https://chromewebstore.google.com/detail/piecapgomaejneknjkfpdhcpegihmjpd" target="_blank" rel="noopener"><span data-en="Add to Chrome, it’s free" data-fr="Ajouter à Chrome, c’est gratuit">Add to Chrome, it’s free</span><svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
                     </div>
                     <ul class="ticks">
                         <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span data-en="Read-only" data-fr="Lecture seule">Read-only</span></li>
-                        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span data-en="100% local" data-fr="100% local">100% local</span></li>
+                        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span data-en="100% private" data-fr="100% confidentiel">100% private</span></li>
                         <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span data-en="No AI" data-fr="Sans IA">No AI</span></li>
                     </ul>
                 </div>
@@ -216,15 +211,15 @@
                     </li>
                     <li class="fact">
                         <strong class="fact-value" data-en="Read-only" data-fr="Lecture seule">Read-only</strong>
-                        <span class="fact-label" data-en="PeekDrive can never modify, move or delete a file" data-fr="PeekDrive ne peut jamais modifier, déplacer ni supprimer un fichier">PeekDrive can never modify, move or delete a file</span>
+                        <span class="fact-label" data-en="PeekDrive cannot modify or delete your files" data-fr="PeekDrive ne peut pas modifier ni supprimer vos fichiers">PeekDrive cannot modify or delete your files</span>
                     </li>
                     <li class="fact">
-                        <strong class="fact-value" data-en="100% local" data-fr="100% local">100% local</strong>
-                        <span class="fact-label" data-en="Everything is processed in your browser, with no AI" data-fr="Tout est traité dans votre navigateur, sans IA">Everything is processed in your browser, with no AI</span>
+                        <strong class="fact-value" data-en="100% private" data-fr="100% confidentiel">100% private</strong>
+                        <span class="fact-label" data-en="Everything is processed in your browser, guaranteed AI-free" data-fr="Tout est traité dans votre navigateur, garanti sans IA">Everything is processed in your browser, guaranteed AI-free</span>
                     </li>
                     <li class="fact">
-                        <strong class="fact-value" data-en="Shared drives" data-fr="Drive partagés">Shared drives</strong>
-                        <span class="fact-label" data-en="Works with My Drive and with shared drives" data-fr="Fonctionne avec Mon Drive et avec les Drive partagés">Works with My Drive and with shared drives</span>
+                        <strong class="fact-value" data-en="All your drives" data-fr="Tous vos espaces">All your drives</strong>
+                        <span class="fact-label" data-en="Works with My Drive and shared drives" data-fr="Fonctionne avec Mon Drive et les Drive partagés">Works with My Drive and shared drives</span>
                     </li>
                 </ul>
             </div>
@@ -234,8 +229,8 @@
         <section class="section" id="features" aria-labelledby="h-features">
             <div class="container">
                 <div class="section-head">
-                    <h2 id="h-features" data-en="Find the passage, not just the file" data-fr="Trouvez le passage, pas seulement le fichier">Find the passage, not just the file</h2>
-                    <p class="lead" data-en="PeekDrive adds to Google Drive what its search does not show: where your word is inside each file." data-fr="PeekDrive ajoute à Google Drive ce que sa recherche ne montre pas&amp;nbsp;: où se trouve votre mot dans chaque fichier.">PeekDrive adds to Google Drive what its search does not show: where your word is inside each file.</p>
+                    <h2 id="h-features" data-en="Find the exact passage, not just the file" data-fr="Trouvez le passage exact, pas seulement le fichier">Find the exact passage, not just the file</h2>
+                    <p class="lead" data-en="With PeekDrive, go further than Google Drive’s built-in search. PeekDrive shows you exactly where to find what you are looking for, in each of your files." data-fr="Grâce à PeekDrive, allez plus loin que la recherche native Google Drive. PeekDrive vous permet de savoir où exactement se trouve ce que vous cherchez, dans chacun de vos fichiers.">With PeekDrive, go further than Google Drive’s built-in search. PeekDrive shows you exactly where to find what you are looking for, in each of your files.</p>
                 </div>
                 <ul class="cards">
                     <li class="card">
@@ -246,12 +241,12 @@
                     <li class="card">
                         <span class="icon-tile tile--green"><svg class="i" aria-hidden="true"><use href="#i-passage"/></svg></span>
                         <h3 data-en="Passages in their context" data-fr="Les passages dans leur contexte">Passages in their context</h3>
-                        <p data-en="For each file, you see the text around your word, highlighted, for every occurrence in the file. You know whether it is the right one before opening anything." data-fr="Pour chaque fichier, vous voyez le texte autour de votre mot, surligné, pour chaque occurrence du fichier. Vous savez si c’est le bon avant d’ouvrir quoi que ce soit.">For each file, you see the text around your word, highlighted, for every occurrence in the file. You know whether it is the right one before opening anything.</p>
+                        <p data-en="For each file, you preview every occurrence of the word or phrase you searched for, along with the text around it, so you know the context. You know whether it is the right one before opening anything." data-fr="Pour chaque fichier, vous prévisualisez toutes les occurrences du mot ou de l’expression recherchée mais également le texte autour afin de connaître le contexte. Vous savez si c’est le bon avant d’ouvrir quoi que ce soit.">For each file, you preview every occurrence of the word or phrase you searched for, along with the text around it, so you know the context. You know whether it is the right one before opening anything.</p>
                     </li>
                     <li class="card">
                         <span class="icon-tile tile--yellow"><svg class="i" aria-hidden="true"><use href="#i-target"/></svg></span>
                         <h3 data-en="One click to the right spot" data-fr="Un clic, au bon endroit">One click to the right spot</h3>
-                        <p data-en="“Open” takes you to the right occurrence in a document, the right tab, row and column in a spreadsheet, the right slide in a presentation, the right passage in a PDF or a CSV." data-fr="«&amp;nbsp;Ouvrir&amp;nbsp;» vous amène à la bonne occurrence dans un document, au bon onglet, à la bonne ligne et à la bonne colonne dans un tableur, à la bonne diapositive dans une présentation, au bon passage dans un PDF ou un CSV.">“Open” takes you to the right occurrence in a document, the right tab, row and column in a spreadsheet, the right slide in a presentation, the right passage in a PDF or a CSV.</p>
+                        <p data-en="Click “Open” to reach the right occurrence in a document, the right sheet and the right cell in a spreadsheet, the right slide in a presentation." data-fr="Cliquez sur «&amp;nbsp;Ouvrir&amp;nbsp;» pour atteindre la bonne occurrence dans un document, la bonne feuille et la bonne cellule dans un tableur, la bonne diapositive dans une présentation.">Click “Open” to reach the right occurrence in a document, the right sheet and the right cell in a spreadsheet, the right slide in a presentation.</p>
                     </li>
                     <li class="card" id="filetypes">
                         <span class="icon-tile tile--blue"><svg class="i" aria-hidden="true"><use href="#i-grid"/></svg></span>
@@ -270,8 +265,8 @@
                     </li>
                     <li class="card">
                         <span class="icon-tile tile--red"><svg class="i" aria-hidden="true"><use href="#i-panel"/></svg></span>
-                        <h3 data-en="Four ways in" data-fr="Quatre façons de l’ouvrir">Four ways in</h3>
-                        <p data-en="The PeekDrive icon in Chrome’s toolbar, the PeekDrive button next to Drive’s search bar, a line under Drive’s search suggestions, or the shortcut &lt;kbd&gt;Cmd+Shift+F&lt;/kbd&gt; (Mac) / &lt;kbd&gt;Ctrl+Shift+F&lt;/kbd&gt; (Windows) on Google Drive." data-fr="L’icône PeekDrive dans la barre d’outils de Chrome, le bouton PeekDrive à côté de la barre de recherche de Drive, une ligne sous les suggestions de recherche de Drive, ou le raccourci &lt;kbd&gt;Cmd+Maj+F&lt;/kbd&gt; (Mac) / &lt;kbd&gt;Ctrl+Maj+F&lt;/kbd&gt; (Windows) sur Google Drive.">The PeekDrive icon in Chrome’s toolbar, the PeekDrive button next to Drive’s search bar, a line under Drive’s search suggestions, or the shortcut <kbd>Cmd+Shift+F</kbd> (Mac) / <kbd>Ctrl+Shift+F</kbd> (Windows) on Google Drive.</p>
+                        <h3 data-en="Four ways to save time" data-fr="Quatre façons de gagner du temps">Four ways to save time</h3>
+                        <p data-en="The PeekDrive icon in Google Chrome’s extensions bar, the PeekDrive button next to Google Drive’s search bar and a line under Drive’s search suggestions or, for power users, the shortcut &lt;kbd&gt;Cmd+Shift+F&lt;/kbd&gt; (Mac) / &lt;kbd&gt;Ctrl+Shift+F&lt;/kbd&gt; (Windows) on Google Drive." data-fr="L’icône PeekDrive dans la barre d’extensions de Google Chrome, le bouton PeekDrive à côté de la barre de recherche de Google Drive et une ligne sous les suggestions de recherche de Drive, ou, pour les expert·e·s, le raccourci &lt;kbd&gt;Cmd+Maj+F&lt;/kbd&gt; (Mac) / &lt;kbd&gt;Ctrl+Maj+F&lt;/kbd&gt; (Windows) sur Google Drive.">The PeekDrive icon in Google Chrome’s extensions bar, the PeekDrive button next to Google Drive’s search bar and a line under Drive’s search suggestions or, for power users, the shortcut <kbd>Cmd+Shift+F</kbd> (Mac) / <kbd>Ctrl+Shift+F</kbd> (Windows) on Google Drive.</p>
                     </li>
                     <li class="card">
                         <span class="icon-tile tile--green"><svg class="i" aria-hidden="true"><use href="#i-shield"/></svg></span>
@@ -285,56 +280,33 @@
         <!-- How it works -->
         <section class="section section--surface" id="how" aria-labelledby="h-how">
             <div class="container">
-                <div class="how-grid">
-                    <div>
-                        <h2 id="h-how" data-en="How it works" data-fr="Comment ça marche">How it works</h2>
-                        <p class="lead" data-en="Three steps, from Google Drive." data-fr="Trois étapes, depuis Google Drive.">Three steps, from Google Drive.</p>
-                        <ol class="steps">
-                            <li class="step">
-                                <span class="step-num" aria-hidden="true">1</span>
-                                <h3 data-en="Open PeekDrive" data-fr="Ouvrez PeekDrive">Open PeekDrive</h3>
-                                <p data-en="Click its icon in Chrome’s toolbar or its button next to Drive’s search bar, then sign in with Google." data-fr="Cliquez sur son icône dans la barre d’outils de Chrome ou sur son bouton à côté de la barre de recherche de Drive, puis &lt;span class=&quot;nw&quot;&gt;connectez-vous&lt;/span&gt; avec Google.">Click its icon in Chrome’s toolbar or its button next to Drive’s search bar, then sign in with Google.</p>
-                            </li>
-                            <li class="step">
-                                <span class="step-num" aria-hidden="true">2</span>
-                                <h3 data-en="Type a word" data-fr="Tapez un mot">Type a word</h3>
-                                <p data-en="For each file that contains it, PeekDrive shows the passages around your word, highlighted." data-fr="Pour chaque fichier qui le contient, PeekDrive affiche les passages autour de votre mot, surlignés.">For each file that contains it, PeekDrive shows the passages around your word, highlighted.</p>
-                            </li>
-                            <li class="step">
-                                <span class="step-num" aria-hidden="true">3</span>
-                                <h3 data-en="Open at the right spot" data-fr="Ouvrez au bon endroit">Open at the right spot</h3>
-                                <p data-en="“Open” takes you to the passage. The editor’s own Find box stays open on your word, to go to the next or previous occurrence, and the word is copied to your clipboard." data-fr="«&amp;nbsp;Ouvrir&amp;nbsp;» vous amène au passage. La recherche de l’éditeur reste ouverte sur votre mot, pour passer à l’occurrence suivante ou précédente, et le mot est copié dans votre &lt;span class=&quot;nw&quot;&gt;presse-papier&lt;/span&gt;.">“Open” takes you to the passage. The editor’s own Find box stays open on your word, to go to the next or previous occurrence, and the word is copied to your clipboard.</p>
-                            </li>
-                        </ol>
-                    </div>
-
-                    <figure class="doc" role="img" aria-label="Illustration: a document opened at the passage, with the Find box open on the word “budget” and the word highlighted in the text." data-en-aria-label="Illustration: a document opened at the passage, with the Find box open on the word “budget” and the word highlighted in the text." data-fr-aria-label="Illustration : un document ouvert au bon passage, avec la recherche ouverte sur le mot « budget » et le mot surligné dans le texte.">
-                        <div class="doc-head">
-                            <svg viewBox="0 0 40 40"><use href="#t-docs"/></svg>
-                            <div>
-                                <p class="doc-name" data-en="Meeting notes" data-fr="Notes de réunion">Meeting notes</p>
-                                <p class="doc-path" data-en="My Drive › Projects" data-fr="Mon Drive › Projets">My Drive › Projects</p>
-                            </div>
-                        </div>
-                        <div class="doc-find">
-                            <span class="doc-find-field"><svg class="i"><use href="#i-search"/></svg>budget</span>
-                            <span class="doc-find-count" data-en="1 of 3" data-fr="1 sur 3">1 of 3</span>
-                            <span class="doc-find-nav"><svg class="i"><use href="#i-up"/></svg><svg class="i"><use href="#i-down"/></svg></span>
-                        </div>
-                        <div class="doc-body">
-                            <p class="doc-h" data-en="Decisions" data-fr="Décisions">Decisions</p>
-                            <p data-en="The marketing &lt;mark&gt;budget&lt;/mark&gt; was approved for next quarter. Camille will send the detailed breakdown before Friday, so each team can plan its campaigns." data-fr="Le &lt;mark&gt;budget&lt;/mark&gt; marketing a été validé pour le prochain trimestre. Camille enverra le détail avant vendredi, pour que chaque équipe puisse planifier ses campagnes.">The marketing <mark>budget</mark> was approved for next quarter. Camille will send the detailed breakdown before Friday, so each team can plan its campaigns.</p>
-                            <p data-en="The training &lt;mark class=&quot;is-other&quot;&gt;budget&lt;/mark&gt; stays the same as last year." data-fr="Le &lt;mark class=&quot;is-other&quot;&gt;budget&lt;/mark&gt; formation reste identique à celui de l’an dernier.">The training <mark class="is-other">budget</mark> stays the same as last year.</p>
-                            <p data-en="Next review of the &lt;mark class=&quot;is-other&quot;&gt;budget&lt;/mark&gt; in March." data-fr="Prochain point sur le &lt;mark class=&quot;is-other&quot;&gt;budget&lt;/mark&gt; en mars.">Next review of the <mark class="is-other">budget</mark> in March.</p>
-                        </div>
-                    </figure>
+                <div class="section-head">
+                    <h2 id="h-how" data-en="How it works" data-fr="Comment ça marche">How it works</h2>
+                    <p class="lead" data-en="Three steps, from Google Drive." data-fr="Trois étapes, depuis Google Drive.">Three steps, from Google Drive.</p>
                 </div>
+                <ol class="rules rules--3">
+                    <li class="rule">
+                        <span class="rule-num" aria-hidden="true">01</span>
+                        <h3 data-en="Open PeekDrive" data-fr="Ouvrez PeekDrive">Open PeekDrive</h3>
+                        <p data-en="Click the PeekDrive icon in Google Chrome’s extensions bar, or the PeekDrive button next to Google Drive’s search bar. Sign in with Google." data-fr="Cliquez sur l’icône PeekDrive dans la barre d’extensions de Google Chrome, ou sur le bouton PeekDrive à côté de la barre de recherche de Google Drive. Connectez-vous avec Google.">Click the PeekDrive icon in Google Chrome’s extensions bar, or the PeekDrive button next to Google Drive’s search bar. Sign in with Google.</p>
+                    </li>
+                    <li class="rule">
+                        <span class="rule-num" aria-hidden="true">02</span>
+                        <h3 data-en="Type a word or a phrase" data-fr="Tapez un mot ou une expression">Type a word or a phrase</h3>
+                        <p data-en="PeekDrive shows every occurrence in each file, with the text around it, so you know the context." data-fr="PeekDrive affiche toutes les occurrences dans chaque fichier, avec le texte autour pour connaître le contexte.">PeekDrive shows every occurrence in each file, with the text around it, so you know the context.</p>
+                    </li>
+                    <li class="rule">
+                        <span class="rule-num" aria-hidden="true">03</span>
+                        <h3 data-en="Open at the right spot" data-fr="Ouvrez au bon endroit">Open at the right spot</h3>
+                        <p data-en="Click “Open” to land directly on the right occurrence. The document’s own search stays open on your word, so you can move from one occurrence to the next." data-fr="Cliquez sur «&amp;nbsp;Ouvrir&amp;nbsp;» pour atteindre directement la bonne occurrence. La recherche du document reste ouverte sur votre mot, pour passer d’une occurrence à l’autre.">Click “Open” to land directly on the right occurrence. The document’s own search stays open on your word, so you can move from one occurrence to the next.</p>
+                    </li>
+                </ol>
 
                 <div class="callout">
                     <span class="icon-tile"><svg class="i" aria-hidden="true"><use href="#i-lock"/></svg></span>
                     <div>
                         <h3 data-en="Why PeekDrive asks for access to your Google Drive" data-fr="Pourquoi PeekDrive demande l’accès à votre Google Drive">Why PeekDrive asks for access to your Google Drive</h3>
-                        <p data-en="PeekDrive asks you to sign in with Google and grant &lt;span class=&quot;nw&quot;&gt;read-only&lt;/span&gt; access to your Google Drive, so it can search the text inside your files and show you the matching passages. It never modifies your files." data-fr="PeekDrive vous demande de vous connecter avec Google et d'autoriser un accès en lecture seule à votre Google Drive, afin de rechercher le texte à l'intérieur de vos fichiers et de vous montrer les passages correspondants. Il ne modifie jamais vos fichiers.">PeekDrive asks you to sign in with Google and grant <span class="nw">read-only</span> access to your Google Drive, so it can search the text inside your files and show you the matching passages. It never modifies your files.</p>
+                        <p data-en="PeekDrive asks you to sign in with Google and grant &lt;span class=&quot;nw&quot;&gt;read-only&lt;/span&gt; access to your Google Drive, so it can search the text inside your files and show you the matching passages. It cannot modify or delete your files." data-fr="PeekDrive vous demande de vous connecter avec Google et d'autoriser un accès en lecture seule à votre Google Drive, afin de rechercher le texte à l'intérieur de vos fichiers et de vous montrer les passages correspondants. Il ne peut pas modifier ni supprimer vos fichiers.">PeekDrive asks you to sign in with Google and grant <span class="nw">read-only</span> access to your Google Drive, so it can search the text inside your files and show you the matching passages. It cannot modify or delete your files.</p>
                         <a class="more" href="privacy.html"><span data-en="Read the privacy policy" data-fr="Lire la politique de confidentialité">Read the privacy policy</span><svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
                     </div>
                 </div>
@@ -345,8 +317,8 @@
         <section class="section" id="compare" aria-labelledby="h-compare">
             <div class="container">
                 <div class="section-head">
-                    <h2 id="h-compare" data-en="PeekDrive and Google Drive’s own search" data-fr="PeekDrive et la recherche de Google Drive">PeekDrive and Google Drive’s own search</h2>
-                    <p class="lead" data-en="Drive’s search finds the files. PeekDrive shows you where to look inside them. The two work together." data-fr="La recherche de Drive trouve les fichiers. PeekDrive vous montre où regarder à l’intérieur. Les deux se complètent.">Drive’s search finds the files. PeekDrive shows you where to look inside them. The two work together.</p>
+                    <h2 id="h-compare" data-en="How much better is PeekDrive?" data-fr="À quel point PeekDrive est mieux&amp;nbsp;?">How much better is PeekDrive?</h2>
+                    <p class="lead" data-en="Hundreds of documents in your Drive? PeekDrive kicks your document search into high gear!" data-fr="Des centaines de documents dans votre Drive&amp;nbsp;? PeekDrive fait passer votre recherche documentaire à la vitesse supérieure&amp;nbsp;!">Hundreds of documents in your Drive? PeekDrive kicks your document search into high gear!</p>
                 </div>
                 <div class="compare">
                     <table>
@@ -359,34 +331,38 @@
                         </thead>
                         <tbody>
                             <tr>
+                                <th scope="row" data-en="Finds the files whose names contain your word" data-fr="Trouve les fichiers dont les noms contiennent votre mot">Finds the files whose names contain your word</th>
+                                <td class="col"><svg class="i yes yes--drive" aria-hidden="true"><use href="#i-check"/></svg><span class="sr-only" data-en="Yes" data-fr="Oui">Yes</span></td>
+                                <td class="col col--pd"><svg class="i yes" aria-hidden="true"><use href="#i-check"/></svg><span class="sr-only" data-en="Yes" data-fr="Oui">Yes</span></td>
+                            </tr>
+                            <tr>
                                 <th scope="row" data-en="Finds the files that contain your word" data-fr="Trouve les fichiers qui contiennent votre mot">Finds the files that contain your word</th>
                                 <td class="col"><svg class="i yes yes--drive" aria-hidden="true"><use href="#i-check"/></svg><span class="sr-only" data-en="Yes" data-fr="Oui">Yes</span></td>
                                 <td class="col col--pd"><svg class="i yes" aria-hidden="true"><use href="#i-check"/></svg><span class="sr-only" data-en="Yes" data-fr="Oui">Yes</span></td>
                             </tr>
                             <tr>
-                                <th scope="row" data-en="Shows the passage around the word, in the results" data-fr="Affiche le passage autour du mot, dans les résultats">Shows the passage around the word, in the results</th>
-                                <td class="col"><svg class="i no" aria-hidden="true"><use href="#i-minus"/></svg><span class="sr-only" data-en="No" data-fr="Non">No</span></td>
+                                <th scope="row" data-en="Shows every occurrence of your search term in each file" data-fr="Affiche chaque occurrence de votre recherche dans chaque fichier">Shows every occurrence of your search term in each file</th>
+                                <td class="col"><svg class="i no" aria-hidden="true"><use href="#i-x"/></svg><span class="sr-only" data-en="No" data-fr="Non">No</span></td>
                                 <td class="col col--pd"><svg class="i yes" aria-hidden="true"><use href="#i-check"/></svg><span class="sr-only" data-en="Yes" data-fr="Oui">Yes</span></td>
                             </tr>
                             <tr>
-                                <th scope="row" data-en="Lists every occurrence in the file" data-fr="Liste toutes les occurrences du fichier">Lists every occurrence in the file</th>
-                                <td class="col"><svg class="i no" aria-hidden="true"><use href="#i-minus"/></svg><span class="sr-only" data-en="No" data-fr="Non">No</span></td>
+                                <th scope="row" data-en="Shows the context around every occurrence of your search term" data-fr="Affiche le contexte autour de chaque occurrence de votre recherche">Shows the context around every occurrence of your search term</th>
+                                <td class="col"><svg class="i no" aria-hidden="true"><use href="#i-x"/></svg><span class="sr-only" data-en="No" data-fr="Non">No</span></td>
                                 <td class="col col--pd"><svg class="i yes" aria-hidden="true"><use href="#i-check"/></svg><span class="sr-only" data-en="Yes" data-fr="Oui">Yes</span></td>
                             </tr>
                             <tr>
-                                <th scope="row" data-en="Opens the file at the exact spot" data-fr="Ouvre le fichier au bon endroit">Opens the file at the exact spot</th>
-                                <td class="col"><svg class="i no" aria-hidden="true"><use href="#i-minus"/></svg><span class="sr-only" data-en="No" data-fr="Non">No</span></td>
+                                <th scope="row" data-en="Lets you land directly on the occurrence you want, with no detour and no wasted clicks" data-fr="Permet d’atterrir directement à l’occurrence que vous souhaitez atteindre, sans détour ni clics inutiles">Lets you land directly on the occurrence you want, with no detour and no wasted clicks</th>
+                                <td class="col"><svg class="i no" aria-hidden="true"><use href="#i-x"/></svg><span class="sr-only" data-en="No" data-fr="Non">No</span></td>
                                 <td class="col col--pd"><svg class="i yes" aria-hidden="true"><use href="#i-check"/></svg><span class="sr-only" data-en="Yes" data-fr="Oui">Yes</span></td>
                             </tr>
                             <tr>
-                                <th scope="row" data-en="Goes to the right tab, row and column in spreadsheets" data-fr="Va au bon onglet, à la bonne ligne et à la bonne colonne dans les tableurs">Goes to the right tab, row and column in spreadsheets</th>
-                                <td class="col"><svg class="i no" aria-hidden="true"><use href="#i-minus"/></svg><span class="sr-only" data-en="No" data-fr="Non">No</span></td>
+                                <th scope="row" data-en="Goes to the right sheet and cell in spreadsheets" data-fr="Va à la bonne feuille et à la bonne cellule dans les tableurs">Goes to the right sheet and cell in spreadsheets</th>
+                                <td class="col"><svg class="i no" aria-hidden="true"><use href="#i-x"/></svg><span class="sr-only" data-en="No" data-fr="Non">No</span></td>
                                 <td class="col col--pd"><svg class="i yes" aria-hidden="true"><use href="#i-check"/></svg><span class="sr-only" data-en="Yes" data-fr="Oui">Yes</span></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                <p class="compare-note" data-en="PeekDrive does not replace Google Drive’s search: it completes it." data-fr="PeekDrive ne remplace pas la recherche de Google Drive&amp;nbsp;: il la complète.">PeekDrive does not replace Google Drive’s search: it completes it.</p>
             </div>
         </section>
 
@@ -394,8 +370,8 @@
         <section class="section section--surface" id="uses" aria-labelledby="h-uses">
             <div class="container">
                 <div class="section-head">
-                    <h2 id="h-uses" data-en="Who is it for?" data-fr="Pour qui&amp;nbsp;?">Who is it for?</h2>
-                    <p class="lead" data-en="For anyone who keeps their work in Google Drive and often looks for a precise passage. A few everyday uses:" data-fr="Pour toutes les personnes qui gardent leur travail dans Google Drive et y cherchent souvent un passage précis. Quelques usages du quotidien&amp;nbsp;:">For anyone who keeps their work in Google Drive and often looks for a precise passage. A few everyday uses:</p>
+                    <h2 id="h-uses" data-en="&lt;span class=&quot;ib&quot;&gt;Who is PeekDrive for?&lt;/span&gt; &lt;span class=&quot;ib&quot;&gt;Which team?&lt;/span&gt;" data-fr="&lt;span class=&quot;ib&quot;&gt;PeekDrive, pour qui&amp;nbsp;?&lt;/span&gt; &lt;span class=&quot;ib&quot;&gt;Pour quelle équipe&amp;nbsp;?&lt;/span&gt;"><span class="ib">Who is PeekDrive for?</span> <span class="ib">Which team?</span></h2>
+                    <p class="lead" data-en="Yours, without a doubt! PeekDrive was designed for all the people and teams who keep their work documents on Google Drive and need precise, fast searches. Whether they are contracts, accounting documents, course materials or scientific papers." data-fr="Sans aucun doute, la vôtre&amp;nbsp;! PeekDrive a été conçu pour toutes les personnes et les équipes qui stockent leurs documents professionnels sur Google Drive et ont besoin d’effectuer des recherches précises et rapides. Qu’il s’agisse de contrats, de documents de comptabilité, de supports de cours ou d’articles scientifiques.">Yours, without a doubt! PeekDrive was designed for all the people and teams who keep their work documents on Google Drive and need precise, fast searches. Whether they are contracts, accounting documents, course materials or scientific papers.</p>
                 </div>
                 <ul class="uses">
                     <li class="use">
@@ -440,8 +416,8 @@
                         <a class="more" href="privacy.html"><span data-en="Read the privacy policy" data-fr="Lire la politique de confidentialité">Read the privacy policy</span><svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
                     </div>
                     <ul class="checks">
-                        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span data-en="Read-only access to Google Drive: PeekDrive can never modify, move or delete a file." data-fr="Accès en lecture seule à Google Drive&amp;nbsp;: PeekDrive ne peut jamais modifier, déplacer ni supprimer un fichier.">Read-only access to Google Drive: PeekDrive can never modify, move or delete a file.</span></li>
-                        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span data-en="Everything is processed in your browser, with no AI." data-fr="Tout est traité dans votre navigateur, sans IA.">Everything is processed in your browser, with no AI.</span></li>
+                        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span data-en="Read-only access to Google Drive: PeekDrive cannot modify or delete your files." data-fr="Accès en lecture seule à Google Drive&amp;nbsp;: PeekDrive ne peut pas modifier ni supprimer vos fichiers.">Read-only access to Google Drive: PeekDrive cannot modify or delete your files.</span></li>
+                        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span data-en="Everything is processed in your browser, guaranteed AI-free." data-fr="Tout est traité dans votre navigateur, garanti sans IA.">Everything is processed in your browser, guaranteed AI-free.</span></li>
                         <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span data-en="The content of your files is never written to disk." data-fr="Le contenu de vos fichiers n’est jamais écrit sur le disque.">The content of your files is never written to disk.</span></li>
                         <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span data-en="No analytics and no tracking in the extension." data-fr="Aucun outil d’analyse ni de suivi dans l’extension.">No analytics and no tracking in the extension.</span></li>
                     </ul>
