@@ -3,252 +3,453 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PeekDrive</title>
-    <meta name="description" content="Search inside your Google Drive files and jump to the exact spot. Free Chrome extension.">
+    <title data-en="PeekDrive: search inside your Google Drive files" data-fr="PeekDrive : cherchez dans vos fichiers Google Drive">PeekDrive: search inside your Google Drive files</title>
+    <meta name="description" content="PeekDrive is a free Chrome extension that searches inside your Google Drive files, shows the passages that match and opens each file at the right spot. Read-only, 100% private, no AI.">
+    <link rel="canonical" href="https://peekdrive.com/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="PeekDrive">
+    <meta property="og:title" content="PeekDrive: search inside your Google Drive files">
+    <meta property="og:description" content="A free Chrome extension that shows where your word is inside each Google Drive file, then opens the file at the right spot. Read-only, 100% private, no AI.">
+    <meta property="og:url" content="https://peekdrive.com/">
+    <meta property="og:image" content="https://peekdrive.com/assets/og.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="The PeekDrive panel showing, for the word “budget”, the passage of a Google Drive file where it appears, highlighted, with an Open link.">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta name="twitter:card" content="summary_large_image">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "PeekDrive",
+        "description": "Chrome extension that searches inside your Google Drive files, shows the passages that match and opens each file at the right spot.",
+        "url": "https://peekdrive.com/",
+        "applicationCategory": "BrowserApplication",
+        "operatingSystem": "Chrome",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+        "author": { "@type": "Person", "name": "Thomas Bonamy" }
+    }
+    </script>
     <link rel="icon" href="favicon.ico?v=2" sizes="any">
     <link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
     <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --blue: #2D7FF9;
-            --blue-light: #EBF3FE;
-            --blue-dark: #1A5FD1;
-            --text: #1a1a2e;
-            --text-muted: #5a5a7a;
-            --bg: #ffffff;
-            --section-bg: #f8f9fc;
-            --border: #e2e5ee;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'DM Sans', sans-serif; color: var(--text); background: var(--bg); line-height: 1.6; -webkit-font-smoothing: antialiased; }
-
-        nav { display: flex; align-items: center; justify-content: space-between; max-width: 960px; margin: 0 auto; padding: 24px; }
-        .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.2rem; color: var(--text); text-decoration: none; }
-        .logo img { height: 30px; width: auto; }
-        .nav-right { display: flex; align-items: center; gap: 24px; }
-        .nav-links { display: flex; gap: 24px; }
-        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.2s; }
-        .nav-links a:hover { color: var(--blue); }
-        .nav-links a.active { color: var(--blue); font-weight: 600; border-bottom: 2px solid var(--blue); padding-bottom: 2px; }
-        .lang-switch { display: flex; background: var(--section-bg); border-radius: 6px; overflow: hidden; border: 1px solid var(--border); }
-        .lang-btn { padding: 6px 12px; font-size: 0.82rem; font-weight: 600; border: none; background: transparent; color: var(--text-muted); cursor: pointer; font-family: inherit; transition: all 0.2s; }
-        .lang-btn.active { background: var(--blue); color: #fff; }
-
-        .hero { max-width: 960px; margin: 0 auto; padding: 80px 24px 60px; text-align: center; }
-        .hero h1 { font-size: 2.6rem; font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 20px; }
-        .hero h1 span { color: var(--blue); }
-        .hero p { font-size: 1.12rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 36px; }
-        .cta-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--blue); color: #fff; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1rem; transition: background 0.2s, transform 0.15s; }
-        .cta-btn:hover { background: var(--blue-dark); transform: translateY(-1px); }
-        .cta-btn svg { width: 20px; height: 20px; }
-
-        .how { background: var(--section-bg); padding: 80px 24px; }
-        .how-inner { max-width: 960px; margin: 0 auto; }
-        .how-inner h2 { text-align: center; font-size: 1.8rem; font-weight: 700; margin-bottom: 48px; }
-        .how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-        .how-card { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 28px 24px; }
-        .how-num { width: 36px; height: 36px; background: var(--blue-light); color: var(--blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.95rem; margin-bottom: 14px; }
-        .how-card h3 { font-size: 1.02rem; font-weight: 600; margin-bottom: 8px; }
-        .how-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.55; }
-        .how-inner > p { text-align: center; color: var(--text-muted); max-width: 720px; margin: 36px auto 0; }
-
-        .features { max-width: 960px; margin: 0 auto; padding: 80px 24px; }
-        .features h2 { text-align: center; font-size: 1.8rem; font-weight: 700; margin-bottom: 48px; }
-        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-        .feature-card { background: var(--section-bg); border-radius: 12px; padding: 28px 24px; }
-        .feature-icon { width: 44px; height: 44px; background: var(--blue-light); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
-        .feature-icon svg { width: 22px; height: 22px; color: var(--blue); }
-        .feature-card h3 { font-size: 1.02rem; font-weight: 600; margin-bottom: 8px; }
-        .feature-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.55; }
-
-        .filetypes { background: var(--section-bg); padding: 80px 24px; text-align: center; }
-        .filetypes-inner { max-width: 960px; margin: 0 auto; }
-        .filetypes h2 { font-size: 1.8rem; font-weight: 700; margin-bottom: 12px; }
-        .filetypes-inner > p { color: var(--text-muted); margin-bottom: 36px; }
-        .types-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; }
-
-        .type-badge { display: inline-flex; align-items: center; gap: 12px; padding: 12px 22px; border-radius: 12px; font-size: 0.92rem; font-weight: 600; background: #fff; border: 1px solid var(--border); }
-        .type-icon { width: 40px; height: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; }
-        .type-icon svg { display: block; width: 100%; height: 100%; }
-
-        footer { max-width: 960px; margin: 0 auto; padding: 40px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; font-size: 0.88rem; color: var(--text-muted); }
-        footer a { color: var(--blue); text-decoration: none; }
-        footer a:hover { text-decoration: underline; }
-        .footer-note { flex-basis: 100%; margin-top: 16px; font-size: 0.8rem; }
-
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 1.9rem; }
-            .how-grid, .features-grid { grid-template-columns: 1fr; }
-            .nav-links { display: none; }
-            .types-row { gap: 10px; }
-            .type-badge { padding: 10px 16px; font-size: 0.85rem; }
-            .type-icon { width: 34px; height: 34px; }
-            footer { flex-direction: column; gap: 8px; text-align: center; }
-        }
-    </style>
+    <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="assets/site.css?v=1">
+    <script src="assets/site.js?v=1"></script>
 </head>
 <body>
-    <nav>
-        <a href="./" class="logo">
-            <img src="logo.svg" alt="PeekDrive">
-        </a>
-        <div class="nav-right">
-            <div class="nav-links">
-                <a href="#how" data-en="How it works" data-fr="Comment ça marche">How it works</a>
+    <a class="skip-link" href="#main" data-en="Skip to content" data-fr="Aller au contenu">Skip to content</a>
+    <svg class="sprite" aria-hidden="true" focusable="false">
+        <symbol id="t-docs" viewBox="0 0 40 40"><rect width="40" height="40" rx="8" fill="#3A7AF2"/><path d="M29 16V28.9932C29 29.5501 28.5552 30 28.0066 30H11.9934C11.445 30 11 29.556 11 29.0082V10.9918C11 10.4553 11.4487 10 12.0022 10H22.9968L29 16ZM27 17H22V12H13V28H27V17ZM16 15H19V17H16V15ZM16 19H24V21H16V19ZM16 23H24V25H16V23Z" fill="white"/></symbol>
+        <symbol id="t-sheets" viewBox="0 0 40 40"><rect width="40" height="40" rx="8" fill="#34A853"/><path d="M11 11C10.4477 11 10 11.4477 10 12V28C10 28.5523 10.4477 29 11 29H29C29.5523 29 30 28.5523 30 28V12C30 11.4477 29.5523 11 29 11H11ZM16 13V16H12V13H16ZM12 22V18H16V22H12ZM12 24H16V27H12V24ZM18 24H28V27H18V24ZM28 22H18V18H28V22ZM28 13V16H18V13H28Z" fill="white"/></symbol>
+        <symbol id="t-slides" viewBox="0 0 40 40"><rect width="40" height="40" rx="8" fill="#FBBC04"/><path d="M21 26V28H25V30H15V28H19V26H11C10.4477 26 10 25.5523 10 25V12C10 11.4477 10.4477 11 11 11H29C29.5523 11 30 11.4477 30 12V25C30 25.5523 29.5523 26 29 26H21ZM12 13V24H28V13H12ZM18 15.5L23 18.5L18 21.5V15.5Z" fill="white"/></symbol>
+        <symbol id="t-pdf" viewBox="0 0 40 40"><rect width="40" height="40" rx="8" fill="#EA4335"/><path d="M13 12H23V16H27V28H13V12ZM11.9985 10C11.4475 10 11 10.4441 11 10.9918V29.0082C11 29.5447 11.4448 30 11.9934 30H28.0066C28.5551 30 29 29.5489 29 28.9925L28.9997 15L24 10H11.9985ZM18.4999 15.5C18.4999 17.0775 18.0442 18.9373 17.2749 20.6534C16.5029 22.3757 15.4614 23.8502 14.3752 24.7191L15.5546 26.3321C18.4821 24.3804 21.7233 23.0421 24.8585 23.49L25.3162 21.5513C22.6435 20.6604 20.4999 17.9899 20.4999 15.5H18.4999ZM19.0999 21.4716C19.3673 20.8752 19.6042 20.2563 19.8037 19.6285C20.2753 20.3531 20.8553 21.0182 21.5101 21.5953C20.5283 21.7711 19.5665 22.0596 18.6352 22.4276C18.7999 22.1143 18.9551 21.7948 19.0999 21.4716Z" fill="white"/></symbol>
+        <symbol id="t-csv" viewBox="0 0 40 40"><rect width="40" height="40" rx="8" fill="#00733F"/><path d="M21 18V22H27V18H21ZM19 18H13V22H19V18ZM21 27H27V24H21V27ZM19 27V24H13V27H19ZM21 13V16H27V13H21ZM19 13H13V16H19V13ZM12 11H28C28.5523 11 29 11.4477 29 12V28C29 28.5523 28.5523 29 28 29H12C11.4477 29 11 28.5523 11 28V12C11 11.4477 11.4477 11 12 11Z" fill="white"/></symbol>
+        <symbol id="t-word" viewBox="0 0 40 40"><rect width="40" height="40" rx="8" fill="#14559C"/><path d="M25 27H28V13H25V11H29C29.5523 11 30 11.4477 30 12V28C30 28.5523 29.5523 29 29 29H25V27ZM10.8586 10.8773L23.4293 9.0815C23.7027 9.04245 23.9559 9.2324 23.995 9.50577C23.9983 9.52919 24 9.55282 24 9.57648V30.4235C24 30.6996 23.7761 30.9235 23.5 30.9235C23.4763 30.9235 23.4527 30.9218 23.4293 30.9184L10.8586 29.1226C10.3659 29.0522 10 28.6303 10 28.1327V11.8673C10 11.3696 10.3659 10.9477 10.8586 10.8773ZM12 12.7346V27.2654L22 28.694V11.306L12 12.7346ZM19 16H21V24H19L17 22L15 24H13V16H15L15.0108 21L17 19L19 20.989V16Z" fill="white"/></symbol>
+        <symbol id="t-excel" viewBox="0 0 40 40"><rect width="40" height="40" rx="8" fill="#00733F"/><path d="M10.8586 10.8773L23.4293 9.0815C23.7027 9.04245 23.9559 9.2324 23.995 9.50577C23.9983 9.52919 24 9.55282 24 9.57648V30.4235C24 30.6996 23.7761 30.9235 23.5 30.9235C23.4763 30.9235 23.4527 30.9218 23.4293 30.9184L10.8586 29.1226C10.3659 29.0522 10 28.6303 10 28.1327V11.8673C10 11.3696 10.3659 10.9477 10.8586 10.8773ZM12 12.7346V27.2654L22 28.694V11.306L12 12.7346ZM25 27H28V13H25V11H29C29.5523 11 30 11.4477 30 12V28C30 28.5523 29.5523 29 29 29H25V27ZM18.2 20L21 24H18.6L17 21.7143L15.4 24H13L15.8 20L13 16H15.4L17 18.2857L18.6 16H21L18.2 20Z" fill="white"/></symbol>
+        <symbol id="t-ppt" viewBox="0 0 40 40"><rect width="40" height="40" rx="8" fill="#E42F02"/><path d="M10.8586 10.8773L23.4293 9.0815C23.7027 9.04245 23.9559 9.2324 23.995 9.50577C23.9983 9.52919 24 9.55282 24 9.57648V30.4235C24 30.6996 23.7761 30.9235 23.5 30.9235C23.4763 30.9235 23.4527 30.9218 23.4293 30.9184L10.8586 29.1226C10.3659 29.0522 10 28.6303 10 28.1327V11.8673C10 11.3696 10.3659 10.9477 10.8586 10.8773ZM12 12.7346V27.2654L22 28.694V11.306L12 12.7346ZM25 27H28V13H25V11H29C29.5523 11 30 11.4477 30 12V28C30 28.5523 29.5523 29 29 29H25V27ZM13 16H21V22H15V24H13V16ZM15 18V20H19V18H15Z" fill="white"/></symbol>
+        <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
+        <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+        <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+        <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+        <symbol id="i-lock" viewBox="0 0 24 24"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+        <symbol id="i-open" viewBox="0 0 24 24"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></symbol>
+        <symbol id="i-folder" viewBox="0 0 24 24"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></symbol>
+        <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></symbol>
+        <symbol id="i-table" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M3 15h18"/><path d="M9 3v18"/><path d="M15 3v18"/></symbol>
+        <symbol id="i-match" viewBox="0 0 24 24"><path d="M3 6h7"/><path d="M3 12h5"/><path d="M3 18h18"/><circle cx="16" cy="9" r="4"/><path d="m21.5 14.5-2.6-2.6"/></symbol>
+        <symbol id="i-gear" viewBox="0 0 24 24"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></symbol>
+        <symbol id="i-theme" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path class="pd-moon" d="M16.6 8.2a6.2 6.2 0 0 1-8.4 8.4 5.6 5.6 0 0 0 8.4-8.4Z"/></symbol>
+        <symbol id="i-passage" viewBox="0 0 24 24"><path d="M4 5h16"/><rect x="4" y="9.5" width="11" height="5" rx="1.5"/><path d="M19 12h1"/><path d="M4 19h12"/></symbol>
+        <symbol id="i-target" viewBox="0 0 24 24"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="m10 17 5-5-5-5"/><path d="M15 12H3"/></symbol>
+        <symbol id="i-grid" viewBox="0 0 24 24"><rect width="7" height="7" x="3" y="3" rx="1.5"/><rect width="7" height="7" x="14" y="3" rx="1.5"/><rect width="7" height="7" x="14" y="14" rx="1.5"/><rect width="7" height="7" x="3" y="14" rx="1.5"/></symbol>
+        <symbol id="i-panel" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M15 3v18"/><path d="m10 15-3-3 3-3"/></symbol>
+        <symbol id="i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+    </svg>
+    <header class="site-header">
+        <div class="container nav">
+            <a class="brand" href="./"><img src="logo.svg" alt="PeekDrive, home" data-en-alt="PeekDrive, home" data-fr-alt="PeekDrive, accueil" width="136" height="28"></a>
+            <nav class="nav-links" aria-label="Main" data-en-aria-label="Main" data-fr-aria-label="Principale">
                 <a href="#features" data-en="Features" data-fr="Fonctionnalités">Features</a>
-                <a href="#filetypes" data-en="File types" data-fr="Fichiers compatibles">File types</a>
-                <a href="privacy.html" data-en="Privacy" data-fr="Confidentialité">Privacy</a>
-            </div>
-            <div class="lang-switch">
-                <button class="lang-btn" data-lang="fr" onclick="setLang('fr')">FR</button>
-                <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
-            </div>
-        </div>
-    </nav>
-
-    <section class="hero">
-        <h1 data-en="Search inside your Google Drive files.<br><span>Jump to the exact spot.</span>" data-fr="Recherchez dans vos fichiers Google Drive.<br><span>Accédez au bon endroit.</span>">Search inside your Google Drive files.<br><span>Jump to the exact spot.</span></h1>
-        <p data-en="Google Drive tells you which file matches your search, but not where inside. PeekDrive shows you the exact passage and takes you there in one click. Free and 100% private." data-fr="Google Drive vous dit quel fichier contient votre recherche, mais pas où dedans. PeekDrive vous montre le passage exact et vous y amène en un clic. Gratuit et 100% privé.">Google Drive tells you which file matches your search, but not where inside. PeekDrive shows you the exact passage and takes you there in one click. Free and 100% private.</p>
-        <a href="https://chromewebstore.google.com/detail/peekdrive-recherche-pour/piecapgomaejneknjkfpdhcpegihmjpd" class="cta-btn">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="8 12 12 16 16 12"/><line x1="12" y1="8" x2="12" y2="16"/></svg>
-            <span data-en="Add to Chrome, it's free" data-fr="Ajouter à Chrome, c'est gratuit">Add to Chrome, it's free</span>
-        </a>
-    </section>
-
-    <section class="how" id="how">
-        <div class="how-inner">
-            <h2 data-en="How it works" data-fr="Comment ça marche">How it works</h2>
-            <div class="how-grid">
-                <div class="how-card">
-                    <div class="how-num">1</div>
-                    <h3 data-en="Search" data-fr="Recherchez">Search</h3>
-                    <p data-en="Type a word or phrase in PeekDrive. It finds every file that contains your search and shows you the matching passages." data-fr="Tapez un mot ou une expression dans PeekDrive. Il trouve tous les fichiers qui contiennent votre recherche et vous montre les passages correspondants.">Type a word or phrase in PeekDrive. It finds every file that contains your search and shows you the matching passages.</p>
+                <a href="#how" data-en="How it works" data-fr="Comment ça marche">How it works</a>
+                <a href="#compare" data-en="Comparison" data-fr="Comparatif">Comparison</a>
+            </nav>
+            <div class="nav-actions">
+                <div class="lang-switch" role="group" aria-label="Language" data-en-aria-label="Language" data-fr-aria-label="Langue">
+                    <button type="button" class="lang-btn" data-lang="fr" lang="fr" aria-label="Français" aria-pressed="false">FR</button>
+                    <button type="button" class="lang-btn is-active" data-lang="en" lang="en" aria-label="English" aria-pressed="true">EN</button>
                 </div>
-                <div class="how-card">
-                    <div class="how-num">2</div>
-                    <h3 data-en="Preview" data-fr="Visualisez">Preview</h3>
-                    <p data-en="See the matching passage right in the results, with context around your search. For spreadsheets, a mini-table shows the matching row and column." data-fr="Visualisez le passage correspondant directement dans les résultats, avec le contexte autour de votre recherche. Pour les tableurs, un mini-tableau affiche la ligne et la colonne correspondantes.">See the matching passage right in the results, with context around your search. For spreadsheets, a mini-table shows the matching row and column.</p>
+                <a class="btn btn--primary btn--s" href="https://chromewebstore.google.com/detail/piecapgomaejneknjkfpdhcpegihmjpd" target="_blank" rel="noopener" data-en="Add to Chrome" data-fr="Ajouter à Chrome">Add to Chrome</a>
+            </div>
+        </div>
+    </header>
+    <main id="main">
+        <!-- Hero -->
+        <section class="hero pastel" aria-labelledby="h-hero">
+            <div class="container hero-grid">
+                <div class="hero-copy">
+                    <p class="badge" data-en="Chrome extension" data-fr="Extension Chrome">Chrome extension</p>
+                    <h1 id="h-hero" data-en="Search inside your Drive files, &lt;span&gt;without opening them.&lt;/span&gt;" data-fr="Cherchez dans vos fichiers Drive, &lt;span&gt;sans les ouvrir.&lt;/span&gt;">Search inside your Drive files, <span>without opening them.</span></h1>
+                    <p class="lead" data-en="Find an exact word or phrase inside your Docs, Sheets, Slides, PDFs, Word and Excel files. See every passage in its context. Open the file right at that spot." data-fr="Trouvez un mot ou une expression exacte dans vos Docs, Sheets, Slides, PDF, Word et Excel. Voyez chaque passage dans son contexte. Ouvrez le fichier pile au bon endroit.">Find an exact word or phrase inside your Docs, Sheets, Slides, PDFs, Word and Excel files. See every passage in its context. Open the file right at that spot.</p>
+                    <div class="hero-cta">
+                        <a class="btn btn--primary" href="https://chromewebstore.google.com/detail/piecapgomaejneknjkfpdhcpegihmjpd" target="_blank" rel="noopener"><span data-en="Add to Chrome, it’s free" data-fr="Ajouter à Chrome, c’est gratuit">Add to Chrome, it’s free</span><svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+                    </div>
+                    <ul class="ticks">
+                        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span data-en="Read-only" data-fr="Lecture seule">Read-only</span></li>
+                        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span data-en="100% private" data-fr="100% confidentiel">100% private</span></li>
+                        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span data-en="No AI" data-fr="Sans IA">No AI</span></li>
+                    </ul>
                 </div>
-                <div class="how-card">
-                    <div class="how-num">3</div>
-                    <h3 data-en="Open" data-fr="Ouvrez">Open</h3>
-                    <p data-en='Click "Open" and land directly on the right paragraph in a Doc, the right cell in a Sheet, or the right slide in a presentation.' data-fr='Cliquez sur « Ouvrir » et atterrissez directement au bon paragraphe dans un Doc, à la bonne cellule dans un Sheet, ou à la bonne diapositive dans une présentation.'>Click "Open" and land directly on the right paragraph in a Doc, the right cell in a Sheet, or the right slide in a presentation.</p>
+
+                <figure class="hero-visual" role="img" aria-label="Illustration: a browser window on drive.google.com with the PeekDrive panel open. For the word “budget”, the panel lists two files, each with the passage where the word appears, highlighted, and an Open link." data-en-aria-label="Illustration: a browser window on drive.google.com with the PeekDrive panel open. For the word “budget”, the panel lists two files, each with the passage where the word appears, highlighted, and an Open link." data-fr-aria-label="Illustration : une fenêtre de navigateur sur drive.google.com avec le panneau PeekDrive ouvert. Pour le mot « budget », le panneau liste deux fichiers, chacun avec le passage où le mot apparaît, surligné, et un lien Ouvrir.">
+                    <div class="browser">
+                        <div class="browser-bar">
+                            <span class="browser-dots"><i></i><i></i><i></i></span>
+                            <span class="browser-url"><svg class="i"><use href="#i-lock"/></svg>drive.google.com</span>
+                            <span class="browser-ext"><img src="favicon.svg?v=2" alt="" width="16" height="16"></span>
+                        </div>
+                        <div class="browser-body">
+                            <div class="drive">
+                                <div class="drive-top">
+                                    <span class="drive-field"><svg class="i"><use href="#i-search"/></svg><i></i></span>
+                                    <span class="drive-pk"><img src="favicon.svg?v=2" alt="" width="15" height="15"></span>
+                                </div>
+                                <p class="drive-title" data-en="My Drive" data-fr="Mon Drive">My Drive</p>
+                                <ul class="drive-rows">
+                                    <li><svg viewBox="0 0 40 40"><use href="#t-docs"/></svg><i></i></li>
+                                    <li><svg viewBox="0 0 40 40"><use href="#t-sheets"/></svg><i></i></li>
+                                    <li><svg viewBox="0 0 40 40"><use href="#t-pdf"/></svg><i></i></li>
+                                    <li><svg viewBox="0 0 40 40"><use href="#t-slides"/></svg><i></i></li>
+                                    <li><svg viewBox="0 0 40 40"><use href="#t-word"/></svg><i></i></li>
+                                    <li><svg viewBox="0 0 40 40"><use href="#t-docs"/></svg><i></i></li>
+                                    <li><svg viewBox="0 0 40 40"><use href="#t-excel"/></svg><i></i></li>
+                                    <li><svg viewBox="0 0 40 40"><use href="#t-pdf"/></svg><i></i></li>
+                                    <li><svg viewBox="0 0 40 40"><use href="#t-ppt"/></svg><i></i></li>
+                                    <li><svg viewBox="0 0 40 40"><use href="#t-sheets"/></svg><i></i></li>
+                                    <li><svg viewBox="0 0 40 40"><use href="#t-docs"/></svg><i></i></li>
+                                    <li><svg viewBox="0 0 40 40"><use href="#t-csv"/></svg><i></i></li>
+                                </ul>
+                            </div>
+
+                            <!-- PANEL MOCK: the PeekDrive panel in HTML/CSS. Self-contained block,
+                                 styled by the "PANEL MOCK" section of assets/site.css (.pd-*). -->
+                            <div class="pd-wrap">
+                                <div class="pd">
+                                    <div class="pd-head">
+                                        <img class="pd-logo" src="logo.svg" alt="" width="141" height="29">
+                                        <span class="pd-btns">
+                                            <span class="pd-btn"><svg class="i"><use href="#i-theme"/></svg></span>
+                                            <span class="pd-btn"><svg class="i"><use href="#i-gear"/></svg></span>
+                                        </span>
+                                    </div>
+                                    <div class="pd-body">
+                                        <div class="pd-search"><svg class="i"><use href="#i-search"/></svg><span>budget</span><svg class="i"><use href="#i-x"/></svg></div>
+                                        <p class="pd-sum" data-en="&lt;b&gt;5 matches&lt;/b&gt; in 2 files for “budget”" data-fr="&lt;b&gt;5 correspondances&lt;/b&gt; dans 2 fichiers pour «&amp;nbsp;budget&amp;nbsp;»"><b>5 matches</b> in 2 files for “budget”</p>
+                                        <div class="pd-chips">
+                                            <span class="pd-chip"><span data-en="All" data-fr="Tous">All</span><i>5</i></span>
+                                            <span class="pd-chip"><svg viewBox="0 0 40 40"><use href="#t-docs"/></svg><span>Docs</span><i>3</i></span>
+                                            <span class="pd-chip"><svg viewBox="0 0 40 40"><use href="#t-sheets"/></svg><span>Sheets</span><i>2</i></span>
+                                        </div>
+
+                                        <div class="pd-card">
+                                            <div class="pd-file">
+                                                <svg viewBox="0 0 40 40"><use href="#t-docs"/></svg>
+                                                <span class="pd-file-title" data-en="Meeting notes" data-fr="Notes de réunion">Meeting notes</span>
+                                                <span class="pd-count" data-en="3 matches" data-fr="3 correspondances">3 matches</span>
+                                                <span class="pd-file-meta"><svg class="i"><use href="#i-folder"/></svg><span data-en="My Drive › Projects" data-fr="Mon Drive › Projets">My Drive › Projects</span></span>
+                                                <span class="pd-file-meta" data-en="Docs · Thomas · Modified 2 days ago" data-fr="Docs · Thomas · Modifié il y a 2 jours">Docs · Thomas · Modified 2 days ago</span>
+                                            </div>
+                                            <div class="pd-excerpt">
+                                                <p class="pd-text" data-en="…the marketing &lt;mark&gt;budget&lt;/mark&gt; was approved for next quarter. Camille will send the detailed breakdown before Friday, so each team can plan its…" data-fr="…le &lt;mark&gt;budget&lt;/mark&gt; marketing a été validé pour le prochain trimestre. Camille enverra le détail avant vendredi, pour que chaque équipe puisse planifier…">…the marketing <mark>budget</mark> was approved for next quarter. Camille will send the detailed breakdown before Friday, so each team can plan its…</p>
+                                                <div class="pd-foot">
+                                                    <span class="pd-open"><svg class="i"><use href="#i-open"/></svg><span data-en="Open" data-fr="Ouvrir">Open</span></span>
+                                                    <span class="pd-loc"><svg class="i"><use href="#i-match"/></svg><span data-en="Match 1" data-fr="Correspondance 1">Match 1</span></span>
+                                                    <span class="pd-loc"><svg class="i"><use href="#i-book"/></svg><span>Page 2</span></span>
+                                                </div>
+                                            </div>
+                                            <div class="pd-all" data-en="Show all matches in this file" data-fr="Afficher toutes les correspondances de ce fichier">Show all matches in this file</div>
+                                        </div>
+
+                                        <div class="pd-card">
+                                            <div class="pd-file">
+                                                <svg viewBox="0 0 40 40"><use href="#t-sheets"/></svg>
+                                                <span class="pd-file-title" data-en="Forecast 2026" data-fr="Prévisionnel 2026">Forecast 2026</span>
+                                                <span class="pd-count" data-en="2 matches" data-fr="2 correspondances">2 matches</span>
+                                                <span class="pd-file-meta"><svg class="i"><use href="#i-folder"/></svg><span data-en="Shared drives › Finance" data-fr="Drive partagés › Finance">Shared drives › Finance</span></span>
+                                                <span class="pd-file-meta" data-en="Sheets · Thomas · Modified 5 days ago" data-fr="Sheets · Thomas · Modifié il y a 5 jours">Sheets · Thomas · Modified 5 days ago</span>
+                                            </div>
+                                            <div class="pd-excerpt pd-excerpt--sheets">
+                                                <span class="pd-tab" data-en="Summary" data-fr="Synthèse">Summary</span>
+                                                <table class="pd-table">
+                                                    <tr><th data-en="Item" data-fr="Poste">Item</th><th data-en="Planned" data-fr="Prévu">Planned</th><th data-en="Spent" data-fr="Dépensé">Spent</th></tr>
+                                                    <tr><td class="is-hit" data-en="&lt;mark&gt;Budget&lt;/mark&gt; marketing" data-fr="&lt;mark&gt;Budget&lt;/mark&gt; marketing"><mark>Budget</mark> marketing</td><td>18 500</td><td>9 450</td></tr>
+                                                </table>
+                                                <div class="pd-foot">
+                                                    <span class="pd-open"><svg class="i"><use href="#i-open"/></svg><span data-en="Open" data-fr="Ouvrir">Open</span></span>
+                                                    <span class="pd-loc"><svg class="i"><use href="#i-table"/></svg><span data-en="Row 4, column A" data-fr="Ligne 4, colonne A">Row 4, column A</span></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end of PANEL MOCK -->
+                        </div>
+                    </div>
+                </figure>
+            </div>
+        </section>
+
+        <!-- Facts -->
+        <section class="facts" aria-label="PeekDrive at a glance" data-en-aria-label="PeekDrive at a glance" data-fr-aria-label="PeekDrive en bref">
+            <div class="container">
+                <ul class="facts-grid">
+                    <li class="fact">
+                        <strong class="fact-value" data-en="9 file types" data-fr="9 formats">9 file types</strong>
+                        <span class="fact-label" data-en="Docs, Sheets, Slides, PDF, Word, Excel, PowerPoint, CSV and plain text" data-fr="Docs, Sheets, Slides, PDF, Word, Excel, PowerPoint, CSV et texte brut">Docs, Sheets, Slides, PDF, Word, Excel, PowerPoint, CSV and plain text</span>
+                    </li>
+                    <li class="fact">
+                        <strong class="fact-value" data-en="Read-only" data-fr="Lecture seule">Read-only</strong>
+                        <span class="fact-label" data-en="PeekDrive cannot modify or delete your files" data-fr="PeekDrive ne peut pas modifier ni supprimer vos fichiers">PeekDrive cannot modify or delete your files</span>
+                    </li>
+                    <li class="fact">
+                        <strong class="fact-value" data-en="100% private" data-fr="100% confidentiel">100% private</strong>
+                        <span class="fact-label" data-en="Everything is processed in your browser, guaranteed AI-free" data-fr="Tout est traité dans votre navigateur, garanti sans IA">Everything is processed in your browser, guaranteed AI-free</span>
+                    </li>
+                    <li class="fact">
+                        <strong class="fact-value" data-en="All your drives" data-fr="Tous vos espaces">All your drives</strong>
+                        <span class="fact-label" data-en="Works with My Drive and shared drives" data-fr="Fonctionne avec Mon Drive et les Drive partagés">Works with My Drive and shared drives</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section class="section" id="features" aria-labelledby="h-features">
+            <div class="container">
+                <div class="section-head">
+                    <h2 id="h-features" data-en="Find the exact passage, not just the file" data-fr="Trouvez le passage exact, pas seulement le fichier">Find the exact passage, not just the file</h2>
+                    <p class="lead" data-en="With PeekDrive, go further than Google Drive’s built-in search. PeekDrive shows you exactly where to find what you are looking for, in each of your files." data-fr="Grâce à PeekDrive, allez plus loin que la recherche native Google Drive. PeekDrive vous permet de savoir où exactement se trouve ce que vous cherchez, dans chacun de vos fichiers.">With PeekDrive, go further than Google Drive’s built-in search. PeekDrive shows you exactly where to find what you are looking for, in each of your files.</p>
+                </div>
+                <ul class="cards">
+                    <li class="card">
+                        <span class="icon-tile tile--blue"><svg class="i" aria-hidden="true"><use href="#i-search"/></svg></span>
+                        <h3 data-en="Search inside the content" data-fr="Recherche dans le contenu">Search inside the content</h3>
+                        <p data-en="Type a word or a phrase: PeekDrive looks for it in the text of your documents, spreadsheets, presentations and PDFs." data-fr="Tapez un mot ou une expression&amp;nbsp;: PeekDrive le cherche dans le texte de vos documents, tableurs, présentations et PDF.">Type a word or a phrase: PeekDrive looks for it in the text of your documents, spreadsheets, presentations and PDFs.</p>
+                    </li>
+                    <li class="card">
+                        <span class="icon-tile tile--green"><svg class="i" aria-hidden="true"><use href="#i-passage"/></svg></span>
+                        <h3 data-en="Passages in their context" data-fr="Les passages dans leur contexte">Passages in their context</h3>
+                        <p data-en="For each file, you preview every occurrence of the word or phrase you searched for, along with the text around it, so you know the context. You know whether it is the right one before opening anything." data-fr="Pour chaque fichier, vous prévisualisez toutes les occurrences du mot ou de l’expression recherchée mais également le texte autour afin de connaître le contexte. Vous savez si c’est le bon avant d’ouvrir quoi que ce soit.">For each file, you preview every occurrence of the word or phrase you searched for, along with the text around it, so you know the context. You know whether it is the right one before opening anything.</p>
+                    </li>
+                    <li class="card">
+                        <span class="icon-tile tile--yellow"><svg class="i" aria-hidden="true"><use href="#i-target"/></svg></span>
+                        <h3 data-en="One click to the right spot" data-fr="Un clic, au bon endroit">One click to the right spot</h3>
+                        <p data-en="Click “Open” to reach the right occurrence in a document, the right sheet and the right cell in a spreadsheet, the right slide in a presentation." data-fr="Cliquez sur «&amp;nbsp;Ouvrir&amp;nbsp;» pour atteindre la bonne occurrence dans un document, la bonne feuille et la bonne cellule dans un tableur, la bonne diapositive dans une présentation.">Click “Open” to reach the right occurrence in a document, the right sheet and the right cell in a spreadsheet, the right slide in a presentation.</p>
+                    </li>
+                    <li class="card" id="filetypes">
+                        <span class="icon-tile tile--blue"><svg class="i" aria-hidden="true"><use href="#i-grid"/></svg></span>
+                        <h3 data-en="The files you use every day" data-fr="Vos fichiers de tous les jours">The files you use every day</h3>
+                        <p data-en="Google Docs, Sheets and Slides, PDF, Microsoft Word, Excel and PowerPoint, CSV and plain text. In My Drive and in shared drives." data-fr="Google Docs, Sheets et Slides, PDF, Microsoft Word, Excel et PowerPoint, CSV et texte brut. Dans Mon Drive comme dans les Drive partagés.">Google Docs, Sheets and Slides, PDF, Microsoft Word, Excel and PowerPoint, CSV and plain text. In My Drive and in shared drives.</p>
+                        <ul class="type-tiles">
+                            <li><svg viewBox="0 0 40 40" role="img" aria-label="Google Docs"><use href="#t-docs"/></svg></li>
+                            <li><svg viewBox="0 0 40 40" role="img" aria-label="Google Sheets"><use href="#t-sheets"/></svg></li>
+                            <li><svg viewBox="0 0 40 40" role="img" aria-label="Google Slides"><use href="#t-slides"/></svg></li>
+                            <li><svg viewBox="0 0 40 40" role="img" aria-label="PDF"><use href="#t-pdf"/></svg></li>
+                            <li><svg viewBox="0 0 40 40" role="img" aria-label="Microsoft Word"><use href="#t-word"/></svg></li>
+                            <li><svg viewBox="0 0 40 40" role="img" aria-label="Microsoft Excel"><use href="#t-excel"/></svg></li>
+                            <li><svg viewBox="0 0 40 40" role="img" aria-label="Microsoft PowerPoint"><use href="#t-ppt"/></svg></li>
+                            <li><svg viewBox="0 0 40 40" role="img" aria-label="CSV"><use href="#t-csv"/></svg></li>
+                        </ul>
+                    </li>
+                    <li class="card">
+                        <span class="icon-tile tile--red"><svg class="i" aria-hidden="true"><use href="#i-panel"/></svg></span>
+                        <h3 data-en="Four ways to save time" data-fr="Quatre façons de gagner du temps">Four ways to save time</h3>
+                        <p data-en="The PeekDrive icon in Google Chrome’s extensions bar, the PeekDrive button next to Google Drive’s search bar and a line under Drive’s search suggestions or, for power users, the shortcut &lt;kbd&gt;Cmd+Shift+F&lt;/kbd&gt; (Mac) / &lt;kbd&gt;Ctrl+Shift+F&lt;/kbd&gt; (Windows) on Google Drive." data-fr="L’icône PeekDrive dans la barre d’extensions de Google Chrome, le bouton PeekDrive à côté de la barre de recherche de Google Drive et une ligne sous les suggestions de recherche de Drive, ou, pour les expert·e·s, le raccourci &lt;kbd&gt;Cmd+Maj+F&lt;/kbd&gt; (Mac) / &lt;kbd&gt;Ctrl+Maj+F&lt;/kbd&gt; (Windows) sur Google Drive.">The PeekDrive icon in Google Chrome’s extensions bar, the PeekDrive button next to Google Drive’s search bar and a line under Drive’s search suggestions or, for power users, the shortcut <kbd>Cmd+Shift+F</kbd> (Mac) / <kbd>Ctrl+Shift+F</kbd> (Windows) on Google Drive.</p>
+                    </li>
+                    <li class="card">
+                        <span class="icon-tile tile--green"><svg class="i" aria-hidden="true"><use href="#i-shield"/></svg></span>
+                        <h3 data-en="Private by design" data-fr="Confidentiel par conception">Private by design</h3>
+                        <p data-en="Read-only access, everything processed in your browser, no PeekDrive server, no AI. Your files only travel between your browser and Google." data-fr="Accès en lecture seule, tout est traité dans votre navigateur, aucun serveur PeekDrive, aucune IA. Vos fichiers ne circulent qu’entre votre navigateur et Google.">Read-only access, everything processed in your browser, no PeekDrive server, no AI. Your files only travel between your browser and Google.</p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- How it works -->
+        <section class="section section--surface" id="how" aria-labelledby="h-how">
+            <div class="container">
+                <div class="section-head">
+                    <h2 id="h-how" data-en="How it works" data-fr="Comment ça marche">How it works</h2>
+                    <p class="lead" data-en="Three steps, from Google Drive." data-fr="Trois étapes, depuis Google Drive.">Three steps, from Google Drive.</p>
+                </div>
+                <ol class="rules rules--3">
+                    <li class="rule">
+                        <span class="rule-num" aria-hidden="true">01</span>
+                        <h3 data-en="Open PeekDrive" data-fr="Ouvrez PeekDrive">Open PeekDrive</h3>
+                        <p data-en="Click the PeekDrive icon in Google Chrome’s extensions bar, or the PeekDrive button next to Google Drive’s search bar. Sign in with Google." data-fr="Cliquez sur l’icône PeekDrive dans la barre d’extensions de Google Chrome, ou sur le bouton PeekDrive à côté de la barre de recherche de Google Drive. Connectez-vous avec Google.">Click the PeekDrive icon in Google Chrome’s extensions bar, or the PeekDrive button next to Google Drive’s search bar. Sign in with Google.</p>
+                    </li>
+                    <li class="rule">
+                        <span class="rule-num" aria-hidden="true">02</span>
+                        <h3 data-en="Type a word or a phrase" data-fr="Tapez un mot ou une expression">Type a word or a phrase</h3>
+                        <p data-en="PeekDrive shows every occurrence in each file, with the text around it, so you know the context." data-fr="PeekDrive affiche toutes les occurrences dans chaque fichier, avec le texte autour pour connaître le contexte.">PeekDrive shows every occurrence in each file, with the text around it, so you know the context.</p>
+                    </li>
+                    <li class="rule">
+                        <span class="rule-num" aria-hidden="true">03</span>
+                        <h3 data-en="Jump to what you’re looking for" data-fr="Accédez à ce que vous cherchez">Jump to what you’re looking for</h3>
+                        <p data-en="Click “Open” to land directly on the right occurrence. The document’s own search stays open on your word, so you can move from one occurrence to the next." data-fr="Cliquez sur «&amp;nbsp;Ouvrir&amp;nbsp;» pour atteindre directement la bonne occurrence. La recherche du document reste ouverte sur votre mot, pour passer d’une occurrence à l’autre.">Click “Open” to land directly on the right occurrence. The document’s own search stays open on your word, so you can move from one occurrence to the next.</p>
+                    </li>
+                </ol>
+
+                <div class="callout">
+                    <span class="icon-tile"><svg class="i" aria-hidden="true"><use href="#i-lock"/></svg></span>
+                    <div>
+                        <h3 data-en="Why PeekDrive asks for access to your Google Drive" data-fr="Pourquoi PeekDrive demande l’accès à votre Google Drive">Why PeekDrive asks for access to your Google Drive</h3>
+                        <p data-en="PeekDrive asks you to sign in with Google and grant &lt;span class=&quot;nw&quot;&gt;read-only&lt;/span&gt; access to your Google Drive, so it can search the text inside your files and show you the matching passages. It cannot modify or delete your files." data-fr="PeekDrive vous demande de vous connecter avec Google et d'autoriser un accès en lecture seule à votre Google Drive, afin de rechercher le texte à l'intérieur de vos fichiers et de vous montrer les passages correspondants. Il ne peut pas modifier ni supprimer vos fichiers.">PeekDrive asks you to sign in with Google and grant <span class="nw">read-only</span> access to your Google Drive, so it can search the text inside your files and show you the matching passages. It cannot modify or delete your files.</p>
+                        <a class="more" href="privacy.html"><span data-en="Read the privacy policy" data-fr="Lire la politique de confidentialité">Read the privacy policy</span><svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+                    </div>
                 </div>
             </div>
-            <p data-en="PeekDrive asks you to sign in with Google and grant read-only access to your Google Drive, so it can search the text inside your files and show you the matching passages. It never modifies your files." data-fr="PeekDrive vous demande de vous connecter avec Google et d'autoriser un accès en lecture seule à votre Google Drive, afin de rechercher le texte à l'intérieur de vos fichiers et de vous montrer les passages correspondants. Il ne modifie jamais vos fichiers.">PeekDrive asks you to sign in with Google and grant read-only access to your Google Drive, so it can search the text inside your files and show you the matching passages. It never modifies your files.</p>
-        </div>
-    </section>
+        </section>
 
-    <section class="features" id="features">
-        <h2 data-en="Why PeekDrive" data-fr="Pourquoi PeekDrive">Why PeekDrive</h2>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
-                <h3 data-en="Passage preview" data-fr="Aperçu du passage">Passage preview</h3>
-                <p data-en="See the matching text in context without opening the file. You get the result and its surroundings instantly." data-fr="Voyez le texte correspondant en contexte sans ouvrir le fichier. Vous obtenez le résultat et son contexte instantanément.">See the matching text in context without opening the file. You get the result and its surroundings instantly.</p>
+        <!-- Comparison -->
+        <section class="section" id="compare" aria-labelledby="h-compare">
+            <div class="container">
+                <div class="section-head">
+                    <h2 id="h-compare" data-en="How much better is PeekDrive?" data-fr="À quel point PeekDrive est mieux&amp;nbsp;?">How much better is PeekDrive?</h2>
+                    <p class="lead" data-en="Hundreds of documents in your Drive? PeekDrive kicks your document search into high gear!" data-fr="Des centaines de documents dans votre Drive&amp;nbsp;? PeekDrive fait passer votre recherche documentaire à la vitesse supérieure&amp;nbsp;!">Hundreds of documents in your Drive? PeekDrive kicks your document search into high gear!</p>
+                </div>
+                <div class="compare">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th scope="col"><span class="sr-only" data-en="What it does" data-fr="Ce que ça fait">What it does</span></th>
+                                <th scope="col" class="col" data-en="Drive search" data-fr="Recherche Drive">Drive search</th>
+                                <th scope="col" class="col col--pd">PeekDrive</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row" data-en="Finds the files whose names contain your search term" data-fr="Trouve les fichiers dont les noms contiennent votre recherche">Finds the files whose names contain your search term</th>
+                                <td class="col"><svg class="i yes yes--drive" aria-hidden="true"><use href="#i-check"/></svg><span class="sr-only" data-en="Yes" data-fr="Oui">Yes</span></td>
+                                <td class="col col--pd"><svg class="i yes" aria-hidden="true"><use href="#i-check"/></svg><span class="sr-only" data-en="Yes" data-fr="Oui">Yes</span></td>
+                            </tr>
+                            <tr>
+                                <th scope="row" data-en="Finds the files that contain your search term" data-fr="Trouve les fichiers qui contiennent votre recherche">Finds the files that contain your search term</th>
+                                <td class="col"><svg class="i yes yes--drive" aria-hidden="true"><use href="#i-check"/></svg><span class="sr-only" data-en="Yes" data-fr="Oui">Yes</span></td>
+                                <td class="col col--pd"><svg class="i yes" aria-hidden="true"><use href="#i-check"/></svg><span class="sr-only" data-en="Yes" data-fr="Oui">Yes</span></td>
+                            </tr>
+                            <tr>
+                                <th scope="row" data-en="Shows every occurrence of your search term in each of your Google Drive files" data-fr="Affiche chaque occurrence de votre recherche dans chacun de vos fichiers Google Drive">Shows every occurrence of your search term in each of your Google Drive files</th>
+                                <td class="col"><svg class="i no" aria-hidden="true"><use href="#i-x"/></svg><span class="sr-only" data-en="No" data-fr="Non">No</span></td>
+                                <td class="col col--pd"><svg class="i yes" aria-hidden="true"><use href="#i-check"/></svg><span class="sr-only" data-en="Yes" data-fr="Oui">Yes</span></td>
+                            </tr>
+                            <tr>
+                                <th scope="row" data-en="Shows the context around every occurrence of your search term" data-fr="Affiche le contexte autour de chaque occurrence de votre recherche">Shows the context around every occurrence of your search term</th>
+                                <td class="col"><svg class="i no" aria-hidden="true"><use href="#i-x"/></svg><span class="sr-only" data-en="No" data-fr="Non">No</span></td>
+                                <td class="col col--pd"><svg class="i yes" aria-hidden="true"><use href="#i-check"/></svg><span class="sr-only" data-en="Yes" data-fr="Oui">Yes</span></td>
+                            </tr>
+                            <tr>
+                                <th scope="row" data-en="Lets you land directly on the occurrence you want, with no detour and no wasted clicks" data-fr="Permet d’atterrir directement à l’occurrence que vous souhaitez atteindre, sans détour ni clics inutiles">Lets you land directly on the occurrence you want, with no detour and no wasted clicks</th>
+                                <td class="col"><svg class="i no" aria-hidden="true"><use href="#i-x"/></svg><span class="sr-only" data-en="No" data-fr="Non">No</span></td>
+                                <td class="col col--pd"><svg class="i yes" aria-hidden="true"><use href="#i-check"/></svg><span class="sr-only" data-en="Yes" data-fr="Oui">Yes</span></td>
+                            </tr>
+                            <tr>
+                                <th scope="row" data-en="Goes to the right sheet and cell in your spreadsheets" data-fr="Va à la bonne feuille et à la bonne cellule dans vos tableurs">Goes to the right sheet and cell in your spreadsheets</th>
+                                <td class="col"><svg class="i no" aria-hidden="true"><use href="#i-x"/></svg><span class="sr-only" data-en="No" data-fr="Non">No</span></td>
+                                <td class="col col--pd"><svg class="i yes" aria-hidden="true"><use href="#i-check"/></svg><span class="sr-only" data-en="Yes" data-fr="Oui">Yes</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></div>
-                <h3 data-en="Direct access" data-fr="Accès direct">Direct access</h3>
-                <p data-en="One click takes you to the exact paragraph, cell, or slide. Your search term is automatically copied to your clipboard." data-fr="Un clic vous amène au bon paragraphe, à la bonne cellule ou à la bonne diapositive. Votre recherche est automatiquement copiée dans le presse-papier.">One click takes you to the exact paragraph, cell, or slide. Your search term is automatically copied to your clipboard.</p>
+        </section>
+
+        <!-- Who is it for -->
+        <section class="section section--surface" id="uses" aria-labelledby="h-uses">
+            <div class="container">
+                <div class="section-head">
+                    <h2 id="h-uses" data-en="Who is PeekDrive for?" data-fr="PeekDrive, pour qui&amp;nbsp;?">Who is PeekDrive for?</h2>
+                    <p class="lead" data-en="PeekDrive was designed for teams of every size that keep their work documents on Google Drive and need to run fast, precise searches." data-fr="PeekDrive a été conçu pour toutes les tailles d’équipes qui stockent leurs documents professionnels sur Google Drive et ont besoin d’effectuer des recherches précises et rapides.">PeekDrive was designed for teams of every size that keep their work documents on Google Drive and need to run fast, precise searches.</p>
+                </div>
+                <ul class="uses">
+                    <li class="use">
+                        <h3 data-en="Students" data-fr="Étudiants">Students</h3>
+                        <p data-en="A definition, a formula, a quote from an author: find the right passage in your course notes before an exam." data-fr="Définition, formule, citation d’auteur&amp;nbsp;: retrouvez le bon passage dans vos notes de cours, avant un examen.">A definition, a formula, a quote from an author: find the right passage in your course notes before an exam.</p>
+                    </li>
+                    <li class="use">
+                        <h3 data-en="Lawyers" data-fr="Juristes et avocats">Lawyers</h3>
+                        <p data-en="Spot the limitation of liability clause in all your contracts and get to it in the blink of an eye." data-fr="Repérez la clause de limitation de responsabilité de tous vos contrats et accédez-y en un clin d’œil.">Spot the limitation of liability clause in all your contracts and get to it in the blink of an eye.</p>
+                    </li>
+                    <li class="use">
+                        <h3 data-en="Human resources" data-fr="Ressources humaines">Human resources</h3>
+                        <p data-en="Find a probation end date in a tracking sheet, or a notice period clause in a contract." data-fr="Retrouvez une fin de période d’essai dans un tableau de suivi ou une clause de préavis dans un contrat.">Find a probation end date in a tracking sheet, or a notice period clause in a contract.</p>
+                    </li>
+                    <li class="use">
+                        <h3 data-en="Researchers" data-fr="Chercheurs">Researchers</h3>
+                        <p data-en="Find a quotation and its exact page among hundreds of PDFs, or a verbatim quote across dozens of interview transcripts." data-fr="Retrouvez une citation et sa page exacte parmi des centaines de PDF ou un verbatim dans des dizaines de transcriptions d’entretiens.">Find a quotation and its exact page among hundreds of PDFs, or a verbatim quote across dozens of interview transcripts.</p>
+                    </li>
+                    <li class="use">
+                        <h3 data-en="Managers" data-fr="Managers">Managers</h3>
+                        <p data-en="Find the budget announced for a project in an old presentation, or a decision in meeting notes." data-fr="Retrouvez le budget annoncé pour un projet dans une ancienne présentation ou une décision dans un compte rendu.">Find the budget announced for a project in an old presentation, or a decision in meeting notes.</p>
+                    </li>
+                    <li class="use">
+                        <h3 data-en="Teachers" data-fr="Enseignants">Teachers</h3>
+                        <p data-en="Find the exercise you once gave on a topic, across several years of course materials." data-fr="Retrouvez l’exercice que vous aviez donné sur une notion, parmi plusieurs années de supports de cours.">Find the exercise you once gave on a topic, across several years of course materials.</p>
+                    </li>
+                    <li class="use use--wide">
+                        <h3 data-en="Teams" data-fr="Équipes">Teams</h3>
+                        <p data-en="Search shared drives just like My Drive: find a decision in meeting notes or a deadline in a tracking sheet, without knowing who wrote it or which file to look in." data-fr="Cherchez dans les Drive partagés comme dans Mon Drive&amp;nbsp;: une décision dans un compte rendu, une échéance dans un tableau de suivi, sans savoir qui l’a écrite ni dans quel fichier chercher.">Search shared drives just like My Drive: find a decision in meeting notes or a deadline in a tracking sheet, without knowing who wrote it or which file to look in.</p>
+                    </li>
+                </ul>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg></div>
-                <h3 data-en="Filters and sorting" data-fr="Filtres et tri">Filters and sorting</h3>
-                <p data-en="Narrow results by file type (Docs, Sheets, Slides, PDF) and sort by date or relevance." data-fr="Affinez par type de fichier (Docs, Sheets, Slides, PDF) et triez par date ou pertinence.">Narrow results by file type (Docs, Sheets, Slides, PDF) and sort by date or relevance.</p>
+        </section>
+
+        <!-- Privacy -->
+        <section class="section" id="privacy" aria-labelledby="h-privacy">
+            <div class="container">
+                <div class="privacy-grid">
+                    <div>
+                        <h2 id="h-privacy" data-en="Your files stay private" data-fr="Vos fichiers restent confidentiels">Your files stay private</h2>
+                        <p class="lead" data-en="PeekDrive works in your browser. There is no PeekDrive server that could see your files or your searches." data-fr="PeekDrive fonctionne dans votre navigateur. Il n’existe aucun serveur PeekDrive qui pourrait voir vos fichiers ou vos recherches.">PeekDrive works in your browser. There is no PeekDrive server that could see your files or your searches.</p>
+                        <a class="more" href="privacy.html"><span data-en="Read the privacy policy" data-fr="Lire la politique de confidentialité">Read the privacy policy</span><svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+                    </div>
+                    <ul class="checks">
+                        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span data-en="Read-only access to Google Drive: PeekDrive cannot modify or delete your files." data-fr="Accès en lecture seule à Google Drive&amp;nbsp;: PeekDrive ne peut pas modifier ni supprimer vos fichiers.">Read-only access to Google Drive: PeekDrive cannot modify or delete your files.</span></li>
+                        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span data-en="Everything is processed in your browser, guaranteed AI-free." data-fr="Tout est traité dans votre navigateur, garanti sans IA.">Everything is processed in your browser, guaranteed AI-free.</span></li>
+                        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span data-en="The content of your files is never written to disk." data-fr="Le contenu de vos fichiers n’est jamais écrit sur le disque.">The content of your files is never written to disk.</span></li>
+                        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span data-en="No analytics and no tracking in the extension." data-fr="Aucun outil d’analyse ni de suivi dans l’extension.">No analytics and no tracking in the extension.</span></li>
+                    </ul>
+                </div>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></div>
-                <h3 data-en="Browse all matches" data-fr="Toutes les correspondances">Browse all matches</h3>
-                <p data-en='Click "See other results" to navigate through every matching passage within a single file.' data-fr='Cliquez sur « Voir les autres résultats » pour parcourir toutes les correspondances dans un même fichier.'>Click "See other results" to navigate through every matching passage within a single file.</p>
+        </section>
+
+        <!-- Final call to action -->
+        <section class="final pastel" aria-labelledby="h-final">
+            <div class="container">
+                <img class="final-mark" src="favicon.svg?v=2" alt="" width="56" height="56" loading="lazy">
+                <h2 id="h-final" data-en="Ready to search inside your Drive?" data-fr="Prêt à chercher dans votre Drive&amp;nbsp;?">Ready to search inside your Drive?</h2>
+                <a class="btn btn--primary" href="https://chromewebstore.google.com/detail/piecapgomaejneknjkfpdhcpegihmjpd" target="_blank" rel="noopener"><span data-en="Add to Chrome, it’s free" data-fr="Ajouter à Chrome, c’est gratuit">Add to Chrome, it’s free</span><svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-                <h3 data-en="100% private" data-fr="100% privé">100% private</h3>
-                <p data-en="All processing happens in your browser, with no AI = 100% local. No data sent to external servers. No analytics, no tracking, no cookies." data-fr="Tout le traitement se fait dans votre navigateur, sans IA = 100% local. Aucune donnée envoyée à des serveurs externes. Pas d'analytics, pas de tracking, pas de cookies.">All processing happens in your browser, with no AI = 100% local. No data sent to external servers. No analytics, no tracking, no cookies.</p>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-top">
+                <a class="brand" href="./"><img src="logo.svg" alt="PeekDrive, home" data-en-alt="PeekDrive, home" data-fr-alt="PeekDrive, accueil" width="117" height="24" loading="lazy"></a>
+                <nav class="footer-links" aria-label="Footer" data-en-aria-label="Footer" data-fr-aria-label="Pied de page">
+                    <a href="privacy.html" data-en="Privacy Policy" data-fr="Confidentialité">Privacy Policy</a>
+                    <a href="terms.html" data-en="Terms &amp;amp; legal notice" data-fr="Conditions &amp;amp; mentions légales">Terms &amp; legal notice</a>
+                    <a href="mailto:contact@peekdrive.com">contact@peekdrive.com</a>
+                </nav>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
-                <h3 data-en="Free" data-fr="Gratuit">Free</h3>
-                <p data-en="PeekDrive is free. Install the extension and start searching." data-fr="PeekDrive est gratuit. Installez l'extension et commencez vos recherches.">PeekDrive is free. Install the extension and start searching.</p>
+            <div class="footer-bottom">
+                <p>&copy; 2026 PeekDrive</p>
+                <p data-en="Google, Google Drive and Chrome are trademarks of Google LLC. PeekDrive is an independent product, not affiliated with or endorsed by Google." data-fr="Google, Google Drive et Chrome sont des marques de Google LLC. PeekDrive est un produit indépendant, ni affilié à Google ni approuvé par Google.">Google, Google Drive and Chrome are trademarks of Google LLC. PeekDrive is an independent product, not affiliated with or endorsed by Google.</p>
             </div>
         </div>
-    </section>
-
-    <section class="filetypes" id="filetypes">
-        <div class="filetypes-inner">
-            <h2 data-en="Supported file types" data-fr="Fichiers compatibles">Supported file types</h2>
-            <p data-en="PeekDrive works with the files you use every day.<br>Works with My Drive and shared drives." data-fr="PeekDrive fonctionne avec les fichiers que vous utilisez au quotidien.<br>Fonctionne avec Mon Drive et les Drive partagés.">PeekDrive works with the files you use every day.<br>Works with My Drive and shared drives.</p>
-            <div class="types-row">
-                <span class="type-badge">
-                    <span class="type-icon icon-docs"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="8" fill="#3A7AF2"/><path d="M29 16V28.9932C29 29.5501 28.5552 30 28.0066 30H11.9934C11.445 30 11 29.556 11 29.0082V10.9918C11 10.4553 11.4487 10 12.0022 10H22.9968L29 16ZM27 17H22V12H13V28H27V17ZM16 15H19V17H16V15ZM16 19H24V21H16V19ZM16 23H24V25H16V23Z" fill="white"/></svg></span>
-                    Google Docs
-                </span>
-                <span class="type-badge">
-                    <span class="type-icon icon-sheets"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="8" fill="#34A853"/><path d="M11 11C10.4477 11 10 11.4477 10 12V28C10 28.5523 10.4477 29 11 29H29C29.5523 29 30 28.5523 30 28V12C30 11.4477 29.5523 11 29 11H11ZM16 13V16H12V13H16ZM12 22V18H16V22H12ZM12 24H16V27H12V24ZM18 24H28V27H18V24ZM28 22H18V18H28V22ZM28 13V16H18V13H28Z" fill="white"/></svg></span>
-                    Google Sheets
-                </span>
-                <span class="type-badge">
-                    <span class="type-icon icon-slides"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="8" fill="#FBBC04"/><path d="M21 26V28H25V30H15V28H19V26H11C10.4477 26 10 25.5523 10 25V12C10 11.4477 10.4477 11 11 11H29C29.5523 11 30 11.4477 30 12V25C30 25.5523 29.5523 26 29 26H21ZM12 13V24H28V13H12ZM18 15.5L23 18.5L18 21.5V15.5Z" fill="white"/></svg></span>
-                    Google Slides
-                </span>
-                <span class="type-badge">
-                    <span class="type-icon icon-pdf"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="8" fill="#EA4335"/><path d="M13 12H23V16H27V28H13V12ZM11.9985 10C11.4475 10 11 10.4441 11 10.9918V29.0082C11 29.5447 11.4448 30 11.9934 30H28.0066C28.5551 30 29 29.5489 29 28.9925L28.9997 15L24 10H11.9985ZM18.4999 15.5C18.4999 17.0775 18.0442 18.9373 17.2749 20.6534C16.5029 22.3757 15.4614 23.8502 14.3752 24.7191L15.5546 26.3321C18.4821 24.3804 21.7233 23.0421 24.8585 23.49L25.3162 21.5513C22.6435 20.6604 20.4999 17.9899 20.4999 15.5H18.4999ZM19.0999 21.4716C19.3673 20.8752 19.6042 20.2563 19.8037 19.6285C20.2753 20.3531 20.8553 21.0182 21.5101 21.5953C20.5283 21.7711 19.5665 22.0596 18.6352 22.4276C18.7999 22.1143 18.9551 21.7948 19.0999 21.4716Z" fill="white"/></svg></span>
-                    PDF
-                </span>
-                <span class="type-badge">
-                    <span class="type-icon icon-word"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="8" fill="#14559C"/><path d="M25 27H28V13H25V11H29C29.5523 11 30 11.4477 30 12V28C30 28.5523 29.5523 29 29 29H25V27ZM10.8586 10.8773L23.4293 9.0815C23.7027 9.04245 23.9559 9.2324 23.995 9.50577C23.9983 9.52919 24 9.55282 24 9.57648V30.4235C24 30.6996 23.7761 30.9235 23.5 30.9235C23.4763 30.9235 23.4527 30.9218 23.4293 30.9184L10.8586 29.1226C10.3659 29.0522 10 28.6303 10 28.1327V11.8673C10 11.3696 10.3659 10.9477 10.8586 10.8773ZM12 12.7346V27.2654L22 28.694V11.306L12 12.7346ZM19 16H21V24H19L17 22L15 24H13V16H15L15.0108 21L17 19L19 20.989V16Z" fill="white"/></svg></span>
-                    Microsoft Word
-                </span>
-                <span class="type-badge">
-                    <span class="type-icon icon-excel"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="8" fill="#00733F"/><path d="M10.8586 10.8773L23.4293 9.0815C23.7027 9.04245 23.9559 9.2324 23.995 9.50577C23.9983 9.52919 24 9.55282 24 9.57648V30.4235C24 30.6996 23.7761 30.9235 23.5 30.9235C23.4763 30.9235 23.4527 30.9218 23.4293 30.9184L10.8586 29.1226C10.3659 29.0522 10 28.6303 10 28.1327V11.8673C10 11.3696 10.3659 10.9477 10.8586 10.8773ZM12 12.7346V27.2654L22 28.694V11.306L12 12.7346ZM25 27H28V13H25V11H29C29.5523 11 30 11.4477 30 12V28C30 28.5523 29.5523 29 29 29H25V27ZM18.2 20L21 24H18.6L17 21.7143L15.4 24H13L15.8 20L13 16H15.4L17 18.2857L18.6 16H21L18.2 20Z" fill="white"/></svg></span>
-                    Microsoft Excel
-                </span>
-                <span class="type-badge">
-                    <span class="type-icon icon-powerpoint"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="8" fill="#E42F02"/><path d="M10.8586 10.8773L23.4293 9.0815C23.7027 9.04245 23.9559 9.2324 23.995 9.50577C23.9983 9.52919 24 9.55282 24 9.57648V30.4235C24 30.6996 23.7761 30.9235 23.5 30.9235C23.4763 30.9235 23.4527 30.9218 23.4293 30.9184L10.8586 29.1226C10.3659 29.0522 10 28.6303 10 28.1327V11.8673C10 11.3696 10.3659 10.9477 10.8586 10.8773ZM12 12.7346V27.2654L22 28.694V11.306L12 12.7346ZM25 27H28V13H25V11H29C29.5523 11 30 11.4477 30 12V28C30 28.5523 29.5523 29 29 29H25V27ZM13 16H21V22H15V24H13V16ZM15 18V20H19V18H15Z" fill="white"/></svg></span>
-                    Microsoft PowerPoint
-                </span>
-                <span class="type-badge">
-                    <span class="type-icon icon-csv"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="8" fill="#00733F"/><path d="M21 18V22H27V18H21ZM19 18H13V22H19V18ZM21 27H27V24H21V27ZM19 27V24H13V27H19ZM21 13V16H27V13H21ZM19 13H13V16H19V13ZM12 11H28C28.5523 11 29 11.4477 29 12V28C29 28.5523 28.5523 29 28 29H12C11.4477 29 11 28.5523 11 28V12C11 11.4477 11.4477 11 12 11Z" fill="white"/></svg></span>
-                    CSV
-                </span>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <span>&copy; 2026 PeekDrive</span>
-        <span><a href="privacy.html" data-en="Privacy Policy" data-fr="Confidentialité">Privacy Policy</a> · <a href="terms.html" data-en="Terms &amp; legal notice" data-fr="Conditions &amp; mentions légales">Terms &amp; legal notice</a> · <a href="mailto:contact@peekdrive.com">contact@peekdrive.com</a></span>
-        <span class="footer-note" data-en="Google, Google Drive and Chrome are trademarks of Google LLC. PeekDrive is an independent product, not affiliated with or endorsed by Google." data-fr="Google, Google Drive et Chrome sont des marques de Google LLC. PeekDrive est un produit indépendant, ni affilié à Google ni approuvé par Google.">Google, Google Drive and Chrome are trademarks of Google LLC. PeekDrive is an independent product, not affiliated with or endorsed by Google.</span>
     </footer>
-
-    <script>
-        function setLang(lang) {
-            document.querySelectorAll('[data-' + lang + ']').forEach(function(el) {
-                var val = el.getAttribute('data-' + lang);
-                if (el.tagName === 'A' && el.getAttribute('href') && !val.includes('<')) {
-                    el.textContent = val;
-                } else {
-                    el.innerHTML = val;
-                }
-            });
-            document.querySelectorAll('.lang-btn').forEach(function(btn) {
-                btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
-            });
-            document.documentElement.lang = lang;
-            try { localStorage.setItem('peekdrive-lang', lang); } catch(e) {}
-        }
-        (function() {
-            var saved = null;
-            try { saved = localStorage.getItem('peekdrive-lang'); } catch(e) {}
-            if (saved) { setLang(saved); }
-            else {
-                var bl = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
-                setLang(bl.startsWith('fr') ? 'fr' : 'en');
-            }
-        })();
-    </script>
 </body>
 </html>
