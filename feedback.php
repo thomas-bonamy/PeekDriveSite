@@ -28,7 +28,7 @@ define('PD_RATE_GLOBAL', 40);       // e-mails per window for everyone
 // The fixed keys of the survey (value of the radio buttons) and their meaning.
 $PD_REASONS = array(
     'not_found'       => 'Could not find my files or the right passage',
-    'slow_buggy'      => 'Too slow, or it had bugs',
+    'slow_buggy'      => 'Too slow or too many bugs',
     'google_warning'  => "Google's warning screen worried me",
     'one_time'        => 'Only needed it once',
     'too_complicated' => 'Too complicated to use',
@@ -260,6 +260,10 @@ if ($email !== '') {
     }
 }
 
+// The box "contact me again to help improve PeekDrive": only counts with an
+// address, and only when the page sent it as a real true (ticked by the visitor).
+$recontact = ($email !== '' && isset($data['recontact']) && $data['recontact'] === true);
+
 $lang = (isset($data['lang']) && $data['lang'] === 'fr') ? 'fr' : 'en';
 
 // ── 3. Rate limit (only requests that would send an e-mail are counted) ────
@@ -280,6 +284,7 @@ $lines = array(
     'Reason:   ' . $reason . ' (' . $PD_REASONS[$reason] . ')',
     'Language: ' . $lang,
     'E-mail:   ' . ($email !== '' ? $email : '(not given)'),
+    'Contact again to help improve PeekDrive: ' . ($recontact ? 'YES, box ticked' : 'no'),
     '',
     'Message:',
     $message !== '' ? $message : '(none)',

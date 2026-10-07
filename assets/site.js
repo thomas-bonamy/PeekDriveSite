@@ -120,10 +120,15 @@
     var doneBox = doc.getElementById('survey-done');
     var message = form.elements.message;
     var email = form.elements.email;
+    var recontact = form.elements.recontact;
+    var recontactRow = doc.getElementById('recontact-row');
 
     function lang() { return root.lang === 'fr' ? 'fr' : 'en'; }
     function text(name) { return failBox.getAttribute('data-' + name + '-' + lang()) || ''; }
     function checked() { return form.querySelector('input[name="reason"]:checked'); }
+
+    // The "contact me again" box only makes sense with an address: shown once one is typed.
+    function syncRecontact() { recontactRow.hidden = email.value.trim() === ''; }
 
     function payload() {
       var reason = checked();
@@ -131,6 +136,7 @@
         reason: reason ? reason.value : '',
         message: message.value.replace(/\r\n?/g, '\n').trim(),
         email: email.value.trim(),
+        recontact: !recontactRow.hidden && recontact.checked,
         lang: lang(),
         trap: form.elements.trap.value,
         elapsed: Date.now() - started
@@ -145,6 +151,7 @@
       var lines = [text('reason') + ' ' + label];
       if (data.message) lines.push('', data.message);
       if (data.email) lines.push('', text('email') + ' ' + data.email);
+      if (data.recontact) lines.push(text('recontact'));
       return lines.join('\n');
     }
 
@@ -239,9 +246,12 @@
       refreshFallback();
     });
     form.addEventListener('input', function (event) {
-      if (event.target === email) showEmailError(false);
+      if (event.target === email) { showEmailError(false); syncRecontact(); }
       refreshFallback();
     });
+    // The browser may have put an address back in the field (reload, autofill).
+    syncRecontact();
+    window.addEventListener('pageshow', syncRecontact);
     doc.addEventListener('peekdrive:lang', function () {
       // The switch has just put the idle label back on the button: keep "Sending…" while busy.
       if (busy) sendBtn.textContent = sendBtn.getAttribute('data-sending-' + lang());
@@ -263,6 +273,97 @@
     });
   }
 
+  // ── Welcome page: a burst of confetti, once, when the page opens ───────────
+  // Drawn on a canvas laid over the page (it lets every click through) and
+  // removed when it is over. Nothing is drawn for people who asked their
+  // system for less motion.
+  function initCelebrate() {
+    var host = doc.querySelector('[data-celebrate]');
+    if (!host || !window.requestAnimationFrame) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var canvas = doc.createElement('canvas');
+    var ctx = canvas.getContext ? canvas.getContext('2d') : null;
+    if (!ctx) return;
+
+    var COLORS = ['#3A7AF2', '#34A853', '#FBBC04', '#EA4335', '#2B579A'];
+    var DURATION = 3800; // ms
+    var FADE = 800;      // ms, at the end
+    var width = window.innerWidth;
+    var height = window.innerHeight;
+    var ratio = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.className = 'confetti';
+    canvas.setAttribute('aria-hidden', 'true');
+    canvas.width = Math.round(width * ratio);
+    canvas.height = Math.round(height * ratio);
+    ctx.scale(ratio, ratio);
+
+    // Thrown upwards from the middle of the title block, wider on a wide window.
+    var box = host.getBoundingClientRect();
+    var originX = box.left + box.width / 2;
+    var originY = box.top + box.height * 0.55;
+    var spread = Math.max(0.55, Math.min(1.5, width / 900));
+    var count = width < 600 ? 90 : 160;
+    var pieces = [];
+    for (var i = 0; i < count; i++) {
+      var angle = -Math.PI / 2 + (Math.random() - 0.5) * Math.PI * 0.9;
+      var speed = 6 + Math.random() * 12;
+      pieces.push({
+        x: originX + (Math.random() - 0.5) * 60,
+        y: originY,
+        vx: Math.cos(angle) * speed * spread,
+        vy: Math.sin(angle) * speed,
+        w: 6 + Math.random() * 6,
+        h: 9 + Math.random() * 8,
+        turn: Math.random() * Math.PI * 2,
+        spin: (Math.random() - 0.5) * 0.35,
+        flip: Math.random() * Math.PI * 2,
+        color: COLORS[i % COLORS.length],
+        round: i % 6 === 0
+      });
+    }
+
+    var first = null;
+    var last = null;
+    function frame(now) {
+      if (first === null) { first = now; last = now; }
+      var elapsed = now - first;
+      // Same speed on a 60 Hz and on a 120 Hz screen.
+      var step = Math.min((now - last) / 16.667, 3);
+      last = now;
+      ctx.clearRect(0, 0, width, height);
+      ctx.globalAlpha = elapsed > DURATION - FADE ? Math.max(0, (DURATION - elapsed) / FADE) : 1;
+      for (var j = 0; j < pieces.length; j++) {
+        var p = pieces[j];
+        var drag = Math.pow(0.985, step);
+        p.vx *= drag;
+        p.vy = p.vy * drag + 0.3 * step;
+        p.x += p.vx * step;
+        p.y += p.vy * step;
+        p.turn += p.spin * step;
+        p.flip += 0.14 * step;
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.turn);
+        ctx.fillStyle = p.color;
+        if (p.round) {
+          ctx.beginPath();
+          ctx.arc(0, 0, p.w / 2, 0, Math.PI * 2);
+          ctx.fill();
+        } else {
+          // A paper strip seen more or less edge-on as it flutters.
+          var seen = p.h * Math.cos(p.flip);
+          ctx.fillRect(-p.w / 2, -seen / 2, p.w, seen);
+        }
+        ctx.restore();
+      }
+      if (elapsed < DURATION) window.requestAnimationFrame(frame);
+      else if (canvas.parentNode) canvas.parentNode.removeChild(canvas);
+    }
+    doc.body.appendChild(canvas);
+    // Starts with the first frame really shown: a tab opened in the background waits.
+    window.requestAnimationFrame(frame);
+  }
+
   // ── Start ─────────────────────────────────────────────────────────────────
   root.classList.add('js');
   var lang = pickLang();
@@ -281,6 +382,7 @@
       buttons[i].addEventListener('click', function () { setLang(this.getAttribute('data-lang')); });
     }
     initSurvey();
+    initCelebrate();
   }
 
   if (doc.readyState === 'loading') doc.addEventListener('DOMContentLoaded', ready);

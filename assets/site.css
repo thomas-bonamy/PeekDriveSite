@@ -49,6 +49,9 @@
   --hl: #E2CDF7;
   --hl-line: #7034AF;
   --ok: #1E8E3E;
+  --green-dark: #137333;
+  --green-tint: #DFF1E4;
+  --green-wash: #F0F8F2;
   --error: #B3261E;
 
   /* File-type colours of the product */
@@ -171,6 +174,8 @@ h3 { font-size: 1.0625rem; font-weight: 600; line-height: 1.35; letter-spacing: 
 .btn--primary:hover { background: var(--blue-dark); }
 .btn--secondary { background: var(--white); border-color: var(--border); color: var(--text); }
 .btn--secondary:hover { border-color: var(--blue); color: var(--blue); }
+.btn--light { background: var(--white); color: var(--blue); }
+.btn--light:hover { background: var(--blue-tint); }
 .btn--s { height: 40px; padding: 0 18px; gap: 8px; font-size: 0.9375rem; }
 .btn--s .i { width: 16px; height: 16px; }
 .btn[disabled] { opacity: 0.6; cursor: default; }
@@ -217,6 +222,7 @@ h3 { font-size: 1.0625rem; font-weight: 600; line-height: 1.35; letter-spacing: 
 .ticks { display: flex; flex-wrap: wrap; gap: 10px 24px; margin-top: 28px; font-size: 0.9375rem; font-weight: 500; color: var(--text); }
 .ticks li { display: inline-flex; align-items: center; gap: 8px; }
 .ticks .i { width: 18px; height: 18px; color: var(--ok); stroke-width: 2.5; }
+.ticks--center { justify-content: center; align-items: center; margin-top: 24px; }
 
 .hero-visual {
   --bleed: 48px;  /* room kept around the window for its shadow, inside the mask */
@@ -373,12 +379,12 @@ kbd { font-family: inherit; font-size: inherit; font-weight: 600; color: var(--t
 .compare tbody tr:first-child > * { border-top: 0; }
 .compare tbody th { font-size: 1rem; font-weight: 500; line-height: 1.45; color: var(--text); text-wrap: balance; }
 .compare .col { width: 168px; text-align: center; }
-.compare .col--pd { background: var(--blue-wash); }
-.compare thead .col--pd { background: var(--blue-tint); color: var(--blue); }
+.compare .col--pd { background: var(--green-wash); }
+.compare thead .col--pd { background: var(--green-tint); color: var(--green-dark); }
 /* Both column titles on one line ("Recherche Drive" is the long one). */
 .compare thead .col { padding-inline: 8px; white-space: nowrap; }
 .compare td .i { width: 20px; height: 20px; margin-inline: auto; stroke-width: 2.5; }
-.compare .yes { color: var(--blue); }
+.compare .yes { color: var(--green-dark); }
 .compare .yes--drive { color: var(--text-2); }
 .compare .no { color: #D93025; }
 
@@ -421,6 +427,10 @@ kbd { font-family: inherit; font-size: inherit; font-weight: 600; color: var(--t
 .page-hero { padding-block: clamp(48px, 7vw, 80px) clamp(32px, 4vw, 48px); text-align: center; }
 .page-hero h1 { font-size: clamp(2rem, 1.4rem + 2.1vw, 2.75rem); font-weight: 700; line-height: 1.12; letter-spacing: -0.03em; }
 .page-hero .lead { max-width: 600px; margin-inline: auto; }
+.party { display: block; margin-bottom: 14px; font-size: 3rem; line-height: 1; }
+.js .party { animation: party-pop 0.7s cubic-bezier(0.2, 1.5, 0.4, 1) 0.15s both; }
+@keyframes party-pop { from { opacity: 0; transform: scale(0.2) rotate(-25deg); } to { opacity: 1; transform: none; } }
+.confetti { position: fixed; inset: 0; z-index: 100; width: 100%; height: 100%; pointer-events: none; }
 .narrow { max-width: calc(760px + 2 * var(--gutter)); }
 .page-body { padding-bottom: var(--section); }
 
@@ -434,9 +444,8 @@ kbd { font-family: inherit; font-size: inherit; font-weight: 600; color: var(--t
 .guide .step-note { margin-top: 14px; padding: 12px 16px; border: 1px solid var(--border-soft); border-radius: var(--radius-s); background: var(--surface); font-size: 0.9375rem; line-height: 1.6; }
 .ico { display: inline-block; width: 1.15em; height: 1.15em; vertical-align: -0.22em; fill: var(--text); }
 .page-cta { margin-top: 36px; text-align: center; }
-.closing { margin-top: 20px; text-align: center; font-size: 0.9375rem; color: var(--text-2); text-wrap: pretty; }
-.closing a, .form-note a, .form-fail a, .prose a { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
-.closing a:hover, .form-note a:hover, .form-fail a:hover, .prose a:hover { text-decoration-thickness: 2px; }
+.form-note a, .form-fail a, .prose a { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.form-note a:hover, .form-fail a:hover, .prose a:hover { text-decoration-thickness: 2px; }
 
 /* Survey */
 .q { display: grid; grid-template-columns: 32px minmax(0, 1fr); column-gap: 14px; align-items: center; }
@@ -463,6 +472,9 @@ kbd { font-family: inherit; font-size: inherit; font-weight: 600; color: var(--t
 .field input:focus, .field textarea:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rgba(43, 87, 154, 0.22); }
 .field [aria-invalid="true"] { border-color: var(--error); }
 .field-error { margin-top: 8px; font-size: 0.875rem; font-weight: 500; color: var(--error); }
+.consent { margin-top: 14px; }
+.consent label { display: grid; grid-template-columns: 20px minmax(0, 1fr); column-gap: 12px; align-items: start; font-size: 0.9375rem; line-height: 1.5; color: var(--text-body); cursor: pointer; }
+.consent input { width: 20px; height: 20px; margin: 1px 0 0; accent-color: var(--blue); cursor: pointer; }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .form-foot { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 24px; align-items: center; margin-top: 32px; }
 .form-foot .btn { min-width: 132px; }
@@ -480,8 +492,17 @@ kbd { font-family: inherit; font-size: inherit; font-weight: 600; color: var(--t
 .form-done p { margin-top: 10px; color: var(--text-2); }
 .form-done:focus { outline: none; }
 .no-js-note { font-size: 0.9688rem; line-height: 1.6; }
-.rejoin { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 24px; padding-block: 24px; }
-.rejoin h2 { font-size: 1.125rem; font-weight: 600; line-height: 1.4; letter-spacing: -0.005em; }
+/* The way back: a band in the brand colour, with two soft lights. */
+.rejoin {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px 24px;
+  padding: 28px 32px; border-radius: var(--radius-l);
+  background:
+    radial-gradient(60% 140% at 0% 0%, rgba(255, 255, 255, 0.16), transparent 70%),
+    radial-gradient(50% 120% at 100% 100%, rgba(255, 255, 255, 0.10), transparent 70%),
+    var(--blue);
+}
+.rejoin h2 { font-size: 1.25rem; font-weight: 700; line-height: 1.35; letter-spacing: -0.015em; color: var(--white); }
+.rejoin .btn:focus-visible { outline-color: var(--white); }
 
 /* ── Legal pages ─────────────────────────────────────────────────────────── */
 .legal-top { padding-top: 40px; }
@@ -572,6 +593,7 @@ kbd { font-family: inherit; font-size: inherit; font-weight: 600; color: var(--t
   .footer-top { flex-direction: column; align-items: flex-start; }
   .footer-links { flex-direction: column; }
   .panel { padding: 24px 20px; }
+  .rejoin { padding: 24px 20px; }
   .guide .panel { padding: 24px 20px; column-gap: 16px; }
   .guide p { grid-column: 1 / -1; margin-top: 12px; }
   .choices { grid-template-columns: minmax(0, 1fr); }

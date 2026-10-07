@@ -16,6 +16,7 @@
     <a class="skip-link" href="#main" data-en="Skip to content" data-fr="Aller au contenu">Skip to content</a>
     <svg class="sprite" aria-hidden="true" focusable="false">
         <symbol id="i-done" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m8.5 12.5 2.5 2.5 4.5-5"/></symbol>
+        <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
     </svg>
     <header class="site-header">
         <div class="container nav">
@@ -37,7 +38,7 @@
         <section class="page-hero pastel pastel--soft">
             <div class="container narrow">
                 <h1 data-en="PeekDrive has been uninstalled" data-fr="PeekDrive a été désinstallé">PeekDrive has been uninstalled</h1>
-                <p class="lead" data-en="Sorry to see you go. Your answer to these two questions helps us improve PeekDrive." data-fr="Dommage de vous voir partir. Votre réponse à ces deux questions nous aide à améliorer PeekDrive.">Sorry to see you go. Your answer to these two questions helps us improve PeekDrive.</p>
+                <p class="lead" data-en="Sorry to see you go. Answer these two questions to help us improve PeekDrive." data-fr="Dommage de vous voir partir. Répondez à ces deux questions pour nous aider à améliorer PeekDrive.">Sorry to see you go. Answer these two questions to help us improve PeekDrive.</p>
             </div>
         </section>
 
@@ -46,11 +47,11 @@
                 <form class="panel needs-js" id="survey" action="feedback.php" method="post" novalidate>
                     <fieldset aria-describedby="reason-error">
                         <legend>
-                            <span class="q"><span class="q-num" aria-hidden="true">1</span><span class="q-title" data-en="What was the main reason?" data-fr="Quelle était la raison principale&amp;nbsp;?">What was the main reason?</span></span>
+                            <span class="q"><span class="q-num" aria-hidden="true">1</span><span class="q-title" data-en="What was the main reason you uninstalled PeekDrive?" data-fr="Pour quelle raison principale avez-vous désinstallé PeekDrive&amp;nbsp;?">What was the main reason you uninstalled PeekDrive?</span></span>
                         </legend>
                         <div class="choices">
                             <label class="choice"><input type="radio" name="reason" value="not_found"><span class="choice-body"><span class="choice-label" data-en="I could not find my files or the right passage" data-fr="Je n’ai pas trouvé mes fichiers ou le bon passage">I could not find my files or the right passage</span></span></label>
-                            <label class="choice"><input type="radio" name="reason" value="slow_buggy"><span class="choice-body"><span class="choice-label" data-en="Too slow, or it had bugs" data-fr="Trop lent, ou des bugs">Too slow, or it had bugs</span></span></label>
+                            <label class="choice"><input type="radio" name="reason" value="slow_buggy"><span class="choice-body"><span class="choice-label" data-en="Too slow or too many bugs" data-fr="Trop lent ou trop de bugs">Too slow or too many bugs</span></span></label>
                             <label class="choice"><input type="radio" name="reason" value="google_warning"><span class="choice-body"><span class="choice-label" data-en="Google’s warning screen worried me" data-fr="L’écran d’avertissement de Google m’a inquiété">Google’s warning screen worried me</span></span></label>
                             <label class="choice"><input type="radio" name="reason" value="one_time"><span class="choice-body"><span class="choice-label" data-en="I only needed it once" data-fr="Je n’en avais besoin qu’une fois">I only needed it once</span></span></label>
                             <label class="choice"><input type="radio" name="reason" value="too_complicated"><span class="choice-body"><span class="choice-label" data-en="Too complicated to use" data-fr="Trop compliqué à utiliser">Too complicated to use</span></span></label>
@@ -62,15 +63,18 @@
 
                     <div class="q q--2">
                         <span class="q-num" aria-hidden="true">2</span>
-                        <label class="q-title" for="message" data-en="What could we have done differently? &lt;span class=&quot;opt&quot;&gt;(optional)&lt;/span&gt;" data-fr="Qu’aurions-nous pu faire autrement&amp;nbsp;? &lt;span class=&quot;opt&quot;&gt;(facultatif)&lt;/span&gt;">What could we have done differently? <span class="opt">(optional)</span></label>
+                        <label class="q-title" for="message" data-en="How could PeekDrive have helped you better?" data-fr="Comment PeekDrive aurait-il pu mieux vous aider&amp;nbsp;?">How could PeekDrive have helped you better?</label>
                     </div>
                     <div class="field">
                         <textarea id="message" name="message" rows="4" maxlength="2000" placeholder="A missing feature, a bug, something that was not clear…" data-en-placeholder="A missing feature, a bug, something that was not clear…" data-fr-placeholder="Une fonction manquante, un bug, un point qui n’était pas clair…"></textarea>
                     </div>
                     <div class="field">
-                        <label for="email" data-en="Your e-mail address &lt;span class=&quot;opt&quot;&gt;(optional, only if you would like a reply)&lt;/span&gt;" data-fr="Votre adresse e-mail &lt;span class=&quot;opt&quot;&gt;(facultatif, seulement si vous souhaitez une réponse)&lt;/span&gt;">Your e-mail address <span class="opt">(optional, only if you would like a reply)</span></label>
+                        <label for="email" data-en="E-mail address &lt;span class=&quot;opt&quot;&gt;(optional)&lt;/span&gt;" data-fr="Adresse e-mail &lt;span class=&quot;opt&quot;&gt;(facultatif)&lt;/span&gt;">E-mail address <span class="opt">(optional)</span></label>
                         <input type="email" id="email" name="email" maxlength="254" autocomplete="email" inputmode="email" spellcheck="false" aria-describedby="email-error" placeholder="name@example.com" data-en-placeholder="name@example.com" data-fr-placeholder="nom@exemple.com">
                         <p class="field-error" id="email-error" role="alert" hidden data-en="This e-mail address does not look valid." data-fr="Cette adresse e-mail ne semble pas valide.">This e-mail address does not look valid.</p>
+                    </div>
+                    <div class="consent" id="recontact-row" hidden>
+                        <label><input type="checkbox" id="recontact" name="recontact" value="1"><span data-en="I agree to be contacted at this address to help improve PeekDrive." data-fr="J’accepte que PeekDrive me recontacte à cette adresse pour participer à son amélioration.">I agree to be contacted at this address to help improve PeekDrive.</span></label>
                     </div>
                     <div class="hp" aria-hidden="true">
                         <label for="trap">Leave this field empty</label>
@@ -79,10 +83,10 @@
 
                     <div class="form-foot">
                         <button type="submit" class="btn btn--primary" data-sending-en="Sending…" data-sending-fr="Envoi…" data-en="Send" data-fr="Envoyer">Send</button>
-                        <p class="form-note" data-en="What is sent: the reason you chose, your message, the language of this page and, if you gave it, your &lt;span class=&quot;nw&quot;&gt;e-mail&lt;/span&gt; address. Nothing from your Google Drive. &lt;a href=&quot;privacy.html&quot;&gt;Privacy policy&lt;/a&gt;" data-fr="Ce qui est envoyé&amp;nbsp;: la raison choisie, votre message, la langue de cette page et, si vous l’avez indiquée, votre adresse &lt;span class=&quot;nw&quot;&gt;e-mail&lt;/span&gt;. Rien de votre Google Drive. &lt;a href=&quot;privacy.html&quot;&gt;Politique de confidentialité&lt;/a&gt;">What is sent: the reason you chose, your message, the language of this page and, if you gave it, your <span class="nw">e-mail</span> address. Nothing from your Google Drive. <a href="privacy.html">Privacy policy</a></p>
+                        <p class="form-note" data-en="This information is used only to improve PeekDrive and, if you leave your &lt;span class=&quot;nw&quot;&gt;e-mail&lt;/span&gt; address, to reply to you. It is never sold or passed on to third parties. By clicking “Send”, you accept PeekDrive’s &lt;a href=&quot;privacy.html&quot;&gt;privacy policy&lt;/a&gt;." data-fr="Ces informations servent uniquement à améliorer PeekDrive et, si vous laissez votre adresse &lt;span class=&quot;nw&quot;&gt;e-mail&lt;/span&gt;, à vous répondre. Elles ne sont ni vendues ni communiquées à des tiers. En cliquant sur «&amp;nbsp;Envoyer&amp;nbsp;», vous acceptez la &lt;a href=&quot;privacy.html&quot;&gt;politique de confidentialité&lt;/a&gt; de PeekDrive.">This information is used only to improve PeekDrive and, if you leave your <span class="nw">e-mail</span> address, to reply to you. It is never sold or passed on to third parties. By clicking “Send”, you accept PeekDrive’s <a href="privacy.html">privacy policy</a>.</p>
                     </div>
 
-                    <div class="form-fail" id="survey-fail" role="alert" tabindex="-1" hidden data-subject-en="PeekDrive feedback" data-subject-fr="Avis sur PeekDrive" data-reason-en="Main reason:" data-reason-fr="Raison principale :" data-email-en="My e-mail address:" data-email-fr="Mon adresse e-mail :">
+                    <div class="form-fail" id="survey-fail" role="alert" tabindex="-1" hidden data-subject-en="PeekDrive feedback" data-subject-fr="Avis sur PeekDrive" data-reason-en="Main reason:" data-reason-fr="Raison principale :" data-email-en="My e-mail address:" data-email-fr="Mon adresse e-mail :" data-recontact-en="I agree to be contacted at this address to help improve PeekDrive." data-recontact-fr="J’accepte que PeekDrive me recontacte à cette adresse pour participer à son amélioration.">
                         <p data-en="Your answer could not be sent. So that it is not lost, you can send it yourself to &lt;a href=&quot;mailto:contact@peekdrive.com&quot;&gt;contact@peekdrive.com&lt;/a&gt;:" data-fr="Votre réponse n’a pas pu être envoyée. Pour qu’elle ne soit pas perdue, vous pouvez l’envoyer vous-même à &lt;a href=&quot;mailto:contact@peekdrive.com&quot;&gt;contact@peekdrive.com&lt;/a&gt;&amp;nbsp;:">Your answer could not be sent. So that it is not lost, you can send it yourself to <a href="mailto:contact@peekdrive.com">contact@peekdrive.com</a>:</p>
                         <pre id="survey-answer"></pre>
                         <div class="form-fail-actions">
@@ -105,13 +109,11 @@
                     </div>
                 </noscript>
 
-                <div class="panel rejoin">
+                <div class="rejoin">
                     <h2 data-en="Changed your mind?" data-fr="Vous avez changé d’avis&amp;nbsp;?">Changed your mind?</h2>
-                    <a class="btn btn--secondary" href="https://chromewebstore.google.com/detail/piecapgomaejneknjkfpdhcpegihmjpd" data-en="Reinstall PeekDrive" data-fr="Réinstaller PeekDrive">Reinstall PeekDrive</a>
+                    <a class="btn btn--light" href="https://chromewebstore.google.com/detail/piecapgomaejneknjkfpdhcpegihmjpd"><span data-en="Reinstall PeekDrive" data-fr="Réinstaller PeekDrive">Reinstall PeekDrive</span><svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
                 </div>
             </div>
-
-            <p class="closing" data-en="To also remove PeekDrive’s access to your Google account, open &lt;a href=&quot;https://myaccount.google.com/permissions&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;myaccount.google.com/permissions&lt;/a&gt;." data-fr="Pour retirer aussi l’accès de PeekDrive à votre compte Google, ouvrez &lt;a href=&quot;https://myaccount.google.com/permissions&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;myaccount.google.com/permissions&lt;/a&gt;.">To also remove PeekDrive’s access to your Google account, open <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">myaccount.google.com/permissions</a>.</p>
         </div>
     </main>
 
