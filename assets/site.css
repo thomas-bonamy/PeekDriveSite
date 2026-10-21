@@ -1,6 +1,6 @@
 /* PeekDrive website: shared styles for every page.
    Contents: fonts, tokens, base, layout, header, buttons, pastel backdrop, hero,
-   browser frame, PANEL MOCK (self-contained), landing sections, simple pages
+   browser frame, PANEL (pictures), landing sections, simple pages
    (welcome, uninstall), legal pages, footer, responsive, reduced motion.
    The pages load nothing else: no inline style, no external request. */
 
@@ -263,77 +263,16 @@ h3 { font-size: 1.0625rem; font-weight: 600; line-height: 1.35; letter-spacing: 
 .drive-rows li:nth-child(3n + 2) i { width: 48%; }
 .drive-rows li:nth-child(3n) i { width: 78%; }
 
-/* ══ PANEL MOCK ════════════════════════════════════════════════════════════
-   The PeekDrive panel, drawn in HTML/CSS from the design of the extension
-   (design/extension/Screen 1.png, 540 px wide at 1x). Self-contained: every
-   .pd-* rule and its own --pd-* properties live in this block, so the filter
-   row and the details can be re-aligned with the final panel in one place.
-   Sizes are the design's pixels; the whole panel is then scaled by --pd-zoom,
-   and --pd-hair keeps the borders one device pixel wide. */
+/* ══ PANEL ═════════════════════════════════════════════════════════════════
+   The PeekDrive panel: pictures of the extension's own interface, one per
+   language (assets/panel-en.webp, assets/panel-fr.webp: 460 px of panel at 2x,
+   made in the PeekDrive repository by ui/outils/demo-shots.mjs --site). A
+   picture takes the width of its column, --pd-w, set at each breakpoint. */
 .pd-wrap { flex: none; width: var(--pd-w, 424px); border-left: 1px solid var(--border); overflow: hidden; background: #FFFFFF; }
-.pd {
-  --pd-zoom: 0.92;
-  --pd-hair: calc(1px / var(--pd-zoom));
-  --pd-blue: #2B579A;
-  --pd-blue-tint: #E6F1FE;
-  --pd-text: #202124;
-  --pd-text-2: #5F6368;
-  --pd-border: #DADCE0;
-  --pd-surface: #F8F9FA;
-  --pd-hl: #E2CDF7;
-  --pd-hl-line: #7034AF;
-  --pd-bar: #3A7AF2;          /* excerpt bar: the colour of the file type */
-  --pd-sheets: #34A853;
-  --pd-pad: 20px;
-  --pd-radius: 8px;
-  zoom: var(--pd-zoom);
-  background: #FFFFFF; font-size: 13px; line-height: 1.5; color: var(--pd-text);
-}
-.pd-head { display: flex; align-items: center; justify-content: space-between; height: 72px; padding: 0 var(--pd-pad); border-bottom: var(--pd-hair) solid var(--pd-border); }
-.pd-logo { width: 141px; height: 29px; }
-.pd-btns { display: flex; gap: 8px; }
-.pd-btn { display: grid; place-items: center; width: 32px; height: 32px; border: var(--pd-hair) solid var(--pd-border); border-radius: var(--pd-radius); color: var(--pd-text-2); }
-.pd-btn .i { width: 16px; height: 16px; }
-.pd-btn .pd-moon { fill: currentColor; stroke: none; }
-.pd-body { padding: var(--pd-pad); }
-.pd-search { display: flex; align-items: center; gap: 12px; height: 48px; padding: 0 18px; border: var(--pd-hair) solid var(--pd-border); border-radius: 24px; font-size: 14px; line-height: 1; }
-.pd-search .i { width: 16px; height: 16px; color: var(--pd-text-2); }
-.pd-search span { flex: 1; }
-.pd-sum { margin: 19px 0 18px; font-size: 13px; line-height: 18px; color: var(--pd-text); }
-.pd-sum b { font-weight: 700; }
-.pd-chips { display: flex; flex-wrap: wrap; gap: 10px; }
-.pd-chip { display: inline-flex; align-items: center; gap: 8px; height: 38px; padding: 0 9px 0 17px; border: var(--pd-hair) solid var(--pd-border); border-radius: 19px; font-size: 13px; line-height: 1; white-space: nowrap; }
-.pd-chip svg { width: 16px; height: 16px; }
-.pd-chip i { display: grid; place-items: center; min-width: 35px; height: 21px; padding: 0 8px; margin-left: 1px; border-radius: 11px; background: var(--pd-border); font-style: normal; font-size: 11px; font-weight: 600; color: var(--pd-text-2); }
-.pd-card { margin-top: 20px; padding: var(--pd-pad); border: var(--pd-hair) solid var(--pd-border); border-radius: var(--pd-radius); }
-.pd-file { display: grid; grid-template-columns: 40px minmax(0, 1fr) auto; column-gap: 12px; align-items: start; }
-.pd-file > svg { grid-row: 1 / span 3; width: 40px; height: 40px; }
-.pd-file-title { grid-column: 2; margin-bottom: 2px; font-size: 14px; font-weight: 700; line-height: 22px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.pd-file-meta { grid-column: 2 / -1; display: flex; align-items: center; gap: 4px; font-size: 12px; line-height: 17px; color: var(--pd-text-2); white-space: nowrap; overflow: hidden; }
-.pd-file-meta .i { width: 11px; height: 11px; }
-.pd-count { grid-column: 3; grid-row: 1; height: 22px; padding: 0 10px; border: var(--pd-hair) solid var(--pd-blue); border-radius: 11px; background: var(--pd-blue-tint); font-size: 11px; font-weight: 700; line-height: calc(22px - 2 * var(--pd-hair)); color: var(--pd-blue); white-space: nowrap; }
-.pd-excerpt { position: relative; margin-top: 17px; padding: 10px 9px 9px 24px; border: var(--pd-hair) solid var(--pd-border); border-radius: var(--pd-radius); background: var(--pd-surface); }
-.pd-excerpt::before { content: ""; position: absolute; left: 8px; top: 8px; bottom: 8px; width: 4px; border-radius: 2px; background: var(--pd-bar); }
-.pd-excerpt--sheets { --pd-bar: var(--pd-sheets); }
-.pd-text { font-size: 12px; line-height: 21px; }
-.pd mark { padding: 2px 2px 0; margin: 0 -2px; border-bottom: 2px solid var(--pd-hl-line); border-radius: 2px; background: var(--pd-hl); color: inherit; }
-.pd-foot { display: flex; align-items: center; gap: 8px; margin-top: 14px; }
-.pd-open { display: inline-flex; align-items: center; gap: 9px; margin-right: auto; font-size: 14px; line-height: 22px; color: var(--pd-blue); white-space: nowrap; }
-.pd-open .i { width: 13px; height: 13px; }
-.pd-loc { display: inline-flex; align-items: center; gap: 7px; height: 22px; padding: 0 8px 0 7px; border: var(--pd-hair) solid var(--pd-border); border-radius: 4px; background: var(--pd-surface); font-size: 11px; font-weight: 700; line-height: 1; color: var(--pd-text-2); white-space: nowrap; }
-.pd-loc .i { width: 11px; height: 11px; }
-.pd-all { display: grid; place-items: center; height: 40px; margin-top: 16px; border: var(--pd-hair) solid var(--pd-border); border-radius: 4px; font-size: 13px; line-height: 1; color: var(--pd-text-2); white-space: nowrap; overflow: hidden; }
-.pd-tab { display: inline-block; height: 22px; padding: 0 8px; border: var(--pd-hair) solid #BAE4C5; border-radius: 4px; background: #E7F5EB; font-size: 11px; font-weight: 700; line-height: calc(22px - 2 * var(--pd-hair)); color: #1E8E3E; }
-.pd-table { width: 100%; margin-top: 12px; border-collapse: separate; border-spacing: 0; border: var(--pd-hair) solid var(--pd-border); border-radius: var(--pd-radius); background: #FFFFFF; font-size: 12px; line-height: 20px; table-layout: fixed; overflow: hidden; }
-.pd-table th, .pd-table td { padding: 6px 10px; text-align: left; font-weight: 400; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; border-left: var(--pd-hair) solid var(--pd-border); }
-.pd-table th:first-child, .pd-table td:first-child { border-left: 0; }
-.pd-table th { font-weight: 700; border-bottom: var(--pd-hair) solid var(--pd-border); }
-.pd-table th:first-child { width: 46%; }
-.pd-table .is-hit { background: #FEF7E0; }
-@supports not (zoom: 1) {
-  .pd { width: 108.7%; transform: scale(0.92); transform-origin: 0 0; }
-}
-/* ══ end of PANEL MOCK ═════════════════════════════════════════════════════ */
+.pd-shot { display: block; width: 100%; height: auto; }
+.pd-shot--fr, html[lang="fr"] .pd-shot--en { display: none; }
+html[lang="fr"] .pd-shot--fr { display: block; }
+/* ══ end of PANEL ══════════════════════════════════════════════════════════ */
 
 /* ── Facts band ──────────────────────────────────────────────────────────── */
 .facts { position: relative; padding-block: clamp(40px, 5vw, 64px) 0; }
@@ -444,6 +383,7 @@ kbd { font-family: inherit; font-size: inherit; font-weight: 600; color: var(--t
 .guide .step-note { margin-top: 14px; padding: 12px 16px; border: 1px solid var(--border-soft); border-radius: var(--radius-s); background: var(--surface); font-size: 0.9375rem; line-height: 1.6; }
 .ico { display: inline-block; width: 1.15em; height: 1.15em; vertical-align: -0.22em; fill: var(--text); }
 .page-cta { margin-top: 36px; text-align: center; }
+.page-hero .page-cta { margin-top: 28px; }
 .form-note a, .form-fail a, .prose a { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
 .form-note a:hover, .form-fail a:hover, .prose a:hover { text-decoration-thickness: 2px; }
 
@@ -524,8 +464,6 @@ kbd { font-family: inherit; font-size: inherit; font-weight: 600; color: var(--t
   .hero-copy { align-self: center; padding-block: 64px 88px; }
   .hero-visual { --bleed: 32px; min-height: 627px; margin-top: 32px; }
   .pd-wrap { --pd-w: 340px; }
-  .pd { --pd-zoom: 0.78; }
-  @supports not (zoom: 1) { .pd { width: 128.2%; transform: scale(0.78); } }
   .privacy-grid { gap: 48px; }
   .nav { gap: 24px; }
   .nav-links { gap: 22px; }
@@ -554,8 +492,6 @@ kbd { font-family: inherit; font-size: inherit; font-weight: 600; color: var(--t
   .hero .lead { max-width: 600px; }
   .hero-visual { --bleed: 24px; width: 100%; max-width: 608px; height: 618px; min-height: 0; margin: 32px auto 0; }
   .pd-wrap { --pd-w: 436px; }
-  .pd { --pd-zoom: 0.94; }
-  @supports not (zoom: 1) { .pd { width: 106.4%; transform: scale(0.94); } }
   .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .privacy-grid { grid-template-columns: minmax(0, 1fr); gap: 48px; }
   .rules--3 { grid-template-columns: minmax(0, 1fr); gap: 28px; }
@@ -576,8 +512,6 @@ kbd { font-family: inherit; font-size: inherit; font-weight: 600; color: var(--t
   .ticks { gap: 10px 18px; font-size: 0.875rem; }
   .drive { display: none; }
   .pd-wrap { flex: 1; width: auto; border-left: 0; }
-  .pd { --pd-zoom: 0.74; }
-  @supports not (zoom: 1) { .pd { width: 135.2%; transform: scale(0.74); } }
   .facts-grid { grid-template-columns: minmax(0, 1fr); gap: 28px; }
   .fact-value, .rule h3 { font-size: 1.125rem; }
   .uses { grid-template-columns: minmax(0, 1fr); }
@@ -617,8 +551,6 @@ kbd { font-family: inherit; font-size: inherit; font-weight: 600; color: var(--t
 /* Smallest phones: the panel keeps the design width it has at 360 px, and the
    three ticks, which no longer fit on one row, are stacked. */
 @media (max-width: 339px) {
-  .pd { --pd-zoom: 0.64; }
-  @supports not (zoom: 1) { .pd { width: 156.25%; transform: scale(0.64); } }
   .ticks { flex-direction: column; }
   .hero-visual { height: 450px; }
 }

@@ -55,6 +55,7 @@
 <IfModule mod_mime.c>
     AddType font/woff2 .woff2
     AddType image/svg+xml .svg
+    AddType image/webp .webp
     AddCharset utf-8 .html .css .js .svg .txt
 </IfModule>
 

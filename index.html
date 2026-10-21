@@ -54,13 +54,6 @@
         <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
         <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
         <symbol id="i-lock" viewBox="0 0 24 24"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
-        <symbol id="i-open" viewBox="0 0 24 24"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></symbol>
-        <symbol id="i-folder" viewBox="0 0 24 24"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></symbol>
-        <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></symbol>
-        <symbol id="i-table" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M3 15h18"/><path d="M9 3v18"/><path d="M15 3v18"/></symbol>
-        <symbol id="i-match" viewBox="0 0 24 24"><path d="M3 6h7"/><path d="M3 12h5"/><path d="M3 18h18"/><circle cx="16" cy="9" r="4"/><path d="m21.5 14.5-2.6-2.6"/></symbol>
-        <symbol id="i-gear" viewBox="0 0 24 24"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></symbol>
-        <symbol id="i-theme" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path class="pd-moon" d="M16.6 8.2a6.2 6.2 0 0 1-8.4 8.4 5.6 5.6 0 0 0 8.4-8.4Z"/></symbol>
         <symbol id="i-passage" viewBox="0 0 24 24"><path d="M4 5h16"/><rect x="4" y="9.5" width="11" height="5" rx="1.5"/><path d="M19 12h1"/><path d="M4 19h12"/></symbol>
         <symbol id="i-target" viewBox="0 0 24 24"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="m10 17 5-5-5-5"/><path d="M15 12H3"/></symbol>
         <symbol id="i-grid" viewBox="0 0 24 24"><rect width="7" height="7" x="3" y="3" rx="1.5"/><rect width="7" height="7" x="14" y="3" rx="1.5"/><rect width="7" height="7" x="14" y="14" rx="1.5"/><rect width="7" height="7" x="3" y="14" rx="1.5"/></symbol>
@@ -132,69 +125,14 @@
                                 </ul>
                             </div>
 
-                            <!-- PANEL MOCK: the PeekDrive panel in HTML/CSS. Self-contained block,
-                                 styled by the "PANEL MOCK" section of assets/site.css (.pd-*). -->
+                            <!-- PANEL: the PeekDrive panel, as pictures of the extension's own interface,
+                                 one per language (made in the PeekDrive repository:
+                                 node ui/outils/demo-shots.mjs <assets> --site). The figure describes them. -->
                             <div class="pd-wrap">
-                                <div class="pd">
-                                    <div class="pd-head">
-                                        <img class="pd-logo" src="logo.svg" alt="" width="141" height="29">
-                                        <span class="pd-btns">
-                                            <span class="pd-btn"><svg class="i"><use href="#i-theme"/></svg></span>
-                                            <span class="pd-btn"><svg class="i"><use href="#i-gear"/></svg></span>
-                                        </span>
-                                    </div>
-                                    <div class="pd-body">
-                                        <div class="pd-search"><svg class="i"><use href="#i-search"/></svg><span>budget</span><svg class="i"><use href="#i-x"/></svg></div>
-                                        <p class="pd-sum" data-en="&lt;b&gt;5 matches&lt;/b&gt; in 2 files for “budget”" data-fr="&lt;b&gt;5 correspondances&lt;/b&gt; dans 2 fichiers pour «&amp;nbsp;budget&amp;nbsp;»"><b>5 matches</b> in 2 files for “budget”</p>
-                                        <div class="pd-chips">
-                                            <span class="pd-chip"><span data-en="All" data-fr="Tous">All</span><i>5</i></span>
-                                            <span class="pd-chip"><svg viewBox="0 0 40 40"><use href="#t-docs"/></svg><span>Docs</span><i>3</i></span>
-                                            <span class="pd-chip"><svg viewBox="0 0 40 40"><use href="#t-sheets"/></svg><span>Sheets</span><i>2</i></span>
-                                        </div>
-
-                                        <div class="pd-card">
-                                            <div class="pd-file">
-                                                <svg viewBox="0 0 40 40"><use href="#t-docs"/></svg>
-                                                <span class="pd-file-title" data-en="Meeting notes" data-fr="Notes de réunion">Meeting notes</span>
-                                                <span class="pd-count" data-en="3 matches" data-fr="3 correspondances">3 matches</span>
-                                                <span class="pd-file-meta"><svg class="i"><use href="#i-folder"/></svg><span data-en="My Drive › Projects" data-fr="Mon Drive › Projets">My Drive › Projects</span></span>
-                                                <span class="pd-file-meta" data-en="Docs · Thomas · Modified 2 days ago" data-fr="Docs · Thomas · Modifié il y a 2 jours">Docs · Thomas · Modified 2 days ago</span>
-                                            </div>
-                                            <div class="pd-excerpt">
-                                                <p class="pd-text" data-en="…the marketing &lt;mark&gt;budget&lt;/mark&gt; was approved for next quarter. Camille will send the detailed breakdown before Friday, so each team can plan its…" data-fr="…le &lt;mark&gt;budget&lt;/mark&gt; marketing a été validé pour le prochain trimestre. Camille enverra le détail avant vendredi, pour que chaque équipe puisse planifier…">…the marketing <mark>budget</mark> was approved for next quarter. Camille will send the detailed breakdown before Friday, so each team can plan its…</p>
-                                                <div class="pd-foot">
-                                                    <span class="pd-open"><svg class="i"><use href="#i-open"/></svg><span data-en="Open" data-fr="Ouvrir">Open</span></span>
-                                                    <span class="pd-loc"><svg class="i"><use href="#i-match"/></svg><span data-en="Match 1" data-fr="Correspondance 1">Match 1</span></span>
-                                                    <span class="pd-loc"><svg class="i"><use href="#i-book"/></svg><span>Page 2</span></span>
-                                                </div>
-                                            </div>
-                                            <div class="pd-all" data-en="Show all matches in this file" data-fr="Afficher toutes les correspondances de ce fichier">Show all matches in this file</div>
-                                        </div>
-
-                                        <div class="pd-card">
-                                            <div class="pd-file">
-                                                <svg viewBox="0 0 40 40"><use href="#t-sheets"/></svg>
-                                                <span class="pd-file-title" data-en="Forecast 2026" data-fr="Prévisionnel 2026">Forecast 2026</span>
-                                                <span class="pd-count" data-en="2 matches" data-fr="2 correspondances">2 matches</span>
-                                                <span class="pd-file-meta"><svg class="i"><use href="#i-folder"/></svg><span data-en="Shared drives › Finance" data-fr="Drive partagés › Finance">Shared drives › Finance</span></span>
-                                                <span class="pd-file-meta" data-en="Sheets · Thomas · Modified 5 days ago" data-fr="Sheets · Thomas · Modifié il y a 5 jours">Sheets · Thomas · Modified 5 days ago</span>
-                                            </div>
-                                            <div class="pd-excerpt pd-excerpt--sheets">
-                                                <span class="pd-tab" data-en="Summary" data-fr="Synthèse">Summary</span>
-                                                <table class="pd-table">
-                                                    <tr><th data-en="Item" data-fr="Poste">Item</th><th data-en="Planned" data-fr="Prévu">Planned</th><th data-en="Spent" data-fr="Dépensé">Spent</th></tr>
-                                                    <tr><td class="is-hit" data-en="&lt;mark&gt;Budget&lt;/mark&gt; marketing" data-fr="&lt;mark&gt;Budget&lt;/mark&gt; marketing"><mark>Budget</mark> marketing</td><td>18 500</td><td>9 450</td></tr>
-                                                </table>
-                                                <div class="pd-foot">
-                                                    <span class="pd-open"><svg class="i"><use href="#i-open"/></svg><span data-en="Open" data-fr="Ouvrir">Open</span></span>
-                                                    <span class="pd-loc"><svg class="i"><use href="#i-table"/></svg><span data-en="Row 4, column A" data-fr="Ligne 4, colonne A">Row 4, column A</span></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <img class="pd-shot pd-shot--en" src="assets/panel-en.webp" width="920" height="1800" alt="" loading="lazy" decoding="async">
+                                <img class="pd-shot pd-shot--fr" src="assets/panel-fr.webp" width="920" height="1800" alt="" loading="lazy" decoding="async">
                             </div>
-                            <!-- end of PANEL MOCK -->
+                            <!-- end of PANEL -->
                         </div>
                     </div>
                 </figure>
