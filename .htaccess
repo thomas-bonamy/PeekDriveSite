@@ -6,6 +6,11 @@
 # another origin, an inline <style> or style="" attribute), the
 # Content-Security-Policy below must be updated, or the browser will block it.
 
+# No list of files: a folder without an index page (assets/, assets/fonts/)
+# answers 403 instead of showing its content (OVH documents this directive
+# for its shared hosting).
+Options -Indexes
+
 # HTTPS and a single host name: every http:// address and every www. address
 # ends on https://peekdrive.com/... (the condition on port 80 is the one OVH
 # documents for its shared hosting). Google's verification file is left out,
